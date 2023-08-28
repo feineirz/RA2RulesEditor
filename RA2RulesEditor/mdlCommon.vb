@@ -22,8 +22,11 @@ Module mdlCommon
 
 		For Each Line In File.ReadAllLines(INIPath)
 			ReDim Preserve s(i)
-			s(i) = Line.Replace("//", ";")
-			i += 1
+			Line = Line.Trim
+			If Not Line = "{remove it}" Then
+				s(i) = Line.Replace("//", ";")
+				i += 1
+			End If
 		Next
 
 		File.WriteAllLines(INIPath, s)
@@ -157,6 +160,23 @@ Module mdlCommon
 				End If
 
 			End If
+
+		Else
+			Return False
+
+		End If
+
+	End Function
+
+	Public Function RemoveContent(LineNo As Integer) As Boolean
+
+		If File.Exists(INIPath) Then
+			Dim Contents As String() = File.ReadAllLines(INIPath)
+
+			Contents(LineNo - 1) = "{remove it}"
+			File.WriteAllLines(INIPath, Contents)
+			InitRulesFile(INIPath)
+			Return True
 
 		Else
 			Return False

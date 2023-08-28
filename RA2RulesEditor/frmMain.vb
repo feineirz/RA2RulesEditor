@@ -206,8 +206,20 @@ Public Class frmMain
 
 		If lvwMember.SelectedItems.Count = 1 Then
 			If frmInsertContent.ShowDialog() = DialogResult.OK Then
-				MsgBox(frmInsertContent.contentName + "=" + frmInsertContent.contentValue + "; " + frmInsertContent.contentComment)
+				Dim refIndex As Integer = lvwMember.SelectedItems(0).Index
+				Dim refLineNo As Integer = lvwMember.SelectedItems(0).SubItems(2).Text
+				Dim Content As String = frmInsertContent.contentName + "=" + frmInsertContent.contentValue
+				If frmInsertContent.contentComment <> "" Then Content += "; " + frmInsertContent.contentComment
+				If UpdateLineData(refLineNo, Content, True) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
 			End If
+		End If
+
+	End Sub
+
+	Private Sub RemoveContentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveContentToolStripMenuItem.Click
+
+		If lvwMember.SelectedItems.Count = 1 Then
+			If RemoveContent(lvwMember.SelectedItems(0).SubItems(2).Text) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
 		End If
 
 	End Sub

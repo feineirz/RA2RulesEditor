@@ -48,6 +48,7 @@ Partial Class frmMain
 		Me.lblPath = New System.Windows.Forms.Label()
 		Me.cmsMember = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.InsertContentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.RemoveContentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.pnlHeader.SuspendLayout()
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.pnlFooter.SuspendLayout()
@@ -287,15 +288,21 @@ Partial Class frmMain
 		'
 		'cmsMember
 		'
-		Me.cmsMember.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InsertContentToolStripMenuItem})
+		Me.cmsMember.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InsertContentToolStripMenuItem, Me.RemoveContentToolStripMenuItem})
 		Me.cmsMember.Name = "cmsMember"
-		Me.cmsMember.Size = New System.Drawing.Size(150, 26)
+		Me.cmsMember.Size = New System.Drawing.Size(181, 70)
 		'
 		'InsertContentToolStripMenuItem
 		'
 		Me.InsertContentToolStripMenuItem.Name = "InsertContentToolStripMenuItem"
 		Me.InsertContentToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
 		Me.InsertContentToolStripMenuItem.Text = "Insert Content"
+		'
+		'RemoveContentToolStripMenuItem
+		'
+		Me.RemoveContentToolStripMenuItem.Name = "RemoveContentToolStripMenuItem"
+		Me.RemoveContentToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+		Me.RemoveContentToolStripMenuItem.Text = "Remove Content"
 		'
 		'frmMain
 		'
@@ -355,4 +362,5 @@ Partial Class frmMain
 	Friend WithEvents lblPath As Label
 	Friend WithEvents cmsMember As ContextMenuStrip
 	Friend WithEvents InsertContentToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents RemoveContentToolStripMenuItem As ToolStripMenuItem
 End Class
