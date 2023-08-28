@@ -38,7 +38,8 @@ Module mdlCommon
 			Dim i As Integer = 0
 
 			For Each Line In File.ReadAllLines(INIPath)
-				If Not Line.Trim = "" Then 'Ignore blank line
+				Line = Line.Trim()
+				If Not Line = "" Then 'Ignore blank line
 					If InStr(Line, "[") = 1 Then
 						If Filter = "" Then
 							Dim spl() As String = Split(Line, ";", 2)
@@ -125,17 +126,35 @@ Module mdlCommon
 
 	End Function
 
-	Function UpdateLineData(LineNo As Integer, Content As String) As Boolean
+	Public Function UpdateLineData(LineNo As Integer, Content As String, Optional InsertMode As Boolean = False) As Boolean
 
 		If File.Exists(INIPath) Then
-			Dim S As String() = File.ReadAllLines(INIPath)
-			If S.Length >= LineNo Then
-				S(LineNo - 1) = Content
-				File.WriteAllLines(INIPath, S)
-				Return True
+			Dim Contents As String() = File.ReadAllLines(INIPath)
+			If Not InsertMode Then
+				If Contents.Length >= LineNo Then
+					Contents(LineNo - 1) = Content
+					File.WriteAllLines(INIPath, Contents)
+					Return True
 
+				Else
+					Contents.Resize(Contents, Contents.Length + 1)
+					Contents(Contents.Length - 1) = Content
+					File.WriteAllLines(INIPath, Contents)
+					Return True
+
+				End If
 			Else
-				Return False
+				If Contents.Length >= LineNo Then
+					InsertArrayElement(Of String)(Contents, LineNo, Content)
+					File.WriteAllLines(INIPath, Contents)
+					Return True
+
+				Else
+					Contents.Resize(Contents, Contents.Length + 1)
+					Contents(Contents.Length - 1) = Content
+					File.WriteAllLines(INIPath, Contents)
+					Return True
+				End If
 
 			End If
 
@@ -145,5 +164,27 @@ Module mdlCommon
 		End If
 
 	End Function
+
+	Public Sub InsertArrayElement(Of T)(
+		  ByRef sourceArray() As T,
+		  ByVal insertIndex As Integer,
+		  ByVal newValue As T)
+
+		Dim newPosition As Integer
+		Dim counter As Integer
+
+		newPosition = insertIndex
+		If (newPosition < 0) Then newPosition = 0
+		If (newPosition > sourceArray.Length) Then _
+		   newPosition = sourceArray.Length
+
+		Array.Resize(sourceArray, sourceArray.Length + 1)
+
+		For counter = sourceArray.Length - 2 To newPosition Step -1
+			sourceArray(counter + 1) = sourceArray(counter)
+		Next counter
+
+		sourceArray(newPosition) = newValue
+	End Sub
 
 End Module

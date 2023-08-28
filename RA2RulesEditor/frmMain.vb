@@ -97,10 +97,10 @@ Public Class frmMain
 
 	Private Sub lvwMember_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lvwMember.MouseDoubleClick
 
-		If lvwMember.SelectedItems.Count = 1 Then
+		If lvwMember.SelectedItems.Count = 1 And e.Button = MouseButtons.Left Then
 			Dim lvi As ListViewItem = lvwMember.SelectedItems(0)
 			curLVI = lvi
-			Dim F As New Font("Microsoft Sans Serif", 9.75)
+			Dim F As New Font("Bahnschrift SemiCondensed", 9.75)
 			With frmEditValue
 				.lblMemberName.Text = lvi.Text.Trim
 				.tbxValue.Text = lvi.SubItems(1).Text.Trim
@@ -198,6 +198,16 @@ Public Class frmMain
 			e.SuppressKeyPress = True
 			e.Handled = True
 			btnFilter_Click(Nothing, Nothing)
+		End If
+
+	End Sub
+
+	Private Sub InsertContentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InsertContentToolStripMenuItem.Click
+
+		If lvwMember.SelectedItems.Count = 1 Then
+			If frmInsertContent.ShowDialog() = DialogResult.OK Then
+				MsgBox(frmInsertContent.contentName + "=" + frmInsertContent.contentValue + "; " + frmInsertContent.contentComment)
+			End If
 		End If
 
 	End Sub

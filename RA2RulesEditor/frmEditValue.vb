@@ -35,9 +35,9 @@
 
 	Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
 
-		curLVI.SubItems(1).Text = tbxValue.Text.Trim
-		curLVI.SubItems(3).Text = tbxComment.Text.Trim.Replace(vbCr, "").Replace(vbLf, " ")
-		Dim Content As String = curLVI.Text & "=" & curLVI.SubItems(1).Text & Chr(9) & ";" & Chr(9) & OldValue & Chr(9) & ";" & curLVI.SubItems(3).Text
+		curLVI.SubItems(1).Text = tbxValue.Text.Trim 'Value
+		curLVI.SubItems(3).Text = OldValue & "; " & tbxComment.Text.Trim.Replace(vbCr, "").Replace(vbLf, " ") 'Comment
+		Dim Content As String = curLVI.Text & "=" & curLVI.SubItems(1).Text & "; " & curLVI.SubItems(3).Text
 
 		UpdateLineData(lblRefLineNo.Text, Content)
 		Me.Dispose()

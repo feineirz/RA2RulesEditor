@@ -22,6 +22,7 @@ Partial Class frmMain
 	'Do not modify it using the code editor.
 	<System.Diagnostics.DebuggerStepThrough()>
 	Private Sub InitializeComponent()
+		Me.components = New System.ComponentModel.Container()
 		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
 		Me.pnlHeader = New System.Windows.Forms.Panel()
 		Me.picIcon = New System.Windows.Forms.PictureBox()
@@ -45,10 +46,13 @@ Partial Class frmMain
 		Me.pnlInit = New System.Windows.Forms.Panel()
 		Me.lblMessage = New System.Windows.Forms.Label()
 		Me.lblPath = New System.Windows.Forms.Label()
+		Me.cmsMember = New System.Windows.Forms.ContextMenuStrip(Me.components)
+		Me.InsertContentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.pnlHeader.SuspendLayout()
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.pnlFooter.SuspendLayout()
 		Me.pnlInit.SuspendLayout()
+		Me.cmsMember.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'pnlHeader
@@ -88,9 +92,9 @@ Partial Class frmMain
 		Me.btnLoad.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnLoad.Font = New System.Drawing.Font("Bahnschrift", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.btnLoad.Location = New System.Drawing.Point(1291, 9)
+		Me.btnLoad.Location = New System.Drawing.Point(1291, 6)
 		Me.btnLoad.Name = "btnLoad"
-		Me.btnLoad.Size = New System.Drawing.Size(75, 23)
+		Me.btnLoad.Size = New System.Drawing.Size(75, 28)
 		Me.btnLoad.TabIndex = 1
 		Me.btnLoad.Text = "Load"
 		Me.btnLoad.UseVisualStyleBackColor = True
@@ -100,9 +104,9 @@ Partial Class frmMain
 		Me.btnExit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnExit.Font = New System.Drawing.Font("Bahnschrift", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.btnExit.Location = New System.Drawing.Point(1372, 9)
+		Me.btnExit.Location = New System.Drawing.Point(1372, 6)
 		Me.btnExit.Name = "btnExit"
-		Me.btnExit.Size = New System.Drawing.Size(69, 23)
+		Me.btnExit.Size = New System.Drawing.Size(69, 28)
 		Me.btnExit.TabIndex = 2
 		Me.btnExit.Text = "Exit"
 		Me.btnExit.UseVisualStyleBackColor = True
@@ -115,7 +119,7 @@ Partial Class frmMain
 		Me.pnlFooter.Controls.Add(Me.btnLoad)
 		Me.pnlFooter.Controls.Add(Me.btnExit)
 		Me.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom
-		Me.pnlFooter.Location = New System.Drawing.Point(0, 838)
+		Me.pnlFooter.Location = New System.Drawing.Point(0, 760)
 		Me.pnlFooter.Name = "pnlFooter"
 		Me.pnlFooter.Size = New System.Drawing.Size(1453, 40)
 		Me.pnlFooter.TabIndex = 3
@@ -125,9 +129,9 @@ Partial Class frmMain
 		Me.btnSort.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnSort.Font = New System.Drawing.Font("Bahnschrift", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.btnSort.Location = New System.Drawing.Point(1182, 9)
+		Me.btnSort.Location = New System.Drawing.Point(1182, 6)
 		Me.btnSort.Name = "btnSort"
-		Me.btnSort.Size = New System.Drawing.Size(103, 23)
+		Me.btnSort.Size = New System.Drawing.Size(103, 28)
 		Me.btnSort.TabIndex = 5
 		Me.btnSort.Text = "Sort"
 		Me.btnSort.UseVisualStyleBackColor = True
@@ -156,7 +160,7 @@ Partial Class frmMain
 		Me.lvwSection.Location = New System.Drawing.Point(1182, 103)
 		Me.lvwSection.MultiSelect = False
 		Me.lvwSection.Name = "lvwSection"
-		Me.lvwSection.Size = New System.Drawing.Size(259, 729)
+		Me.lvwSection.Size = New System.Drawing.Size(259, 651)
 		Me.lvwSection.TabIndex = 4
 		Me.lvwSection.UseCompatibleStateImageBehavior = False
 		Me.lvwSection.View = System.Windows.Forms.View.Details
@@ -172,6 +176,7 @@ Partial Class frmMain
 			Or System.Windows.Forms.AnchorStyles.Left) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lvwMember.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Member_Name, Me.col_Member_Value, Me.col_Member_LineNo, Me.col_Member_Comment})
+		Me.lvwMember.ContextMenuStrip = Me.cmsMember
 		Me.lvwMember.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lvwMember.FullRowSelect = True
 		Me.lvwMember.GridLines = True
@@ -180,7 +185,7 @@ Partial Class frmMain
 		Me.lvwMember.Location = New System.Drawing.Point(12, 103)
 		Me.lvwMember.MultiSelect = False
 		Me.lvwMember.Name = "lvwMember"
-		Me.lvwMember.Size = New System.Drawing.Size(1164, 729)
+		Me.lvwMember.Size = New System.Drawing.Size(1164, 651)
 		Me.lvwMember.TabIndex = 5
 		Me.lvwMember.UseCompatibleStateImageBehavior = False
 		Me.lvwMember.View = System.Windows.Forms.View.Details
@@ -198,12 +203,12 @@ Partial Class frmMain
 		'col_Member_LineNo
 		'
 		Me.col_Member_LineNo.Text = "Line No."
-		Me.col_Member_LineNo.Width = 0
+		Me.col_Member_LineNo.Width = 70
 		'
 		'col_Member_Comment
 		'
 		Me.col_Member_Comment.Text = "Comment"
-		Me.col_Member_Comment.Width = 640
+		Me.col_Member_Comment.Width = 570
 		'
 		'Label1
 		'
@@ -271,21 +276,33 @@ Partial Class frmMain
 		'
 		'lblPath
 		'
-		Me.lblPath.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.lblPath.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lblPath.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lblPath.Location = New System.Drawing.Point(264, 77)
+		Me.lblPath.Location = New System.Drawing.Point(264, 76)
 		Me.lblPath.Name = "lblPath"
 		Me.lblPath.Size = New System.Drawing.Size(912, 16)
 		Me.lblPath.TabIndex = 11
 		Me.lblPath.Text = "---"
 		Me.lblPath.TextAlign = System.Drawing.ContentAlignment.TopRight
 		'
+		'cmsMember
+		'
+		Me.cmsMember.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InsertContentToolStripMenuItem})
+		Me.cmsMember.Name = "cmsMember"
+		Me.cmsMember.Size = New System.Drawing.Size(150, 26)
+		'
+		'InsertContentToolStripMenuItem
+		'
+		Me.InsertContentToolStripMenuItem.Name = "InsertContentToolStripMenuItem"
+		Me.InsertContentToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+		Me.InsertContentToolStripMenuItem.Text = "Insert Content"
+		'
 		'frmMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.BackColor = System.Drawing.Color.White
-		Me.ClientSize = New System.Drawing.Size(1453, 878)
+		Me.ClientSize = New System.Drawing.Size(1453, 800)
 		Me.ControlBox = False
 		Me.Controls.Add(Me.lblPath)
 		Me.Controls.Add(Me.pnlInit)
@@ -308,6 +325,7 @@ Partial Class frmMain
 		Me.pnlFooter.ResumeLayout(False)
 		Me.pnlFooter.PerformLayout()
 		Me.pnlInit.ResumeLayout(False)
+		Me.cmsMember.ResumeLayout(False)
 		Me.ResumeLayout(False)
 		Me.PerformLayout()
 
@@ -335,4 +353,6 @@ Partial Class frmMain
 	Friend WithEvents lblMessage As Label
 	Friend WithEvents btnSort As Button
 	Friend WithEvents lblPath As Label
+	Friend WithEvents cmsMember As ContextMenuStrip
+	Friend WithEvents InsertContentToolStripMenuItem As ToolStripMenuItem
 End Class
