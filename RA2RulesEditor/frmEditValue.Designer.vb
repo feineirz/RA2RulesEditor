@@ -156,7 +156,6 @@ Partial Class frmEditValue
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.ClientSize = New System.Drawing.Size(500, 320)
 		Me.ControlBox = False
-		Me.Controls.Add(Me.Label1)
 		Me.Controls.Add(Me.tbxComment)
 		Me.Controls.Add(Me.lblRefLineNo)
 		Me.Controls.Add(Me.pnlHeader)
@@ -165,6 +164,7 @@ Partial Class frmEditValue
 		Me.Controls.Add(Me.btnSave)
 		Me.Controls.Add(Me.btnCancel)
 		Me.Controls.Add(Me.lblRefIndex)
+		Me.Controls.Add(Me.Label1)
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
 		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.Name = "frmEditValue"
