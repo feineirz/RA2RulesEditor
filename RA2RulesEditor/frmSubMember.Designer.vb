@@ -50,7 +50,7 @@ Partial Class frmSubMember
 		Me.lblTitle.AutoSize = True
 		Me.lblTitle.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblTitle.ForeColor = System.Drawing.Color.Black
-		Me.lblTitle.Location = New System.Drawing.Point(3, 7)
+		Me.lblTitle.Location = New System.Drawing.Point(3, 4)
 		Me.lblTitle.Name = "lblTitle"
 		Me.lblTitle.Size = New System.Drawing.Size(99, 35)
 		Me.lblTitle.TabIndex = 1

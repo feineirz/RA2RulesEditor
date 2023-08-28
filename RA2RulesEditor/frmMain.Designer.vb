@@ -39,6 +39,9 @@ Partial Class frmMain
 		Me.col_Member_Value = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Member_LineNo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Member_Comment = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+		Me.cmsMember = New System.Windows.Forms.ContextMenuStrip(Me.components)
+		Me.InsertContentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.RemoveContentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.Label1 = New System.Windows.Forms.Label()
 		Me.tbxFilter = New System.Windows.Forms.TextBox()
 		Me.btnFilter = New System.Windows.Forms.Button()
@@ -46,14 +49,11 @@ Partial Class frmMain
 		Me.pnlInit = New System.Windows.Forms.Panel()
 		Me.lblMessage = New System.Windows.Forms.Label()
 		Me.lblPath = New System.Windows.Forms.Label()
-		Me.cmsMember = New System.Windows.Forms.ContextMenuStrip(Me.components)
-		Me.InsertContentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.RemoveContentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.pnlHeader.SuspendLayout()
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.pnlFooter.SuspendLayout()
-		Me.pnlInit.SuspendLayout()
 		Me.cmsMember.SuspendLayout()
+		Me.pnlInit.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'pnlHeader
@@ -211,6 +211,27 @@ Partial Class frmMain
 		Me.col_Member_Comment.Text = "Comment"
 		Me.col_Member_Comment.Width = 570
 		'
+		'cmsMember
+		'
+		Me.cmsMember.Font = New System.Drawing.Font("Bahnschrift SemiLight SemiConde", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.cmsMember.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InsertContentToolStripMenuItem, Me.RemoveContentToolStripMenuItem})
+		Me.cmsMember.Name = "cmsMember"
+		Me.cmsMember.Size = New System.Drawing.Size(158, 48)
+		'
+		'InsertContentToolStripMenuItem
+		'
+		Me.InsertContentToolStripMenuItem.Image = CType(resources.GetObject("InsertContentToolStripMenuItem.Image"), System.Drawing.Image)
+		Me.InsertContentToolStripMenuItem.Name = "InsertContentToolStripMenuItem"
+		Me.InsertContentToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+		Me.InsertContentToolStripMenuItem.Text = "Insert Content"
+		'
+		'RemoveContentToolStripMenuItem
+		'
+		Me.RemoveContentToolStripMenuItem.Image = CType(resources.GetObject("RemoveContentToolStripMenuItem.Image"), System.Drawing.Image)
+		Me.RemoveContentToolStripMenuItem.Name = "RemoveContentToolStripMenuItem"
+		Me.RemoveContentToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
+		Me.RemoveContentToolStripMenuItem.Text = "Remove Content"
+		'
 		'Label1
 		'
 		Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -286,24 +307,6 @@ Partial Class frmMain
 		Me.lblPath.Text = "---"
 		Me.lblPath.TextAlign = System.Drawing.ContentAlignment.TopRight
 		'
-		'cmsMember
-		'
-		Me.cmsMember.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InsertContentToolStripMenuItem, Me.RemoveContentToolStripMenuItem})
-		Me.cmsMember.Name = "cmsMember"
-		Me.cmsMember.Size = New System.Drawing.Size(181, 70)
-		'
-		'InsertContentToolStripMenuItem
-		'
-		Me.InsertContentToolStripMenuItem.Name = "InsertContentToolStripMenuItem"
-		Me.InsertContentToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-		Me.InsertContentToolStripMenuItem.Text = "Insert Content"
-		'
-		'RemoveContentToolStripMenuItem
-		'
-		Me.RemoveContentToolStripMenuItem.Name = "RemoveContentToolStripMenuItem"
-		Me.RemoveContentToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-		Me.RemoveContentToolStripMenuItem.Text = "Remove Content"
-		'
 		'frmMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -331,8 +334,8 @@ Partial Class frmMain
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.pnlFooter.ResumeLayout(False)
 		Me.pnlFooter.PerformLayout()
-		Me.pnlInit.ResumeLayout(False)
 		Me.cmsMember.ResumeLayout(False)
+		Me.pnlInit.ResumeLayout(False)
 		Me.ResumeLayout(False)
 		Me.PerformLayout()
 
