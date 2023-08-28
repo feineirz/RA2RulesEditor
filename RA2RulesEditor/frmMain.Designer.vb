@@ -44,6 +44,7 @@ Partial Class frmMain
 		Me.lblCurSection = New System.Windows.Forms.Label()
 		Me.pnlInit = New System.Windows.Forms.Panel()
 		Me.lblMessage = New System.Windows.Forms.Label()
+		Me.lblPath = New System.Windows.Forms.Label()
 		Me.pnlHeader.SuspendLayout()
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.pnlFooter.SuspendLayout()
@@ -74,11 +75,11 @@ Partial Class frmMain
 		'lblTitle
 		'
 		Me.lblTitle.AutoSize = True
-		Me.lblTitle.Font = New System.Drawing.Font("Tw Cen MT Condensed", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblTitle.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblTitle.ForeColor = System.Drawing.Color.WhiteSmoke
 		Me.lblTitle.Location = New System.Drawing.Point(42, 5)
 		Me.lblTitle.Name = "lblTitle"
-		Me.lblTitle.Size = New System.Drawing.Size(174, 38)
+		Me.lblTitle.Size = New System.Drawing.Size(226, 39)
 		Me.lblTitle.TabIndex = 0
 		Me.lblTitle.Text = "RA2 Rules Editor"
 		'
@@ -86,6 +87,7 @@ Partial Class frmMain
 		'
 		Me.btnLoad.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnLoad.Font = New System.Drawing.Font("Bahnschrift", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.btnLoad.Location = New System.Drawing.Point(1291, 9)
 		Me.btnLoad.Name = "btnLoad"
 		Me.btnLoad.Size = New System.Drawing.Size(75, 23)
@@ -97,6 +99,7 @@ Partial Class frmMain
 		'
 		Me.btnExit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnExit.Font = New System.Drawing.Font("Bahnschrift", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.btnExit.Location = New System.Drawing.Point(1372, 9)
 		Me.btnExit.Name = "btnExit"
 		Me.btnExit.Size = New System.Drawing.Size(69, 23)
@@ -121,6 +124,7 @@ Partial Class frmMain
 		'
 		Me.btnSort.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnSort.Font = New System.Drawing.Font("Bahnschrift", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.btnSort.Location = New System.Drawing.Point(1182, 9)
 		Me.btnSort.Name = "btnSort"
 		Me.btnSort.Size = New System.Drawing.Size(103, 23)
@@ -132,21 +136,23 @@ Partial Class frmMain
 		'
 		Me.lblStatus.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.lblStatus.AutoSize = True
-		Me.lblStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
+		Me.lblStatus.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblStatus.Location = New System.Drawing.Point(9, 12)
 		Me.lblStatus.Name = "lblStatus"
-		Me.lblStatus.Size = New System.Drawing.Size(49, 16)
+		Me.lblStatus.Size = New System.Drawing.Size(38, 16)
 		Me.lblStatus.TabIndex = 4
 		Me.lblStatus.Text = "Ready"
 		'
 		'lvwSection
 		'
 		Me.lvwSection.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-						Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lvwSection.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Section_Name})
+		Me.lvwSection.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lvwSection.FullRowSelect = True
 		Me.lvwSection.GridLines = True
 		Me.lvwSection.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
+		Me.lvwSection.HideSelection = False
 		Me.lvwSection.Location = New System.Drawing.Point(1182, 103)
 		Me.lvwSection.MultiSelect = False
 		Me.lvwSection.Name = "lvwSection"
@@ -163,12 +169,14 @@ Partial Class frmMain
 		'lvwMember
 		'
 		Me.lvwMember.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-						Or System.Windows.Forms.AnchorStyles.Left) _
-						Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+			Or System.Windows.Forms.AnchorStyles.Left) _
+			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lvwMember.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Member_Name, Me.col_Member_Value, Me.col_Member_LineNo, Me.col_Member_Comment})
+		Me.lvwMember.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lvwMember.FullRowSelect = True
 		Me.lvwMember.GridLines = True
 		Me.lvwMember.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
+		Me.lvwMember.HideSelection = False
 		Me.lvwMember.Location = New System.Drawing.Point(12, 103)
 		Me.lvwMember.MultiSelect = False
 		Me.lvwMember.Name = "lvwMember"
@@ -201,10 +209,10 @@ Partial Class frmMain
 		'
 		Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.Label1.AutoSize = True
-		Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
+		Me.Label1.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.Label1.Location = New System.Drawing.Point(1179, 55)
 		Me.Label1.Name = "Label1"
-		Me.Label1.Size = New System.Drawing.Size(37, 16)
+		Me.Label1.Size = New System.Drawing.Size(34, 16)
 		Me.Label1.TabIndex = 5
 		Me.Label1.Text = "Filter"
 		'
@@ -222,6 +230,7 @@ Partial Class frmMain
 		'
 		Me.btnFilter.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnFilter.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.btnFilter.Location = New System.Drawing.Point(1372, 74)
 		Me.btnFilter.Name = "btnFilter"
 		Me.btnFilter.Size = New System.Drawing.Size(69, 22)
@@ -233,10 +242,10 @@ Partial Class frmMain
 		'
 		Me.lblCurSection.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lblCurSection.AutoSize = True
-		Me.lblCurSection.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
+		Me.lblCurSection.Font = New System.Drawing.Font("Bahnschrift Condensed", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblCurSection.Location = New System.Drawing.Point(7, 75)
 		Me.lblCurSection.Name = "lblCurSection"
-		Me.lblCurSection.Size = New System.Drawing.Size(84, 25)
+		Me.lblCurSection.Size = New System.Drawing.Size(64, 25)
 		Me.lblCurSection.TabIndex = 9
 		Me.lblCurSection.Text = "Section"
 		'
@@ -251,7 +260,7 @@ Partial Class frmMain
 		'
 		'lblMessage
 		'
-		Me.lblMessage.Font = New System.Drawing.Font("Tw Cen MT Condensed", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblMessage.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblMessage.ForeColor = System.Drawing.Color.Gray
 		Me.lblMessage.Location = New System.Drawing.Point(3, 30)
 		Me.lblMessage.Name = "lblMessage"
@@ -260,6 +269,17 @@ Partial Class frmMain
 		Me.lblMessage.Text = "Initializing..."
 		Me.lblMessage.TextAlign = System.Drawing.ContentAlignment.TopCenter
 		'
+		'lblPath
+		'
+		Me.lblPath.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.lblPath.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblPath.Location = New System.Drawing.Point(264, 77)
+		Me.lblPath.Name = "lblPath"
+		Me.lblPath.Size = New System.Drawing.Size(912, 16)
+		Me.lblPath.TabIndex = 11
+		Me.lblPath.Text = "---"
+		Me.lblPath.TextAlign = System.Drawing.ContentAlignment.TopRight
+		'
 		'frmMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -267,6 +287,7 @@ Partial Class frmMain
 		Me.BackColor = System.Drawing.Color.White
 		Me.ClientSize = New System.Drawing.Size(1453, 878)
 		Me.ControlBox = False
+		Me.Controls.Add(Me.lblPath)
 		Me.Controls.Add(Me.pnlInit)
 		Me.Controls.Add(Me.lblCurSection)
 		Me.Controls.Add(Me.Label1)
@@ -313,4 +334,5 @@ Partial Class frmMain
 	Friend WithEvents pnlInit As Panel
 	Friend WithEvents lblMessage As Label
 	Friend WithEvents btnSort As Button
+	Friend WithEvents lblPath As Label
 End Class

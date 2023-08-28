@@ -22,6 +22,7 @@ Partial Class frmEditValue
 	'Do not modify it using the code editor.
 	<System.Diagnostics.DebuggerStepThrough()> _
 	Private Sub InitializeComponent()
+		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEditValue))
 		Me.btnCancel = New System.Windows.Forms.Button()
 		Me.btnSave = New System.Windows.Forms.Button()
 		Me.lblMemberName = New System.Windows.Forms.Label()
@@ -39,7 +40,8 @@ Partial Class frmEditValue
 		'
 		Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-		Me.btnCancel.Location = New System.Drawing.Point(393, 287)
+		Me.btnCancel.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.btnCancel.Location = New System.Drawing.Point(413, 315)
 		Me.btnCancel.Name = "btnCancel"
 		Me.btnCancel.Size = New System.Drawing.Size(75, 23)
 		Me.btnCancel.TabIndex = 2
@@ -50,7 +52,8 @@ Partial Class frmEditValue
 		'
 		Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-		Me.btnSave.Location = New System.Drawing.Point(312, 287)
+		Me.btnSave.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.btnSave.Location = New System.Drawing.Point(332, 315)
 		Me.btnSave.Name = "btnSave"
 		Me.btnSave.Size = New System.Drawing.Size(75, 23)
 		Me.btnSave.TabIndex = 1
@@ -60,10 +63,10 @@ Partial Class frmEditValue
 		'lblMemberName
 		'
 		Me.lblMemberName.AutoSize = True
-		Me.lblMemberName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
-		Me.lblMemberName.Location = New System.Drawing.Point(12, 44)
+		Me.lblMemberName.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblMemberName.Location = New System.Drawing.Point(12, 42)
 		Me.lblMemberName.Name = "lblMemberName"
-		Me.lblMemberName.Size = New System.Drawing.Size(51, 16)
+		Me.lblMemberName.Size = New System.Drawing.Size(49, 18)
 		Me.lblMemberName.TabIndex = 4
 		Me.lblMemberName.Text = "Name :"
 		Me.lblMemberName.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -71,32 +74,33 @@ Partial Class frmEditValue
 		'tbxValue
 		'
 		Me.tbxValue.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-						Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-		Me.tbxValue.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
+			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.tbxValue.Font = New System.Drawing.Font("Bahnschrift SemiLight SemiConde", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.tbxValue.Location = New System.Drawing.Point(60, 41)
 		Me.tbxValue.Name = "tbxValue"
-		Me.tbxValue.Size = New System.Drawing.Size(408, 22)
+		Me.tbxValue.Size = New System.Drawing.Size(428, 23)
 		Me.tbxValue.TabIndex = 0
 		'
 		'pnlHeader
 		'
-		Me.pnlHeader.BackColor = System.Drawing.Color.DimGray
+		Me.pnlHeader.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.pnlHeader.BackColor = System.Drawing.Color.Silver
 		Me.pnlHeader.Controls.Add(Me.lblTitle)
-		Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
 		Me.pnlHeader.ForeColor = System.Drawing.SystemColors.ControlText
 		Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
 		Me.pnlHeader.Name = "pnlHeader"
-		Me.pnlHeader.Size = New System.Drawing.Size(480, 35)
+		Me.pnlHeader.Size = New System.Drawing.Size(500, 35)
 		Me.pnlHeader.TabIndex = 6
 		'
 		'lblTitle
 		'
 		Me.lblTitle.AutoSize = True
-		Me.lblTitle.Font = New System.Drawing.Font("Tw Cen MT Condensed", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lblTitle.ForeColor = System.Drawing.Color.White
-		Me.lblTitle.Location = New System.Drawing.Point(2, 3)
+		Me.lblTitle.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblTitle.ForeColor = System.Drawing.Color.Black
+		Me.lblTitle.Location = New System.Drawing.Point(2, 1)
 		Me.lblTitle.Name = "lblTitle"
-		Me.lblTitle.Size = New System.Drawing.Size(84, 28)
+		Me.lblTitle.Size = New System.Drawing.Size(119, 33)
 		Me.lblTitle.TabIndex = 7
 		Me.lblTitle.Text = "Edit Value"
 		'
@@ -104,9 +108,10 @@ Partial Class frmEditValue
 		'
 		Me.lblRefIndex.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.lblRefIndex.AutoSize = True
-		Me.lblRefIndex.Location = New System.Drawing.Point(12, 300)
+		Me.lblRefIndex.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!)
+		Me.lblRefIndex.Location = New System.Drawing.Point(12, 328)
 		Me.lblRefIndex.Name = "lblRefIndex"
-		Me.lblRefIndex.Size = New System.Drawing.Size(56, 13)
+		Me.lblRefIndex.Size = New System.Drawing.Size(56, 16)
 		Me.lblRefIndex.TabIndex = 7
 		Me.lblRefIndex.Text = "Ref. Index"
 		Me.lblRefIndex.Visible = False
@@ -115,9 +120,10 @@ Partial Class frmEditValue
 		'
 		Me.lblRefLineNo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.lblRefLineNo.AutoSize = True
-		Me.lblRefLineNo.Location = New System.Drawing.Point(74, 300)
+		Me.lblRefLineNo.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!)
+		Me.lblRefLineNo.Location = New System.Drawing.Point(74, 328)
 		Me.lblRefLineNo.Name = "lblRefLineNo"
-		Me.lblRefLineNo.Size = New System.Drawing.Size(50, 13)
+		Me.lblRefLineNo.Size = New System.Drawing.Size(50, 16)
 		Me.lblRefLineNo.TabIndex = 8
 		Me.lblRefLineNo.Text = "Ref. Line"
 		Me.lblRefLineNo.Visible = False
@@ -125,23 +131,22 @@ Partial Class frmEditValue
 		'tbxComment
 		'
 		Me.tbxComment.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-						Or System.Windows.Forms.AnchorStyles.Left) _
-						Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-		Me.tbxComment.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
+			Or System.Windows.Forms.AnchorStyles.Left) _
+			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.tbxComment.Font = New System.Drawing.Font("Bahnschrift SemiLight SemiConde", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.tbxComment.Location = New System.Drawing.Point(12, 95)
 		Me.tbxComment.Multiline = True
 		Me.tbxComment.Name = "tbxComment"
-		Me.tbxComment.Size = New System.Drawing.Size(456, 186)
+		Me.tbxComment.Size = New System.Drawing.Size(476, 214)
 		Me.tbxComment.TabIndex = 9
 		'
 		'Label1
 		'
-		Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.Label1.AutoSize = True
-		Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
-		Me.Label1.Location = New System.Drawing.Point(9, 76)
+		Me.Label1.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label1.Location = New System.Drawing.Point(9, 74)
 		Me.Label1.Name = "Label1"
-		Me.Label1.Size = New System.Drawing.Size(65, 16)
+		Me.Label1.Size = New System.Drawing.Size(63, 18)
 		Me.Label1.TabIndex = 10
 		Me.Label1.Text = "Comment"
 		'
@@ -149,7 +154,7 @@ Partial Class frmEditValue
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(480, 322)
+		Me.ClientSize = New System.Drawing.Size(500, 350)
 		Me.ControlBox = False
 		Me.Controls.Add(Me.Label1)
 		Me.Controls.Add(Me.tbxComment)
@@ -161,6 +166,7 @@ Partial Class frmEditValue
 		Me.Controls.Add(Me.btnCancel)
 		Me.Controls.Add(Me.lblRefIndex)
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.Name = "frmEditValue"
 		Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
 		Me.Text = "frmEditValue"

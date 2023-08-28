@@ -47,15 +47,18 @@ Public Class frmMain
 
 		pnlInit.Visible = False : Me.Refresh()
 
+		Return 0
+
 	End Function
 
 	Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
 
 		Dim dlgOpenFile As New OpenFileDialog
-		dlgOpenFile.Filter = "RA2 Rules File|rules.ini;rulesmd.ini"
+		dlgOpenFile.Filter = "Ini files|*.ini"
 
 		If dlgOpenFile.ShowDialog = DialogResult.OK Then
 
+			lblPath.Text = dlgOpenFile.FileName
 			tbxFilter.Text = ""
 
 			INIPath = dlgOpenFile.FileName

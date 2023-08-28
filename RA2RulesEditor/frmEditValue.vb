@@ -1,4 +1,26 @@
 ﻿Public Class frmEditValue
+
+#Region "Moveable Form Code"
+	<System.Runtime.InteropServices.DllImportAttribute("user32.dll")>
+	Public Shared Function SendMessage(hWnd As IntPtr, Msg As Integer, wParam As Integer, lParam As Integer) As Integer
+	End Function
+
+	<System.Runtime.InteropServices.DllImportAttribute("user32.dll")>
+	Public Shared Function ReleaseCapture() As Boolean
+	End Function
+
+	Private Sub Form_MouseDown(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown, pnlHeader.MouseDown
+		Const WM_NCLBUTTONDOWN As Integer = &HA1
+		Const HT_CAPTION As Integer = &H2
+
+		If e.Button = MouseButtons.Left Then
+			ReleaseCapture()
+			SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0)
+		End If
+	End Sub
+
+#End Region
+
 	Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
 
 		Me.Dispose()
@@ -29,6 +51,13 @@
 			e.SuppressKeyPress = False
 			btnSave_Click(Nothing, Nothing)
 		End If
+
+	End Sub
+
+	Private Sub frmEditValue_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+		Me.Width = 500
+		Me.Height = 320
 
 	End Sub
 End Class

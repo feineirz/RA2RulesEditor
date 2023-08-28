@@ -37,7 +37,7 @@ Partial Class frmSubMember
 		'
 		'pnlHeader
 		'
-		Me.pnlHeader.BackColor = System.Drawing.Color.Gray
+		Me.pnlHeader.BackColor = System.Drawing.Color.DarkGray
 		Me.pnlHeader.Controls.Add(Me.lblTitle)
 		Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
 		Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
@@ -48,11 +48,11 @@ Partial Class frmSubMember
 		'lblTitle
 		'
 		Me.lblTitle.AutoSize = True
-		Me.lblTitle.Font = New System.Drawing.Font("Tw Cen MT Condensed", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lblTitle.ForeColor = System.Drawing.Color.WhiteSmoke
+		Me.lblTitle.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblTitle.ForeColor = System.Drawing.Color.Black
 		Me.lblTitle.Location = New System.Drawing.Point(3, 7)
 		Me.lblTitle.Name = "lblTitle"
-		Me.lblTitle.Size = New System.Drawing.Size(71, 31)
+		Me.lblTitle.Size = New System.Drawing.Size(99, 35)
 		Me.lblTitle.TabIndex = 1
 		Me.lblTitle.Text = "Section"
 		'
@@ -70,6 +70,7 @@ Partial Class frmSubMember
 		'
 		Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnClose.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.btnClose.Location = New System.Drawing.Point(1113, 6)
 		Me.btnClose.Name = "btnClose"
 		Me.btnClose.Size = New System.Drawing.Size(69, 23)
@@ -80,12 +81,14 @@ Partial Class frmSubMember
 		'lvwMember
 		'
 		Me.lvwMember.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-						Or System.Windows.Forms.AnchorStyles.Left) _
-						Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+			Or System.Windows.Forms.AnchorStyles.Left) _
+			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lvwMember.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Member_Name, Me.col_Member_Value, Me.col_Member_LineNo, Me.col_Member_Comment})
+		Me.lvwMember.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lvwMember.FullRowSelect = True
 		Me.lvwMember.GridLines = True
 		Me.lvwMember.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
+		Me.lvwMember.HideSelection = False
 		Me.lvwMember.Location = New System.Drawing.Point(12, 51)
 		Me.lvwMember.MultiSelect = False
 		Me.lvwMember.Name = "lvwMember"
