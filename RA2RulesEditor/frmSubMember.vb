@@ -32,14 +32,14 @@
 			Dim lvi As ListViewItem = lvwMember.SelectedItems(0)
 			curLVI = lvi
 			With frmEditValue
-				.lblMemberName.Text = lvi.Text.Trim
+				.lblKeyName.Text = lvi.Text.Trim
 				.tbxValue.Text = lvi.SubItems(1).Text.Trim
 				.tbxComment.Text = lvi.SubItems(2).Text.Trim
 				OldValue = .tbxValue.Text
 				.lblRefIndex.Text = lvi.Index
 				.lblRefLineNo.Text = lvi.SubItems(3).Text
 
-				.tbxValue.Left = .lblMemberName.Left + .lblMemberName.Width + 10
+				.tbxValue.Left = .lblKeyName.Left + .lblKeyName.Width + 10
 				.tbxValue.Width = .btnCancel.Left + .btnCancel.Width - .tbxValue.Left
 				.ShowDialog()
 			End With

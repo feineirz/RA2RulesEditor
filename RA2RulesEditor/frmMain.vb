@@ -103,21 +103,13 @@ Public Class frmMain
 		If lvwMember.SelectedItems.Count = 1 And e.Button = MouseButtons.Left Then
 			Dim lvi As ListViewItem = lvwMember.SelectedItems(0)
 			curLVI = lvi
-			Dim F As New Font("Bahnschrift SemiCondensed", 9.75)
 			With frmEditValue
-				.lblMemberName.Text = lvi.Text.Trim
+				.lblKeyName.Text = lvi.Text.Trim
 				.tbxValue.Text = lvi.SubItems(1).Text.Trim
 				.tbxComment.Text = lvi.SubItems(2).Text.Trim
 				OldValue = .tbxValue.Text
 				.lblRefIndex.Text = lvi.Index
 				.lblRefLineNo.Text = lvi.SubItems(3).Text
-
-				.tbxValue.Left = .lblMemberName.Left + .lblMemberName.Width + 10
-				.tbxValue.Width = .btnCancel.Left + .btnCancel.Width - .tbxValue.Left
-
-				Dim textSize As Size = TextRenderer.MeasureText(lvi.SubItems(1).Text.Trim, F)
-				.Width = .lblMemberName.Left + .lblMemberName.Width + textSize.Width + 30
-				If .Width < 230 Then .Width = 230
 				.ShowDialog()
 			End With
 		End If
