@@ -83,7 +83,7 @@ Partial Class frmSubMember
 		Me.lvwMember.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Left) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-		Me.lvwMember.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Member_Name, Me.col_Member_Value, Me.col_Member_LineNo, Me.col_Member_Comment})
+		Me.lvwMember.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Member_Name, Me.col_Member_Value, Me.col_Member_Comment, Me.col_Member_LineNo})
 		Me.lvwMember.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lvwMember.FullRowSelect = True
 		Me.lvwMember.GridLines = True
@@ -110,12 +110,13 @@ Partial Class frmSubMember
 		'col_Member_LineNo
 		'
 		Me.col_Member_LineNo.Text = "Line No."
-		Me.col_Member_LineNo.Width = 0
+		Me.col_Member_LineNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+		Me.col_Member_LineNo.Width = 70
 		'
 		'col_Member_Comment
 		'
 		Me.col_Member_Comment.Text = "Comment"
-		Me.col_Member_Comment.Width = 640
+		Me.col_Member_Comment.Width = 570
 		'
 		'frmSubMember
 		'
