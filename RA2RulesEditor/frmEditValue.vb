@@ -37,19 +37,21 @@
 
 		Dim keyField As ListViewItem = curLVI
 		Dim valueField As ListViewItem.ListViewSubItem = curLVI.SubItems(1)
-		Dim commentField As ListViewItem.ListViewSubItem = curLVI.SubItems(3)
+		Dim commentField As ListViewItem.ListViewSubItem = curLVI.SubItems(2)
 
-		Dim prevValue As String = valueField.Text
-		Dim newValue = tbxValue.Text.Trim
+		Dim prevValue As String = valueField.Text.Trim
+		Dim newValue As String = tbxValue.Text.Trim
+		Dim newComment As String = tbxComment.Text.Replace(vbCr, "").Replace(vbLf, " ").Trim
 		If Not valueField.Text.Trim = newValue Then
 			valueField.Text = newValue
-			commentField.Text = prevValue & " ;" & tbxComment.Text.Replace(vbCr, "").Replace(vbLf, " ").Trim
+			commentField.Text = prevValue
+			If Not newComment.Trim = "" Then commentField.Text = commentField.Text.Trim & " ;" & newComment.Trim
 		Else
-			commentField.Text = tbxComment.Text.Replace(vbCr, "").Replace(vbLf, " ").Trim
+			commentField.Text = tbxComment.Text.Trim.Replace(vbCr, "").Replace(vbLf, "")
 		End If
 
-		Dim Content As String = keyField.Text & "=" & valueField.Text
-		If Not commentField.Text = "" Then Content += " ;" & commentField.Text.Trim
+		Dim Content As String = keyField.Text.Trim & "=" & valueField.Text.Trim
+		If Not commentField.Text.Trim = "" Then Content = Content.Trim & " ;" & commentField.Text.Trim
 		UpdateLineData(lblRefLineNo.Text, Content)
 
 		Me.Dispose()

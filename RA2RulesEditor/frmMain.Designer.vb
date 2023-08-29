@@ -304,7 +304,7 @@ Partial Class frmMain
 		'
 		Me.lblPath.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lblPath.Font = New System.Drawing.Font("Bahnschrift SemiLight SemiConde", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lblPath.ForeColor = System.Drawing.Color.DarkOrange
+		Me.lblPath.ForeColor = System.Drawing.Color.SteelBlue
 		Me.lblPath.Location = New System.Drawing.Point(264, 74)
 		Me.lblPath.Name = "lblPath"
 		Me.lblPath.Size = New System.Drawing.Size(837, 22)
