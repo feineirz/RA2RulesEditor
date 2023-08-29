@@ -83,12 +83,15 @@ Public Class frmMain
 			lblCurSection.Text = Section
 			lvwMember.Items.Clear()
 
+			tsmi_AppendElement.Enabled = False
+			tsmi_RemoveElement.Enabled = False
+
 			If Not src Is Nothing Then
 				For Each LD As LineData In src
 					lvi = lvwMember.Items.Add(LD.Name)
 					lvi.SubItems.Add(LD.Value)
-					lvi.SubItems.Add(LD.LineNo)
 					lvi.SubItems.Add(LD.Comment)
+					lvi.SubItems.Add(LD.LineNo)
 				Next
 			End If
 		End If
@@ -104,10 +107,10 @@ Public Class frmMain
 			With frmEditValue
 				.lblMemberName.Text = lvi.Text.Trim
 				.tbxValue.Text = lvi.SubItems(1).Text.Trim
-				.tbxComment.Text = lvi.SubItems(3).Text.Trim
+				.tbxComment.Text = lvi.SubItems(2).Text.Trim
 				OldValue = .tbxValue.Text
 				.lblRefIndex.Text = lvi.Index
-				.lblRefLineNo.Text = lvi.SubItems(2).Text
+				.lblRefLineNo.Text = lvi.SubItems(3).Text
 
 				.tbxValue.Left = .lblMemberName.Left + .lblMemberName.Width + 10
 				.tbxValue.Width = .btnCancel.Left + .btnCancel.Width - .tbxValue.Left
@@ -160,8 +163,8 @@ Public Class frmMain
 					For Each LD As LineData In src
 						lvi = .lvwMember.Items.Add(LD.Name)
 						lvi.SubItems.Add(LD.Value)
-						lvi.SubItems.Add(LD.LineNo)
 						lvi.SubItems.Add(LD.Comment)
+						lvi.SubItems.Add(LD.LineNo)
 					Next
 					.ShowDialog()
 				End With
@@ -207,7 +210,7 @@ Public Class frmMain
 		If lvwMember.SelectedItems.Count = 1 Then
 			If frmInsertContent.ShowDialog() = DialogResult.OK Then
 				Dim refIndex As Integer = lvwMember.SelectedItems(0).Index
-				Dim refLineNo As Integer = lvwMember.SelectedItems(0).SubItems(2).Text
+				Dim refLineNo As Integer = lvwMember.SelectedItems(0).SubItems(3).Text
 				Dim Content As String = frmInsertContent.contentName + "=" + frmInsertContent.contentValue
 				If frmInsertContent.contentComment <> "" Then Content += "; " + frmInsertContent.contentComment
 				If UpdateLineData(refLineNo, Content, True) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
@@ -219,7 +222,7 @@ Public Class frmMain
 	Private Sub RemoveContentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles tsmi_RemoveElement.Click
 
 		If lvwMember.SelectedItems.Count = 1 Then
-			If RemoveContent(lvwMember.SelectedItems(0).SubItems(2).Text) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
+			If RemoveContent(lvwMember.SelectedItems(0).SubItems(3).Text) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
 		End If
 
 	End Sub
