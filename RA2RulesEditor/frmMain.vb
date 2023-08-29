@@ -42,8 +42,8 @@ Public Class frmMain
 		lblMessage.Text = "Loading..." : Me.Refresh()
 
 		For Each Line In GetSection(INIPath, Filter)
-			lvi = lvwSection.Items.Add(StringReplace(Line, "[]", ""))
-			lviC = lvwUnsort.Items.Add(StringReplace(Line, "[]", ""))
+			lvi = lvwSection.Items.Add(Line.ReplaceMore("[]", ""))
+			lviC = lvwUnsort.Items.Add(Line.ReplaceMore("[]", ""))
 		Next
 
 		pnlInit.Visible = False : Me.Refresh()

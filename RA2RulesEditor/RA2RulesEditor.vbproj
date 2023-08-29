@@ -76,6 +76,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StringExtensions.vb" />
     <Compile Include="frmEditValue.Designer.vb">
       <DependentUpon>frmEditValue.vb</DependentUpon>
     </Compile>
