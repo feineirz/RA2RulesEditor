@@ -35,11 +35,23 @@
 
 	Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
 
-		curLVI.SubItems(1).Text = tbxValue.Text.Trim 'Value
-		curLVI.SubItems(3).Text = OldValue & "; " & tbxComment.Text.Trim.Replace(vbCr, "").Replace(vbLf, " ") 'Comment
-		Dim Content As String = curLVI.Text & "=" & curLVI.SubItems(1).Text & "; " & curLVI.SubItems(3).Text
+		Dim keyField As ListViewItem = curLVI
+		Dim valueField As ListViewItem.ListViewSubItem = curLVI.SubItems(1)
+		Dim commentField As ListViewItem.ListViewSubItem = curLVI.SubItems(3)
 
+		Dim prevValue As String = valueField.Text
+		Dim newValue = tbxValue.Text.Trim
+		If Not valueField.Text.Trim = newValue Then
+			valueField.Text = newValue
+			commentField.Text = prevValue & " ;" & tbxComment.Text.Replace(vbCr, "").Replace(vbLf, " ").Trim
+		Else
+			commentField.Text = tbxComment.Text.Replace(vbCr, "").Replace(vbLf, " ").Trim
+		End If
+
+		Dim Content As String = keyField.Text & "=" & valueField.Text
+		If Not commentField.Text = "" Then Content += " ;" & commentField.Text.Trim
 		UpdateLineData(lblRefLineNo.Text, Content)
+
 		Me.Dispose()
 
 	End Sub

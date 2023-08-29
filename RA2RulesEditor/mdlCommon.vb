@@ -23,7 +23,7 @@ Module mdlCommon
 		For Each Line In File.ReadAllLines(INIPath)
 			ReDim Preserve s(i)
 			Line = Line.Trim
-			If Not Line = "{remove it}" Then
+			If Not Line = "{remove this line}" Then
 				s(i) = Line.Replace("//", ";")
 				i += 1
 			End If
@@ -173,7 +173,7 @@ Module mdlCommon
 		If File.Exists(INIPath) Then
 			Dim Contents As String() = File.ReadAllLines(INIPath)
 
-			Contents(LineNo - 1) = "{remove it}"
+			Contents(LineNo - 1) = "{remove this line}"
 			File.WriteAllLines(INIPath, Contents)
 			InitRulesFile(INIPath)
 			Return True
@@ -206,5 +206,13 @@ Module mdlCommon
 
 		sourceArray(newPosition) = newValue
 	End Sub
+
+	Public Function StringReplace(Content As String, FilterSet As String, ReplaceString As String) As String
+		For Each c As String In FilterSet.ToCharArray()
+			Content = Content.Replace(c, ReplaceString)
+		Next
+
+		Return Content
+	End Function
 
 End Module

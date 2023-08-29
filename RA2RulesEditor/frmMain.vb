@@ -1,5 +1,6 @@
 ﻿Imports System.Runtime.InteropServices
 Imports System.IO
+Imports System.Text.RegularExpressions
 
 Public Class frmMain
 
@@ -41,8 +42,8 @@ Public Class frmMain
 		lblMessage.Text = "Loading..." : Me.Refresh()
 
 		For Each Line In GetSection(INIPath, Filter)
-			lvi = lvwSection.Items.Add(Line)
-			lviC = lvwUnsort.Items.Add(Line)
+			lvi = lvwSection.Items.Add(StringReplace(Line, "[]", ""))
+			lviC = lvwUnsort.Items.Add(StringReplace(Line, "[]", ""))
 		Next
 
 		pnlInit.Visible = False : Me.Refresh()
@@ -59,12 +60,11 @@ Public Class frmMain
 		If dlgOpenFile.ShowDialog = DialogResult.OK Then
 
 			lblPath.Text = dlgOpenFile.FileName
-			tbxFilter.Text = ""
 
+			tbxFilter.Text = ""
 			INIPath = dlgOpenFile.FileName
 			pnlInit.Visible = True : Me.Refresh()
 			InitRulesFile(INIPath)
-
 			LoadContent(INIPath)
 
 		End If
@@ -76,7 +76,7 @@ Public Class frmMain
 		If lvwSection.SelectedItems.Count = 1 Then
 
 			Dim Section As String = lvwSection.SelectedItems(0).Text
-			Dim src As LineData() = GetMember(INIPath, Section)
+			Dim src As LineData() = GetMember(INIPath, "[" & Section & "]")
 
 			Dim lvi As ListViewItem
 
@@ -202,7 +202,7 @@ Public Class frmMain
 
 	End Sub
 
-	Private Sub InsertContentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InsertContentToolStripMenuItem.Click
+	Private Sub InsertContentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles tsmi_AppendElement.Click
 
 		If lvwMember.SelectedItems.Count = 1 Then
 			If frmInsertContent.ShowDialog() = DialogResult.OK Then
@@ -216,10 +216,35 @@ Public Class frmMain
 
 	End Sub
 
-	Private Sub RemoveContentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveContentToolStripMenuItem.Click
+	Private Sub RemoveContentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles tsmi_RemoveElement.Click
 
 		If lvwMember.SelectedItems.Count = 1 Then
 			If RemoveContent(lvwMember.SelectedItems(0).SubItems(2).Text) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
+		End If
+
+	End Sub
+
+	Private Sub btnReload_Click(sender As Object, e As EventArgs) Handles btnReload.Click
+		Dim path = lblPath.Text.Trim
+		If Not path = "---" Then
+			If File.Exists(path) Then
+				tbxFilter.Text = ""
+				INIPath = path
+				pnlInit.Visible = True : Me.Refresh()
+				InitRulesFile(INIPath)
+				LoadContent(INIPath)
+			End If
+		End If
+	End Sub
+
+	Private Sub lvwMember_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvwMember.SelectedIndexChanged
+
+		If lvwMember.SelectedItems.Count = 1 Then
+			tsmi_AppendElement.Enabled = True
+			tsmi_RemoveElement.Enabled = True
+		Else
+			tsmi_AppendElement.Enabled = False
+			tsmi_RemoveElement.Enabled = False
 		End If
 
 	End Sub

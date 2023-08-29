@@ -40,8 +40,8 @@ Partial Class frmMain
 		Me.col_Member_LineNo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Member_Comment = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.cmsMember = New System.Windows.Forms.ContextMenuStrip(Me.components)
-		Me.InsertContentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.RemoveContentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.tsmi_AppendElement = New System.Windows.Forms.ToolStripMenuItem()
+		Me.tsmi_RemoveElement = New System.Windows.Forms.ToolStripMenuItem()
 		Me.Label1 = New System.Windows.Forms.Label()
 		Me.tbxFilter = New System.Windows.Forms.TextBox()
 		Me.btnFilter = New System.Windows.Forms.Button()
@@ -49,6 +49,7 @@ Partial Class frmMain
 		Me.pnlInit = New System.Windows.Forms.Panel()
 		Me.lblMessage = New System.Windows.Forms.Label()
 		Me.lblPath = New System.Windows.Forms.Label()
+		Me.btnReload = New System.Windows.Forms.Button()
 		Me.pnlHeader.SuspendLayout()
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.pnlFooter.SuspendLayout()
@@ -168,7 +169,7 @@ Partial Class frmMain
 		'
 		'col_Section_Name
 		'
-		Me.col_Section_Name.Text = "Section"
+		Me.col_Section_Name.Text = "Section List"
 		Me.col_Section_Name.Width = 230
 		'
 		'lvwMember
@@ -204,6 +205,7 @@ Partial Class frmMain
 		'col_Member_LineNo
 		'
 		Me.col_Member_LineNo.Text = "Line No."
+		Me.col_Member_LineNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
 		Me.col_Member_LineNo.Width = 70
 		'
 		'col_Member_Comment
@@ -214,23 +216,25 @@ Partial Class frmMain
 		'cmsMember
 		'
 		Me.cmsMember.Font = New System.Drawing.Font("Bahnschrift SemiLight SemiConde", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.cmsMember.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InsertContentToolStripMenuItem, Me.RemoveContentToolStripMenuItem})
+		Me.cmsMember.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmi_AppendElement, Me.tsmi_RemoveElement})
 		Me.cmsMember.Name = "cmsMember"
-		Me.cmsMember.Size = New System.Drawing.Size(158, 48)
+		Me.cmsMember.Size = New System.Drawing.Size(181, 70)
 		'
-		'InsertContentToolStripMenuItem
+		'tsmi_AppendElement
 		'
-		Me.InsertContentToolStripMenuItem.Image = CType(resources.GetObject("InsertContentToolStripMenuItem.Image"), System.Drawing.Image)
-		Me.InsertContentToolStripMenuItem.Name = "InsertContentToolStripMenuItem"
-		Me.InsertContentToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-		Me.InsertContentToolStripMenuItem.Text = "Insert Content"
+		Me.tsmi_AppendElement.Enabled = False
+		Me.tsmi_AppendElement.Image = CType(resources.GetObject("tsmi_AppendElement.Image"), System.Drawing.Image)
+		Me.tsmi_AppendElement.Name = "tsmi_AppendElement"
+		Me.tsmi_AppendElement.Size = New System.Drawing.Size(180, 22)
+		Me.tsmi_AppendElement.Text = "Append element"
 		'
-		'RemoveContentToolStripMenuItem
+		'tsmi_RemoveElement
 		'
-		Me.RemoveContentToolStripMenuItem.Image = CType(resources.GetObject("RemoveContentToolStripMenuItem.Image"), System.Drawing.Image)
-		Me.RemoveContentToolStripMenuItem.Name = "RemoveContentToolStripMenuItem"
-		Me.RemoveContentToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
-		Me.RemoveContentToolStripMenuItem.Text = "Remove Content"
+		Me.tsmi_RemoveElement.Enabled = False
+		Me.tsmi_RemoveElement.Image = CType(resources.GetObject("tsmi_RemoveElement.Image"), System.Drawing.Image)
+		Me.tsmi_RemoveElement.Name = "tsmi_RemoveElement"
+		Me.tsmi_RemoveElement.Size = New System.Drawing.Size(180, 22)
+		Me.tsmi_RemoveElement.Text = "Remove element"
 		'
 		'Label1
 		'
@@ -299,13 +303,26 @@ Partial Class frmMain
 		'lblPath
 		'
 		Me.lblPath.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-		Me.lblPath.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lblPath.Location = New System.Drawing.Point(264, 76)
+		Me.lblPath.Font = New System.Drawing.Font("Bahnschrift SemiLight SemiConde", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblPath.ForeColor = System.Drawing.Color.DarkOrange
+		Me.lblPath.Location = New System.Drawing.Point(264, 74)
 		Me.lblPath.Name = "lblPath"
-		Me.lblPath.Size = New System.Drawing.Size(912, 16)
+		Me.lblPath.Size = New System.Drawing.Size(837, 22)
 		Me.lblPath.TabIndex = 11
 		Me.lblPath.Text = "---"
 		Me.lblPath.TextAlign = System.Drawing.ContentAlignment.TopRight
+		'
+		'btnReload
+		'
+		Me.btnReload.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnReload.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.btnReload.Location = New System.Drawing.Point(1107, 74)
+		Me.btnReload.Name = "btnReload"
+		Me.btnReload.Size = New System.Drawing.Size(69, 22)
+		Me.btnReload.TabIndex = 12
+		Me.btnReload.Text = "Reload"
+		Me.btnReload.UseVisualStyleBackColor = True
 		'
 		'frmMain
 		'
@@ -314,6 +331,7 @@ Partial Class frmMain
 		Me.BackColor = System.Drawing.Color.White
 		Me.ClientSize = New System.Drawing.Size(1453, 800)
 		Me.ControlBox = False
+		Me.Controls.Add(Me.btnReload)
 		Me.Controls.Add(Me.lblPath)
 		Me.Controls.Add(Me.pnlInit)
 		Me.Controls.Add(Me.lblCurSection)
@@ -364,6 +382,7 @@ Partial Class frmMain
 	Friend WithEvents btnSort As Button
 	Friend WithEvents lblPath As Label
 	Friend WithEvents cmsMember As ContextMenuStrip
-	Friend WithEvents InsertContentToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents RemoveContentToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents tsmi_AppendElement As ToolStripMenuItem
+	Friend WithEvents tsmi_RemoveElement As ToolStripMenuItem
+	Friend WithEvents btnReload As Button
 End Class
