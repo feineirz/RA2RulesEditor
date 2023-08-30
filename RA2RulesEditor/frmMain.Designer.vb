@@ -52,6 +52,8 @@ Partial Class frmMain
 		Me.btnReload = New System.Windows.Forms.Button()
 		Me.pnlSection = New System.Windows.Forms.Panel()
 		Me.Panel1 = New System.Windows.Forms.Panel()
+		Me.btnOpenInEditor = New System.Windows.Forms.Button()
+		Me.lblCurrentSectionIndex = New System.Windows.Forms.Label()
 		Me.pnlHeader.SuspendLayout()
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.pnlFooter.SuspendLayout()
@@ -120,6 +122,7 @@ Partial Class frmMain
 		'pnlFooter
 		'
 		Me.pnlFooter.BackColor = System.Drawing.Color.LightGray
+		Me.pnlFooter.Controls.Add(Me.lblCurrentSectionIndex)
 		Me.pnlFooter.Controls.Add(Me.btnSort)
 		Me.pnlFooter.Controls.Add(Me.lblStatus)
 		Me.pnlFooter.Controls.Add(Me.btnLoad)
@@ -312,7 +315,7 @@ Partial Class frmMain
 		Me.lblPath.ForeColor = System.Drawing.Color.SteelBlue
 		Me.lblPath.Location = New System.Drawing.Point(260, 8)
 		Me.lblPath.Name = "lblPath"
-		Me.lblPath.Size = New System.Drawing.Size(887, 22)
+		Me.lblPath.Size = New System.Drawing.Size(784, 22)
 		Me.lblPath.TabIndex = 11
 		Me.lblPath.Text = "---"
 		Me.lblPath.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -322,9 +325,9 @@ Partial Class frmMain
 		Me.btnReload.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnReload.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.btnReload.Location = New System.Drawing.Point(1153, 8)
+		Me.btnReload.Location = New System.Drawing.Point(1153, 7)
 		Me.btnReload.Name = "btnReload"
-		Me.btnReload.Size = New System.Drawing.Size(69, 22)
+		Me.btnReload.Size = New System.Drawing.Size(69, 24)
 		Me.btnReload.TabIndex = 12
 		Me.btnReload.Text = "Reload"
 		Me.btnReload.UseVisualStyleBackColor = True
@@ -348,6 +351,7 @@ Partial Class frmMain
 		Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.Panel1.BackColor = System.Drawing.Color.WhiteSmoke
+		Me.Panel1.Controls.Add(Me.btnOpenInEditor)
 		Me.Panel1.Controls.Add(Me.pnlInit)
 		Me.Panel1.Controls.Add(Me.lblCurSection)
 		Me.Panel1.Controls.Add(Me.lvwMember)
@@ -357,6 +361,30 @@ Partial Class frmMain
 		Me.Panel1.Name = "Panel1"
 		Me.Panel1.Size = New System.Drawing.Size(1230, 792)
 		Me.Panel1.TabIndex = 14
+		'
+		'btnOpenInEditor
+		'
+		Me.btnOpenInEditor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.btnOpenInEditor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnOpenInEditor.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.btnOpenInEditor.Location = New System.Drawing.Point(1050, 7)
+		Me.btnOpenInEditor.Name = "btnOpenInEditor"
+		Me.btnOpenInEditor.Size = New System.Drawing.Size(97, 24)
+		Me.btnOpenInEditor.TabIndex = 13
+		Me.btnOpenInEditor.Text = "Open in Editor"
+		Me.btnOpenInEditor.UseVisualStyleBackColor = True
+		'
+		'lblCurrentSectionIndex
+		'
+		Me.lblCurrentSectionIndex.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.lblCurrentSectionIndex.AutoSize = True
+		Me.lblCurrentSectionIndex.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblCurrentSectionIndex.Location = New System.Drawing.Point(801, 12)
+		Me.lblCurrentSectionIndex.Name = "lblCurrentSectionIndex"
+		Me.lblCurrentSectionIndex.Size = New System.Drawing.Size(16, 16)
+		Me.lblCurrentSectionIndex.TabIndex = 6
+		Me.lblCurrentSectionIndex.Text = "-1"
+		Me.lblCurrentSectionIndex.Visible = False
 		'
 		'frmMain
 		'
@@ -417,4 +445,6 @@ Partial Class frmMain
 	Friend WithEvents btnReload As Button
 	Friend WithEvents pnlSection As Panel
 	Friend WithEvents Panel1 As Panel
+	Friend WithEvents btnOpenInEditor As Button
+	Friend WithEvents lblCurrentSectionIndex As Label
 End Class

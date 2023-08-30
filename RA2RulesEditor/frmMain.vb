@@ -75,6 +75,8 @@ Public Class frmMain
 
 		If lvwSection.SelectedItems.Count = 1 Then
 
+			lblCurrentSectionIndex.Text = lvwSection.SelectedIndices(0)
+
 			Dim Section As String = lvwSection.SelectedItems(0).Text
 			Dim src As LineData() = GetMember(INIPath, "[" & Section & "]")
 
@@ -220,16 +222,9 @@ Public Class frmMain
 	End Sub
 
 	Private Sub btnReload_Click(sender As Object, e As EventArgs) Handles btnReload.Click
-		Dim path = lblPath.Text.Trim
-		If Not path = "---" Then
-			If File.Exists(path) Then
-				tbxFilter.Text = ""
-				INIPath = path
-				pnlInit.Visible = True : Me.Refresh()
-				InitRulesFile(INIPath)
-				LoadContent(INIPath)
-			End If
-		End If
+
+		ReloadINI(sender, e)
+
 	End Sub
 
 	Private Sub lvwMember_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvwMember.SelectedIndexChanged
@@ -242,5 +237,51 @@ Public Class frmMain
 			tsmi_RemoveElement.Enabled = False
 		End If
 
+	End Sub
+
+	Private Sub btnOpenInEditor_Click(sender As Object, e As EventArgs) Handles btnOpenInEditor.Click
+
+		Dim path = lblPath.Text
+		If Not path = "---" Then
+			Dim proc = New Process
+			proc.StartInfo.FileName = path
+			proc.EnableRaisingEvents = True
+			AddHandler proc.Exited, AddressOf ReloadINI
+			proc.Start()
+		End If
+
+	End Sub
+
+	Private Sub ReloadINI(sender As Object, e As EventArgs)
+		Dim path = lblPath.Text.Trim
+		If Not path = "---" Then
+			If File.Exists(path) Then
+				tbxFilter.Text = ""
+				INIPath = path
+				pnlInit.Visible = True : Me.Refresh()
+				InitRulesFile(INIPath)
+				LoadContent(INIPath)
+
+				Dim prevSectionIndex As Integer = lblCurrentSectionIndex.Text
+				If prevSectionIndex >= 0 And lvwSection.Items.Count - 1 >= prevSectionIndex Then
+					lvwSection.Items(prevSectionIndex).Selected = True
+				End If
+			End If
+		End If
+	End Sub
+
+	Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+		Control.CheckForIllegalCrossThreadCalls = False
+
+	End Sub
+
+	Private Sub lblCurrentSectionIndex_Click(sender As Object, e As EventArgs) Handles lblCurrentSectionIndex.Click
+		Dim prevSectionIndex As Integer = lblCurrentSectionIndex.Text
+		If lblCurrentSectionIndex.Text >= 0 Then
+			If Not lvwSection.Items Is Nothing Then
+				lvwSection.Items(prevSectionIndex).Selected = True
+			End If
+		End If
 	End Sub
 End Class
