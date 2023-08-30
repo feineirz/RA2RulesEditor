@@ -104,7 +104,7 @@ Public Class frmMain
 			Dim lvi As ListViewItem = lvwMember.SelectedItems(0)
 			curLVI = lvi
 			With frmEditValue
-				.lblKeyName.Text = lvi.Text.Trim
+				.tbxKeyName.Text = lvi.Text.Trim
 				.tbxValue.Text = lvi.SubItems(1).Text.Trim
 				.tbxComment.Text = lvi.SubItems(2).Text.Trim
 				OldValue = .tbxValue.Text
