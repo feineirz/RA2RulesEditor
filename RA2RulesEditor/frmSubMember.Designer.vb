@@ -22,6 +22,8 @@ Partial Class frmSubMember
 	'Do not modify it using the code editor.
 	<System.Diagnostics.DebuggerStepThrough()> _
 	Private Sub InitializeComponent()
+		Me.components = New System.ComponentModel.Container()
+		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSubMember))
 		Me.pnlHeader = New System.Windows.Forms.Panel()
 		Me.lblTitle = New System.Windows.Forms.Label()
 		Me.pnlFooter = New System.Windows.Forms.Panel()
@@ -29,10 +31,14 @@ Partial Class frmSubMember
 		Me.lvwMember = New System.Windows.Forms.ListView()
 		Me.col_Member_Name = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Member_Value = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-		Me.col_Member_LineNo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Member_Comment = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+		Me.col_Member_LineNo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+		Me.cmsMember = New System.Windows.Forms.ContextMenuStrip(Me.components)
+		Me.tsmi_AppendElement = New System.Windows.Forms.ToolStripMenuItem()
+		Me.tsmi_RemoveElement = New System.Windows.Forms.ToolStripMenuItem()
 		Me.pnlHeader.SuspendLayout()
 		Me.pnlFooter.SuspendLayout()
+		Me.cmsMember.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'pnlHeader
@@ -84,6 +90,7 @@ Partial Class frmSubMember
 			Or System.Windows.Forms.AnchorStyles.Left) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lvwMember.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Member_Name, Me.col_Member_Value, Me.col_Member_Comment, Me.col_Member_LineNo})
+		Me.lvwMember.ContextMenuStrip = Me.cmsMember
 		Me.lvwMember.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lvwMember.FullRowSelect = True
 		Me.lvwMember.GridLines = True
@@ -107,16 +114,39 @@ Partial Class frmSubMember
 		Me.col_Member_Value.Text = "Value"
 		Me.col_Member_Value.Width = 250
 		'
+		'col_Member_Comment
+		'
+		Me.col_Member_Comment.Text = "Comment"
+		Me.col_Member_Comment.Width = 570
+		'
 		'col_Member_LineNo
 		'
 		Me.col_Member_LineNo.Text = "Line No."
 		Me.col_Member_LineNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
 		Me.col_Member_LineNo.Width = 70
 		'
-		'col_Member_Comment
+		'cmsMember
 		'
-		Me.col_Member_Comment.Text = "Comment"
-		Me.col_Member_Comment.Width = 570
+		Me.cmsMember.Font = New System.Drawing.Font("Bahnschrift SemiLight SemiConde", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.cmsMember.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmi_AppendElement, Me.tsmi_RemoveElement})
+		Me.cmsMember.Name = "cmsMember"
+		Me.cmsMember.Size = New System.Drawing.Size(181, 70)
+		'
+		'tsmi_AppendElement
+		'
+		Me.tsmi_AppendElement.Enabled = False
+		Me.tsmi_AppendElement.Image = CType(resources.GetObject("tsmi_AppendElement.Image"), System.Drawing.Image)
+		Me.tsmi_AppendElement.Name = "tsmi_AppendElement"
+		Me.tsmi_AppendElement.Size = New System.Drawing.Size(180, 22)
+		Me.tsmi_AppendElement.Text = "Append element"
+		'
+		'tsmi_RemoveElement
+		'
+		Me.tsmi_RemoveElement.Enabled = False
+		Me.tsmi_RemoveElement.Image = CType(resources.GetObject("tsmi_RemoveElement.Image"), System.Drawing.Image)
+		Me.tsmi_RemoveElement.Name = "tsmi_RemoveElement"
+		Me.tsmi_RemoveElement.Size = New System.Drawing.Size(180, 22)
+		Me.tsmi_RemoveElement.Text = "Remove element"
 		'
 		'frmSubMember
 		'
@@ -135,6 +165,7 @@ Partial Class frmSubMember
 		Me.pnlHeader.ResumeLayout(False)
 		Me.pnlHeader.PerformLayout()
 		Me.pnlFooter.ResumeLayout(False)
+		Me.cmsMember.ResumeLayout(False)
 		Me.ResumeLayout(False)
 
 	End Sub
@@ -148,4 +179,7 @@ Partial Class frmSubMember
 	Friend WithEvents col_Member_LineNo As ColumnHeader
 	Friend WithEvents col_Member_Comment As ColumnHeader
 	Friend WithEvents btnClose As Button
+	Friend WithEvents cmsMember As ContextMenuStrip
+	Friend WithEvents tsmi_AppendElement As ToolStripMenuItem
+	Friend WithEvents tsmi_RemoveElement As ToolStripMenuItem
 End Class

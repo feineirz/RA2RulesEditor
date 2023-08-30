@@ -71,4 +71,38 @@
 		End If
 
 	End Sub
+
+	Private Sub lvwMember_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvwMember.SelectedIndexChanged
+
+		If lvwMember.SelectedItems.Count = 1 Then
+			tsmi_AppendElement.Enabled = True
+			tsmi_RemoveElement.Enabled = True
+		Else
+			tsmi_AppendElement.Enabled = False
+			tsmi_RemoveElement.Enabled = False
+		End If
+
+	End Sub
+
+	Private Sub tsmi_AppendElement_Click(sender As Object, e As EventArgs) Handles tsmi_AppendElement.Click
+
+		If lvwMember.SelectedItems.Count = 1 Then
+			If frmInsertContent.ShowDialog() = DialogResult.OK Then
+				Dim refIndex As Integer = lvwMember.SelectedItems(0).Index
+				Dim refLineNo As Integer = lvwMember.SelectedItems(0).SubItems(3).Text
+				Dim Content As String = frmInsertContent.contentName + "=" + frmInsertContent.contentValue
+				If frmInsertContent.contentComment <> "" Then Content += "; " + frmInsertContent.contentComment
+				If UpdateLineData(refLineNo, Content, True) Then Me.Dispose()
+			End If
+		End If
+
+	End Sub
+
+	Private Sub tsmi_RemoveElement_Click(sender As Object, e As EventArgs) Handles tsmi_RemoveElement.Click
+
+		If lvwMember.SelectedItems.Count = 1 Then
+			If RemoveContent(lvwMember.SelectedItems(0).SubItems(3).Text) Then Me.Dispose()
+		End If
+
+	End Sub
 End Class

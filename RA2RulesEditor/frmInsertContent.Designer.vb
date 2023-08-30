@@ -57,7 +57,7 @@ Partial Class frmInsertContent
 		Me.lblTitle.ForeColor = System.Drawing.Color.Black
 		Me.lblTitle.Location = New System.Drawing.Point(2, 1)
 		Me.lblTitle.Name = "lblTitle"
-		Me.lblTitle.Size = New System.Drawing.Size(163, 33)
+		Me.lblTitle.Size = New System.Drawing.Size(164, 33)
 		Me.lblTitle.TabIndex = 7
 		Me.lblTitle.Text = "Insert Content"
 		'
@@ -181,6 +181,7 @@ Partial Class frmInsertContent
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 16.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.ClientSize = New System.Drawing.Size(500, 320)
+		Me.Controls.Add(Me.tbxComment)
 		Me.Controls.Add(Me.tbxValue)
 		Me.Controls.Add(Me.Label2)
 		Me.Controls.Add(Me.pnlHeader)
@@ -188,10 +189,9 @@ Partial Class frmInsertContent
 		Me.Controls.Add(Me.lblMemberName)
 		Me.Controls.Add(Me.btnSave)
 		Me.Controls.Add(Me.btnCancel)
-		Me.Controls.Add(Me.Label1)
-		Me.Controls.Add(Me.tbxComment)
 		Me.Controls.Add(Me.lblRefLineNo)
 		Me.Controls.Add(Me.lblRefIndex)
+		Me.Controls.Add(Me.Label1)
 		Me.Font = New System.Drawing.Font("Bahnschrift SemiLight SemiConde", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
 		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
