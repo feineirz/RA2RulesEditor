@@ -142,37 +142,36 @@ Module mdlCommon
 
 		If File.Exists(INIPath) Then
 			Dim Contents As String() = File.ReadAllLines(INIPath)
-			If Not InsertMode Then
-				If Contents.Length >= LineNo Then
-					Contents(LineNo - 1) = Content
-					File.WriteAllLines(INIPath, Contents)
-					Return True
+			If Contents.Length > 0 Then
+				If Not InsertMode Then
+					If Contents.Length >= LineNo Then
+						Contents(LineNo - 1) = Content
+						File.WriteAllLines(INIPath, Contents)
+						Return True
 
+					Else
+						Contents.Resize(Contents, Contents.Length + 1)
+						Contents(Contents.Length - 1) = Content
+						File.WriteAllLines(INIPath, Contents)
+						Return True
+
+					End If
 				Else
-					Contents.Resize(Contents, Contents.Length + 1)
-					Contents(Contents.Length - 1) = Content
-					File.WriteAllLines(INIPath, Contents)
-					Return True
+					If Contents.Length >= LineNo Then
+						InsertArrayElement(Of String)(Contents, LineNo, Content)
+						File.WriteAllLines(INIPath, Contents)
+						Return True
 
+					Else
+						Contents.Resize(Contents, Contents.Length + 1)
+						Contents(Contents.Length - 1) = Content
+						File.WriteAllLines(INIPath, Contents)
+						Return True
+					End If
 				End If
-			Else
-				If Contents.Length >= LineNo Then
-					InsertArrayElement(Of String)(Contents, LineNo, Content)
-					File.WriteAllLines(INIPath, Contents)
-					Return True
-
-				Else
-					Contents.Resize(Contents, Contents.Length + 1)
-					Contents(Contents.Length - 1) = Content
-					File.WriteAllLines(INIPath, Contents)
-					Return True
-				End If
-
 			End If
-
 		Else
 			Return False
-
 		End If
 
 	End Function
