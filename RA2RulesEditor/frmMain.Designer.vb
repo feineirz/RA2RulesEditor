@@ -282,9 +282,9 @@ Partial Class frmMain
 		Me.btnFilter.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnFilter.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.btnFilter.Location = New System.Drawing.Point(194, 8)
+		Me.btnFilter.Location = New System.Drawing.Point(194, 7)
 		Me.btnFilter.Name = "btnFilter"
-		Me.btnFilter.Size = New System.Drawing.Size(69, 22)
+		Me.btnFilter.Size = New System.Drawing.Size(69, 24)
 		Me.btnFilter.TabIndex = 7
 		Me.btnFilter.Text = "OK"
 		Me.btnFilter.UseVisualStyleBackColor = True

@@ -21,10 +21,13 @@ Module mdlCommon
 
 		Dim i As Integer = 0
 		Dim s As String() = Nothing
+		Dim splLine As String() = Nothing
 
 		For Each Line In File.ReadAllLines(INIPath)
 			ReDim Preserve s(i)
 			Line = Line.Trim
+			splLine = Split(Line, "=", 2)
+			If splLine.Length = 2 Then Line = splLine(0).Trim & " = " & splLine(1).Trim
 			If Not Line = "{remove this line}" Then
 				s(i) = Line.Replace("//", ";")
 				i += 1

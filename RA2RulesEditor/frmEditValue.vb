@@ -39,9 +39,11 @@
 		Dim valueField As ListViewItem.ListViewSubItem = curLVI.SubItems(1)
 		Dim commentField As ListViewItem.ListViewSubItem = curLVI.SubItems(2)
 
+		Dim newKey As String = tbxKeyName.Text.Trim
 		Dim prevValue As String = valueField.Text.Trim
 		Dim newValue As String = tbxValue.Text.Trim
 		Dim newComment As String = tbxComment.Text.Replace(vbCr, "").Replace(vbLf, " ").Trim
+		keyField.Text = newKey
 		If Not valueField.Text.Trim = newValue Then
 			valueField.Text = newValue
 			commentField.Text = prevValue
@@ -72,6 +74,18 @@
 
 		Me.Width = 500
 		Me.Height = 320
+
+	End Sub
+
+	Private Sub btnUnlockKeyInput_Click(sender As Object, e As EventArgs) Handles btnUnlockKeyInput.Click
+
+		If tbxKeyName.ReadOnly Then
+			tbxKeyName.ReadOnly = False
+			btnUnlockKeyInput.Text = "Lock"
+		Else
+			tbxKeyName.ReadOnly = True
+			btnUnlockKeyInput.Text = "Unlock"
+		End If
 
 	End Sub
 End Class

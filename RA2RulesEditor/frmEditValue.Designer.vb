@@ -35,6 +35,7 @@ Partial Class frmEditValue
 		Me.Label2 = New System.Windows.Forms.Label()
 		Me.tbxKeyName = New System.Windows.Forms.TextBox()
 		Me.Label3 = New System.Windows.Forms.Label()
+		Me.btnUnlockKeyInput = New System.Windows.Forms.Button()
 		Me.pnlHeader.SuspendLayout()
 		Me.SuspendLayout()
 		'
@@ -159,7 +160,7 @@ Partial Class frmEditValue
 		Me.tbxKeyName.Location = New System.Drawing.Point(94, 70)
 		Me.tbxKeyName.Name = "tbxKeyName"
 		Me.tbxKeyName.ReadOnly = True
-		Me.tbxKeyName.Size = New System.Drawing.Size(364, 23)
+		Me.tbxKeyName.Size = New System.Drawing.Size(295, 23)
 		Me.tbxKeyName.TabIndex = 12
 		'
 		'Label3
@@ -172,12 +173,25 @@ Partial Class frmEditValue
 		Me.Label3.TabIndex = 13
 		Me.Label3.Text = "Key :"
 		'
+		'btnUnlockKeyInput
+		'
+		Me.btnUnlockKeyInput.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.btnUnlockKeyInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnUnlockKeyInput.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.btnUnlockKeyInput.Location = New System.Drawing.Point(395, 71)
+		Me.btnUnlockKeyInput.Name = "btnUnlockKeyInput"
+		Me.btnUnlockKeyInput.Size = New System.Drawing.Size(63, 22)
+		Me.btnUnlockKeyInput.TabIndex = 14
+		Me.btnUnlockKeyInput.Text = "Unlock"
+		Me.btnUnlockKeyInput.UseVisualStyleBackColor = True
+		'
 		'frmEditValue
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.ClientSize = New System.Drawing.Size(500, 337)
 		Me.ControlBox = False
+		Me.Controls.Add(Me.btnUnlockKeyInput)
 		Me.Controls.Add(Me.tbxKeyName)
 		Me.Controls.Add(Me.tbxValue)
 		Me.Controls.Add(Me.tbxComment)
@@ -213,4 +227,5 @@ Partial Class frmEditValue
 	Friend WithEvents Label2 As Label
 	Friend WithEvents tbxKeyName As TextBox
 	Friend WithEvents Label3 As Label
+	Friend WithEvents btnUnlockKeyInput As Button
 End Class
