@@ -140,30 +140,17 @@ Public Class frmMain
 
 	End Sub
 
-	Private Sub lvwMember_MouseUp(sender As Object, e As MouseEventArgs) Handles lvwMember.MouseUp
+	Private Sub lvwMember_MouseDown(sender As Object, e As MouseEventArgs) Handles lvwMember.MouseDown
 
-		If e.Button <> Button.MouseButtons.Middle Then Return
+		If Not e.Button = Button.MouseButtons.Middle Then Return
 
 		If lvwMember.SelectedItems.Count = 1 Then
 			Dim lvi As ListViewItem = lvwMember.SelectedItems(0)
-			Dim Section As String = "[" & lvi.SubItems(1).Text.Trim & "]"
-			Dim src As LineData() = GetMember(INIPath, Section)
-			If Not src Is Nothing Then
-				Dim sm As New frmSubMember
-				With sm
-					sm.lblTitle.Text = Section
-					.lvwMember.Items.Clear()
-
-					For Each LD As LineData In src
-						lvi = .lvwMember.Items.Add(LD.Name)
-						lvi.SubItems.Add(LD.Value)
-						lvi.SubItems.Add(LD.Comment)
-						lvi.SubItems.Add(LD.LineNo)
-					Next
-					.ShowDialog()
-				End With
-
-			End If
+			Dim Section As String = lvi.SubItems(1).Text.Trim
+			Dim sm = New frmSubMember
+			sm.lblCurrentSection.Text = Section
+			sm.LoadElement(Section)
+			sm.ShowDialog()
 		End If
 
 	End Sub
@@ -246,7 +233,7 @@ Public Class frmMain
 			Dim proc = New Process
 			proc.StartInfo.FileName = path
 			proc.EnableRaisingEvents = True
-			AddHandler proc.Exited, AddressOf ReloadINI
+			'AddHandler proc.Exited, AddressOf ReloadINI
 			proc.Start()
 		End If
 
@@ -258,14 +245,15 @@ Public Class frmMain
 			If File.Exists(path) Then
 				tbxFilter.Text = ""
 				INIPath = path
-				pnlInit.Visible = True : Me.Refresh()
+				pnlInit.Visible = True
+				Me.Refresh()
 				InitRulesFile(INIPath)
 				LoadContent(INIPath)
 
-				Dim prevSectionIndex As Integer = lblCurrentSectionIndex.Text
-				If prevSectionIndex >= 0 And lvwSection.Items.Count - 1 >= prevSectionIndex Then
-					lvwSection.Items(prevSectionIndex).Selected = True
-				End If
+				'Dim prevSectionIndex As Integer = lblCurrentSectionIndex.Text
+				'If prevSectionIndex >= 0 And lvwSection.Items.Count - 1 >= prevSectionIndex Then
+				'	lvwSection.Items(prevSectionIndex).Selected = True
+				'End If
 			End If
 		End If
 	End Sub

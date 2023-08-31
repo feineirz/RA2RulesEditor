@@ -27,6 +27,7 @@ Partial Class frmSubMember
 		Me.pnlHeader = New System.Windows.Forms.Panel()
 		Me.lblTitle = New System.Windows.Forms.Label()
 		Me.pnlFooter = New System.Windows.Forms.Panel()
+		Me.lblCurrentSection = New System.Windows.Forms.Label()
 		Me.btnClose = New System.Windows.Forms.Button()
 		Me.lvwMember = New System.Windows.Forms.ListView()
 		Me.col_Member_Name = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -65,21 +66,33 @@ Partial Class frmSubMember
 		'pnlFooter
 		'
 		Me.pnlFooter.BackColor = System.Drawing.Color.Gainsboro
+		Me.pnlFooter.Controls.Add(Me.lblCurrentSection)
 		Me.pnlFooter.Controls.Add(Me.btnClose)
 		Me.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom
-		Me.pnlFooter.Location = New System.Drawing.Point(0, 724)
+		Me.pnlFooter.Location = New System.Drawing.Point(0, 720)
 		Me.pnlFooter.Name = "pnlFooter"
-		Me.pnlFooter.Size = New System.Drawing.Size(1194, 35)
+		Me.pnlFooter.Size = New System.Drawing.Size(1194, 39)
 		Me.pnlFooter.TabIndex = 1
+		'
+		'lblCurrentSection
+		'
+		Me.lblCurrentSection.AutoSize = True
+		Me.lblCurrentSection.Font = New System.Drawing.Font("Bahnschrift Light SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblCurrentSection.Location = New System.Drawing.Point(894, 14)
+		Me.lblCurrentSection.Name = "lblCurrentSection"
+		Me.lblCurrentSection.Size = New System.Drawing.Size(84, 16)
+		Me.lblCurrentSection.TabIndex = 7
+		Me.lblCurrentSection.Text = "CurrentSection"
+		Me.lblCurrentSection.Visible = False
 		'
 		'btnClose
 		'
 		Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnClose.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.btnClose.Location = New System.Drawing.Point(1113, 6)
+		Me.btnClose.Location = New System.Drawing.Point(1113, 7)
 		Me.btnClose.Name = "btnClose"
-		Me.btnClose.Size = New System.Drawing.Size(69, 23)
+		Me.btnClose.Size = New System.Drawing.Size(69, 27)
 		Me.btnClose.TabIndex = 3
 		Me.btnClose.Text = "Close"
 		Me.btnClose.UseVisualStyleBackColor = True
@@ -96,10 +109,10 @@ Partial Class frmSubMember
 		Me.lvwMember.GridLines = True
 		Me.lvwMember.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
 		Me.lvwMember.HideSelection = False
-		Me.lvwMember.Location = New System.Drawing.Point(12, 51)
+		Me.lvwMember.Location = New System.Drawing.Point(12, 58)
 		Me.lvwMember.MultiSelect = False
 		Me.lvwMember.Name = "lvwMember"
-		Me.lvwMember.Size = New System.Drawing.Size(1170, 667)
+		Me.lvwMember.Size = New System.Drawing.Size(1170, 648)
 		Me.lvwMember.TabIndex = 6
 		Me.lvwMember.UseCompatibleStateImageBehavior = False
 		Me.lvwMember.View = System.Windows.Forms.View.Details
@@ -130,14 +143,14 @@ Partial Class frmSubMember
 		Me.cmsMember.Font = New System.Drawing.Font("Bahnschrift SemiLight SemiConde", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.cmsMember.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmi_AppendElement, Me.tsmi_RemoveElement})
 		Me.cmsMember.Name = "cmsMember"
-		Me.cmsMember.Size = New System.Drawing.Size(181, 70)
+		Me.cmsMember.Size = New System.Drawing.Size(160, 48)
 		'
 		'tsmi_AppendElement
 		'
 		Me.tsmi_AppendElement.Enabled = False
 		Me.tsmi_AppendElement.Image = CType(resources.GetObject("tsmi_AppendElement.Image"), System.Drawing.Image)
 		Me.tsmi_AppendElement.Name = "tsmi_AppendElement"
-		Me.tsmi_AppendElement.Size = New System.Drawing.Size(180, 22)
+		Me.tsmi_AppendElement.Size = New System.Drawing.Size(159, 22)
 		Me.tsmi_AppendElement.Text = "Append element"
 		'
 		'tsmi_RemoveElement
@@ -145,7 +158,7 @@ Partial Class frmSubMember
 		Me.tsmi_RemoveElement.Enabled = False
 		Me.tsmi_RemoveElement.Image = CType(resources.GetObject("tsmi_RemoveElement.Image"), System.Drawing.Image)
 		Me.tsmi_RemoveElement.Name = "tsmi_RemoveElement"
-		Me.tsmi_RemoveElement.Size = New System.Drawing.Size(180, 22)
+		Me.tsmi_RemoveElement.Size = New System.Drawing.Size(159, 22)
 		Me.tsmi_RemoveElement.Text = "Remove element"
 		'
 		'frmSubMember
@@ -165,6 +178,7 @@ Partial Class frmSubMember
 		Me.pnlHeader.ResumeLayout(False)
 		Me.pnlHeader.PerformLayout()
 		Me.pnlFooter.ResumeLayout(False)
+		Me.pnlFooter.PerformLayout()
 		Me.cmsMember.ResumeLayout(False)
 		Me.ResumeLayout(False)
 
@@ -182,4 +196,5 @@ Partial Class frmSubMember
 	Friend WithEvents cmsMember As ContextMenuStrip
 	Friend WithEvents tsmi_AppendElement As ToolStripMenuItem
 	Friend WithEvents tsmi_RemoveElement As ToolStripMenuItem
+	Friend WithEvents lblCurrentSection As Label
 End Class

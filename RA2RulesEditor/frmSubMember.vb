@@ -1,4 +1,6 @@
-﻿Public Class frmSubMember
+﻿Imports System.Collections.Specialized.BitVector32
+
+Public Class frmSubMember
 #Region "Moveable Form Code"
 	<System.Runtime.InteropServices.DllImportAttribute("user32.dll")>
 	Public Shared Function SendMessage(hWnd As IntPtr, Msg As Integer, wParam As Integer, lParam As Integer) As Integer
@@ -26,6 +28,24 @@
 
 	End Sub
 
+	Public Sub LoadElement(Section As String)
+		Dim lvi As ListViewItem
+		Dim src As LineData() = GetMember(INIPath, Section)
+		If Not src Is Nothing Then
+			lblTitle.Text = Section
+			lvwMember.Items.Clear()
+			For Each LD As LineData In src
+				lvi = lvwMember.Items.Add(LD.Name)
+				lvi.SubItems.Add(LD.Value)
+				lvi.SubItems.Add(LD.Comment)
+				lvi.SubItems.Add(LD.LineNo)
+			Next
+		Else
+			lblTitle.Text = "Section Not Match!"
+			lvwMember.Enabled = False
+		End If
+	End Sub
+
 	Private Sub lvwMember_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lvwMember.MouseDoubleClick
 
 		If lvwMember.SelectedItems.Count = 1 Then
@@ -44,30 +64,17 @@
 
 	End Sub
 
-	Private Sub lvwMember_MouseUp(sender As Object, e As MouseEventArgs) Handles lvwMember.MouseUp
+	Private Sub lvwMember_MouseDown(sender As Object, e As MouseEventArgs) Handles lvwMember.MouseDown
 
-		If e.Button = Button.MouseButtons.Middle Then
-			If lvwMember.SelectedItems.Count = 1 Then
-				Dim lvi As ListViewItem = lvwMember.SelectedItems(0)
-				Dim Section As String = "[" & lvi.SubItems(1).Text.Trim & "]"
-				Dim src As LineData() = GetMember(INIPath, Section)
-				If Not src Is Nothing Then
-					Dim sm As New frmSubMember
-					With sm
-						sm.lblTitle.Text = Section
-						.lvwMember.Items.Clear()
+		If Not e.Button = Button.MouseButtons.Middle Then Return
 
-						For Each LD As LineData In src
-							lvi = .lvwMember.Items.Add(LD.Name)
-							lvi.SubItems.Add(LD.Value)
-							lvi.SubItems.Add(LD.Comment)
-							lvi.SubItems.Add(LD.LineNo)
-						Next
-						.ShowDialog()
-					End With
-
-				End If
-			End If
+		If lvwMember.SelectedItems.Count = 1 Then
+			Dim lvi As ListViewItem = lvwMember.SelectedItems(0)
+			Dim Section As String = lvi.SubItems(1).Text.Trim
+			Dim sm = New frmSubMember
+			sm.lblCurrentSection.Text = Section
+			sm.LoadElement(Section)
+			sm.ShowDialog()
 		End If
 
 	End Sub
@@ -92,7 +99,7 @@
 				Dim refLineNo As Integer = lvwMember.SelectedItems(0).SubItems(3).Text
 				Dim Content As String = frmInsertContent.contentName + "=" + frmInsertContent.contentValue
 				If frmInsertContent.contentComment <> "" Then Content += "; " + frmInsertContent.contentComment
-				If UpdateLineData(refLineNo, Content, True) Then Me.Dispose()
+				If UpdateLineData(refLineNo, Content, True) Then LoadElement(lblCurrentSection.Text)
 			End If
 		End If
 
@@ -101,7 +108,7 @@
 	Private Sub tsmi_RemoveElement_Click(sender As Object, e As EventArgs) Handles tsmi_RemoveElement.Click
 
 		If lvwMember.SelectedItems.Count = 1 Then
-			If RemoveContent(lvwMember.SelectedItems(0).SubItems(3).Text) Then Me.Dispose()
+			If RemoveContent(lvwMember.SelectedItems(0).SubItems(3).Text) Then LoadElement(lblCurrentSection.Text)
 		End If
 
 	End Sub

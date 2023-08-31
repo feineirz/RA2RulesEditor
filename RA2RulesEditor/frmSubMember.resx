@@ -124,7 +124,7 @@
   <data name="tsmi_AppendElement.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAJ
-        0AAACdAB4yqxyAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADESURBVDhPYxhU
+        zwAACc8B3PAPGAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADESURBVDhPYxhU
         gI9DQW4hh4LCMbxYTm4BSC1ECxIASehuWP3X6sm9//iw7vpVfznk5edBtSEAyHRsGrBhkFqoNgQYeAN4
         BQVvm7u5vSEG8woJ3YJqQwAFFZVj9/7//08MBqmFakMAig2QV1E5cvvPHxSFm8+dA2NkMZAaeVXVw1Bt
         CCCjoJAflZ7+dvamTXDNyYWFYAwzBCQXkZb2VkpePgeqDQOYALEvhMlgCMR9UGwAEgACkJwxhEkcABkC
@@ -134,7 +134,7 @@
   <data name="tsmi_RemoveElement.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        qgAAAKoBBgpwTwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAJKSURBVEhLzVXb
+        qAAAAKgBefSzxgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAJKSURBVEhLzVXb
         ThNRFJ0n9QEGgnE6tyqaJshMZ9pSvLzQgTd8EUNDbYOEi/gBTVv+AV5ICPAdhMRv8BaNP6HoY+k02j44
         7mUPbdpuS9uYyEpWcuacfda57H3WSFcCI6ptyYq1Oh6y8yDaI1p0WgwPicnJG4ru7Jhh9yxyJ1HJzS6U
         C6nFOpil9r3bcd8Mx74quluSIpHrYlZ/kEPTjzXD/Z6e8fz3Gy+Dn/k8y3frW8FywvMRK4esR2J6b9xS

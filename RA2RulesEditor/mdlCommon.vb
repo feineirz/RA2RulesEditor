@@ -74,6 +74,10 @@ Module mdlCommon
 
 	Function GetMember(INIPath As String, Section As String) As LineData()
 
+		' prepare section format
+		If Not Section.StartsWith("[") Then Section = "[" & Section
+		If Not Section.EndsWith("]") Then Section = Section & "]"
+
 		Dim ret As LineData() = Nothing
 		Dim splA(), splB() As String
 
