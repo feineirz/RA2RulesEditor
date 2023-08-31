@@ -30,11 +30,12 @@ Partial Class frmMain
 		Me.btnLoad = New System.Windows.Forms.Button()
 		Me.btnExit = New System.Windows.Forms.Button()
 		Me.pnlFooter = New System.Windows.Forms.Panel()
+		Me.lblCurrentSectionIndex = New System.Windows.Forms.Label()
 		Me.btnSort = New System.Windows.Forms.Button()
 		Me.lblStatus = New System.Windows.Forms.Label()
 		Me.lvwSection = New System.Windows.Forms.ListView()
 		Me.col_Section_Name = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-		Me.lvwMember = New System.Windows.Forms.ListView()
+		Me.lvwElements = New System.Windows.Forms.ListView()
 		Me.col_Member_Name = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Member_Value = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Member_Comment = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -53,7 +54,6 @@ Partial Class frmMain
 		Me.pnlSection = New System.Windows.Forms.Panel()
 		Me.Panel1 = New System.Windows.Forms.Panel()
 		Me.btnOpenInEditor = New System.Windows.Forms.Button()
-		Me.lblCurrentSectionIndex = New System.Windows.Forms.Label()
 		Me.pnlHeader.SuspendLayout()
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.pnlFooter.SuspendLayout()
@@ -133,6 +133,18 @@ Partial Class frmMain
 		Me.pnlFooter.Size = New System.Drawing.Size(1527, 40)
 		Me.pnlFooter.TabIndex = 3
 		'
+		'lblCurrentSectionIndex
+		'
+		Me.lblCurrentSectionIndex.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.lblCurrentSectionIndex.AutoSize = True
+		Me.lblCurrentSectionIndex.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblCurrentSectionIndex.Location = New System.Drawing.Point(801, 12)
+		Me.lblCurrentSectionIndex.Name = "lblCurrentSectionIndex"
+		Me.lblCurrentSectionIndex.Size = New System.Drawing.Size(16, 16)
+		Me.lblCurrentSectionIndex.TabIndex = 6
+		Me.lblCurrentSectionIndex.Text = "-1"
+		Me.lblCurrentSectionIndex.Visible = False
+		'
 		'btnSort
 		'
 		Me.btnSort.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -180,25 +192,25 @@ Partial Class frmMain
 		Me.col_Section_Name.Text = "Section List"
 		Me.col_Section_Name.Width = 230
 		'
-		'lvwMember
+		'lvwElements
 		'
-		Me.lvwMember.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+		Me.lvwElements.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Left) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-		Me.lvwMember.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Member_Name, Me.col_Member_Value, Me.col_Member_Comment, Me.col_Member_LineNo})
-		Me.lvwMember.ContextMenuStrip = Me.cmsMember
-		Me.lvwMember.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lvwMember.FullRowSelect = True
-		Me.lvwMember.GridLines = True
-		Me.lvwMember.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
-		Me.lvwMember.HideSelection = False
-		Me.lvwMember.Location = New System.Drawing.Point(9, 37)
-		Me.lvwMember.MultiSelect = False
-		Me.lvwMember.Name = "lvwMember"
-		Me.lvwMember.Size = New System.Drawing.Size(1213, 747)
-		Me.lvwMember.TabIndex = 5
-		Me.lvwMember.UseCompatibleStateImageBehavior = False
-		Me.lvwMember.View = System.Windows.Forms.View.Details
+		Me.lvwElements.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Member_Name, Me.col_Member_Value, Me.col_Member_Comment, Me.col_Member_LineNo})
+		Me.lvwElements.ContextMenuStrip = Me.cmsMember
+		Me.lvwElements.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lvwElements.FullRowSelect = True
+		Me.lvwElements.GridLines = True
+		Me.lvwElements.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
+		Me.lvwElements.HideSelection = False
+		Me.lvwElements.Location = New System.Drawing.Point(9, 37)
+		Me.lvwElements.MultiSelect = False
+		Me.lvwElements.Name = "lvwElements"
+		Me.lvwElements.Size = New System.Drawing.Size(1213, 747)
+		Me.lvwElements.TabIndex = 5
+		Me.lvwElements.UseCompatibleStateImageBehavior = False
+		Me.lvwElements.View = System.Windows.Forms.View.Details
 		'
 		'col_Member_Name
 		'
@@ -354,7 +366,7 @@ Partial Class frmMain
 		Me.Panel1.Controls.Add(Me.btnOpenInEditor)
 		Me.Panel1.Controls.Add(Me.pnlInit)
 		Me.Panel1.Controls.Add(Me.lblCurSection)
-		Me.Panel1.Controls.Add(Me.lvwMember)
+		Me.Panel1.Controls.Add(Me.lvwElements)
 		Me.Panel1.Controls.Add(Me.lblPath)
 		Me.Panel1.Controls.Add(Me.btnReload)
 		Me.Panel1.Location = New System.Drawing.Point(12, 62)
@@ -373,18 +385,6 @@ Partial Class frmMain
 		Me.btnOpenInEditor.TabIndex = 13
 		Me.btnOpenInEditor.Text = "Open in Editor"
 		Me.btnOpenInEditor.UseVisualStyleBackColor = True
-		'
-		'lblCurrentSectionIndex
-		'
-		Me.lblCurrentSectionIndex.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-		Me.lblCurrentSectionIndex.AutoSize = True
-		Me.lblCurrentSectionIndex.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lblCurrentSectionIndex.Location = New System.Drawing.Point(801, 12)
-		Me.lblCurrentSectionIndex.Name = "lblCurrentSectionIndex"
-		Me.lblCurrentSectionIndex.Size = New System.Drawing.Size(16, 16)
-		Me.lblCurrentSectionIndex.TabIndex = 6
-		Me.lblCurrentSectionIndex.Text = "-1"
-		Me.lblCurrentSectionIndex.Visible = False
 		'
 		'frmMain
 		'
@@ -426,7 +426,7 @@ Partial Class frmMain
 	Friend WithEvents lblStatus As Label
 	Friend WithEvents lvwSection As ListView
 	Friend WithEvents col_Section_Name As ColumnHeader
-	Friend WithEvents lvwMember As ListView
+	Friend WithEvents lvwElements As ListView
 	Friend WithEvents col_Member_Name As ColumnHeader
 	Friend WithEvents col_Member_Value As ColumnHeader
 	Friend WithEvents col_Member_LineNo As ColumnHeader

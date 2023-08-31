@@ -27,9 +27,10 @@ Partial Class frmElementViewers
 		Me.pnlHeader = New System.Windows.Forms.Panel()
 		Me.lblTitle = New System.Windows.Forms.Label()
 		Me.pnlFooter = New System.Windows.Forms.Panel()
+		Me.lblNearDropIndex = New System.Windows.Forms.Label()
 		Me.lblCurrentSection = New System.Windows.Forms.Label()
 		Me.btnClose = New System.Windows.Forms.Button()
-		Me.lvwMember = New System.Windows.Forms.ListView()
+		Me.lvwElements = New System.Windows.Forms.ListView()
 		Me.col_Member_Name = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Member_Value = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Member_Comment = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -66,6 +67,7 @@ Partial Class frmElementViewers
 		'pnlFooter
 		'
 		Me.pnlFooter.BackColor = System.Drawing.Color.Gainsboro
+		Me.pnlFooter.Controls.Add(Me.lblNearDropIndex)
 		Me.pnlFooter.Controls.Add(Me.lblCurrentSection)
 		Me.pnlFooter.Controls.Add(Me.btnClose)
 		Me.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -73,6 +75,17 @@ Partial Class frmElementViewers
 		Me.pnlFooter.Name = "pnlFooter"
 		Me.pnlFooter.Size = New System.Drawing.Size(1194, 39)
 		Me.pnlFooter.TabIndex = 1
+		'
+		'lblNearDropIndex
+		'
+		Me.lblNearDropIndex.AutoSize = True
+		Me.lblNearDropIndex.Font = New System.Drawing.Font("Bahnschrift Light SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblNearDropIndex.Location = New System.Drawing.Point(708, 14)
+		Me.lblNearDropIndex.Name = "lblNearDropIndex"
+		Me.lblNearDropIndex.Size = New System.Drawing.Size(82, 16)
+		Me.lblNearDropIndex.TabIndex = 8
+		Me.lblNearDropIndex.Text = "NearDropIndex"
+		Me.lblNearDropIndex.Visible = False
 		'
 		'lblCurrentSection
 		'
@@ -97,25 +110,26 @@ Partial Class frmElementViewers
 		Me.btnClose.Text = "Close"
 		Me.btnClose.UseVisualStyleBackColor = True
 		'
-		'lvwMember
+		'lvwElements
 		'
-		Me.lvwMember.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+		Me.lvwElements.AllowDrop = True
+		Me.lvwElements.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Left) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-		Me.lvwMember.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Member_Name, Me.col_Member_Value, Me.col_Member_Comment, Me.col_Member_LineNo})
-		Me.lvwMember.ContextMenuStrip = Me.cmsMember
-		Me.lvwMember.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lvwMember.FullRowSelect = True
-		Me.lvwMember.GridLines = True
-		Me.lvwMember.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
-		Me.lvwMember.HideSelection = False
-		Me.lvwMember.Location = New System.Drawing.Point(12, 58)
-		Me.lvwMember.MultiSelect = False
-		Me.lvwMember.Name = "lvwMember"
-		Me.lvwMember.Size = New System.Drawing.Size(1170, 648)
-		Me.lvwMember.TabIndex = 6
-		Me.lvwMember.UseCompatibleStateImageBehavior = False
-		Me.lvwMember.View = System.Windows.Forms.View.Details
+		Me.lvwElements.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Member_Name, Me.col_Member_Value, Me.col_Member_Comment, Me.col_Member_LineNo})
+		Me.lvwElements.ContextMenuStrip = Me.cmsMember
+		Me.lvwElements.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lvwElements.FullRowSelect = True
+		Me.lvwElements.GridLines = True
+		Me.lvwElements.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
+		Me.lvwElements.HideSelection = False
+		Me.lvwElements.Location = New System.Drawing.Point(12, 58)
+		Me.lvwElements.MultiSelect = False
+		Me.lvwElements.Name = "lvwElements"
+		Me.lvwElements.Size = New System.Drawing.Size(1170, 648)
+		Me.lvwElements.TabIndex = 6
+		Me.lvwElements.UseCompatibleStateImageBehavior = False
+		Me.lvwElements.View = System.Windows.Forms.View.Details
 		'
 		'col_Member_Name
 		'
@@ -168,7 +182,7 @@ Partial Class frmElementViewers
 		Me.BackColor = System.Drawing.Color.WhiteSmoke
 		Me.ClientSize = New System.Drawing.Size(1194, 759)
 		Me.ControlBox = False
-		Me.Controls.Add(Me.lvwMember)
+		Me.Controls.Add(Me.lvwElements)
 		Me.Controls.Add(Me.pnlFooter)
 		Me.Controls.Add(Me.pnlHeader)
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -188,7 +202,7 @@ Partial Class frmElementViewers
 	Friend WithEvents pnlHeader As Panel
 	Friend WithEvents pnlFooter As Panel
 	Friend WithEvents lblTitle As Label
-	Friend WithEvents lvwMember As ListView
+	Friend WithEvents lvwElements As ListView
 	Friend WithEvents col_Member_Name As ColumnHeader
 	Friend WithEvents col_Member_Value As ColumnHeader
 	Friend WithEvents col_Member_LineNo As ColumnHeader
@@ -198,4 +212,5 @@ Partial Class frmElementViewers
 	Friend WithEvents tsmi_AppendElement As ToolStripMenuItem
 	Friend WithEvents tsmi_RemoveElement As ToolStripMenuItem
 	Friend WithEvents lblCurrentSection As Label
+	Friend WithEvents lblNearDropIndex As Label
 End Class

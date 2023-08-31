@@ -37,7 +37,7 @@ Public Class frmMain
 		Dim lvi, lviC As ListViewItem
 		lvwSection.Items.Clear()
 		lvwUnsort.Items.Clear()
-		lvwMember.Items.Clear()
+		lvwElements.Items.Clear()
 
 		lblMessage.Text = "Loading..." : Me.Refresh()
 
@@ -83,14 +83,14 @@ Public Class frmMain
 			Dim lvi As ListViewItem
 
 			lblCurSection.Text = Section
-			lvwMember.Items.Clear()
+			lvwElements.Items.Clear()
 
 			tsmi_AppendElement.Enabled = False
 			tsmi_RemoveElement.Enabled = False
 
 			If Not src Is Nothing Then
 				For Each LD As LineData In src
-					lvi = lvwMember.Items.Add(LD.Name)
+					lvi = lvwElements.Items.Add(LD.Name)
 					lvi.SubItems.Add(LD.Value)
 					lvi.SubItems.Add(LD.Comment)
 					lvi.SubItems.Add(LD.LineNo)
@@ -100,10 +100,10 @@ Public Class frmMain
 
 	End Sub
 
-	Private Sub lvwMember_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lvwMember.MouseDoubleClick
+	Private Sub lvwMember_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lvwElements.MouseDoubleClick
 
-		If lvwMember.SelectedItems.Count = 1 And e.Button = MouseButtons.Left Then
-			Dim lvi As ListViewItem = lvwMember.SelectedItems(0)
+		If lvwElements.SelectedItems.Count = 1 And e.Button = MouseButtons.Left Then
+			Dim lvi As ListViewItem = lvwElements.SelectedItems(0)
 			curLVI = lvi
 			With frmEditValue
 				.tbxKeyName.Text = lvi.Text.Trim
@@ -118,9 +118,9 @@ Public Class frmMain
 
 	End Sub
 
-	Private Sub lvwMember_KeyDown(sender As Object, e As KeyEventArgs) Handles lvwMember.KeyDown
+	Private Sub lvwMember_KeyDown(sender As Object, e As KeyEventArgs) Handles lvwElements.KeyDown
 
-		If lvwMember.SelectedItems.Count = 1 Then
+		If lvwElements.SelectedItems.Count = 1 Then
 
 			If e.KeyData = Keys.Enter Then
 				lvwMember_MouseDoubleClick(Nothing, Nothing)
@@ -140,12 +140,12 @@ Public Class frmMain
 
 	End Sub
 
-	Private Sub lvwMember_MouseDown(sender As Object, e As MouseEventArgs) Handles lvwMember.MouseDown
+	Private Sub lvwMember_MouseDown(sender As Object, e As MouseEventArgs) Handles lvwElements.MouseDown
 
 		If Not e.Button = Button.MouseButtons.Middle Then Return
 
-		If lvwMember.SelectedItems.Count = 1 Then
-			Dim lvi As ListViewItem = lvwMember.SelectedItems(0)
+		If lvwElements.SelectedItems.Count = 1 Then
+			Dim lvi As ListViewItem = lvwElements.SelectedItems(0)
 			Dim Section As String = lvi.SubItems(1).Text.Trim
 			Dim sm = New frmElementViewers
 			sm.lblCurrentSection.Text = Section
@@ -188,10 +188,10 @@ Public Class frmMain
 
 	Private Sub InsertContentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles tsmi_AppendElement.Click
 
-		If lvwMember.SelectedItems.Count = 1 Then
+		If lvwElements.SelectedItems.Count = 1 Then
 			If frmInsertContent.ShowDialog() = DialogResult.OK Then
-				Dim refIndex As Integer = lvwMember.SelectedItems(0).Index
-				Dim refLineNo As Integer = lvwMember.SelectedItems(0).SubItems(3).Text
+				Dim refIndex As Integer = lvwElements.SelectedItems(0).Index
+				Dim refLineNo As Integer = lvwElements.SelectedItems(0).SubItems(3).Text
 				Dim Content As String = frmInsertContent.contentName + "=" + frmInsertContent.contentValue
 				If frmInsertContent.contentComment <> "" Then Content += "; " + frmInsertContent.contentComment
 				If UpdateLineData(refLineNo, Content, True) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
@@ -202,8 +202,8 @@ Public Class frmMain
 
 	Private Sub RemoveContentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles tsmi_RemoveElement.Click
 
-		If lvwMember.SelectedItems.Count = 1 Then
-			If RemoveContent(lvwMember.SelectedItems(0).SubItems(3).Text) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
+		If lvwElements.SelectedItems.Count = 1 Then
+			If RemoveContent(lvwElements.SelectedItems(0).SubItems(3).Text) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
 		End If
 
 	End Sub
@@ -214,9 +214,9 @@ Public Class frmMain
 
 	End Sub
 
-	Private Sub lvwMember_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvwMember.SelectedIndexChanged
+	Private Sub lvwMember_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvwElements.SelectedIndexChanged
 
-		If lvwMember.SelectedItems.Count = 1 Then
+		If lvwElements.SelectedItems.Count = 1 Then
 			tsmi_AppendElement.Enabled = True
 			tsmi_RemoveElement.Enabled = True
 		Else

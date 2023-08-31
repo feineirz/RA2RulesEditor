@@ -14,6 +14,8 @@ Module mdlCommon
 		Dim Comment As String
 	End Structure
 
+	Public DragDropLVI As ListViewItem
+
 
 	Sub InitRulesFile(INIPath As String)
 
