@@ -1,6 +1,6 @@
 ﻿Imports System.Collections.Specialized.BitVector32
 
-Public Class frmSubMember
+Public Class frmElementViewers
 #Region "Moveable Form Code"
 	<System.Runtime.InteropServices.DllImportAttribute("user32.dll")>
 	Public Shared Function SendMessage(hWnd As IntPtr, Msg As Integer, wParam As Integer, lParam As Integer) As Integer
@@ -71,10 +71,10 @@ Public Class frmSubMember
 		If lvwMember.SelectedItems.Count = 1 Then
 			Dim lvi As ListViewItem = lvwMember.SelectedItems(0)
 			Dim Section As String = lvi.SubItems(1).Text.Trim
-			Dim sm = New frmSubMember
-			sm.lblCurrentSection.Text = Section
-			sm.LoadElement(Section)
-			sm.ShowDialog()
+			Dim ev = New frmElementViewers
+			ev.lblCurrentSection.Text = Section
+			ev.LoadElement(Section)
+			ev.ShowDialog()
 		End If
 
 	End Sub
@@ -110,6 +110,18 @@ Public Class frmSubMember
 		If lvwMember.SelectedItems.Count = 1 Then
 			If RemoveContent(lvwMember.SelectedItems(0).SubItems(3).Text) Then LoadElement(lblCurrentSection.Text)
 		End If
+
+	End Sub
+
+	Private Sub frmElementViewers_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+		Me.BringToFront()
+
+	End Sub
+
+	Private Sub frmElementViewers_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+
+		Me.BringToFront()
 
 	End Sub
 End Class

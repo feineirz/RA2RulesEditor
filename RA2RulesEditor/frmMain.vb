@@ -147,7 +147,7 @@ Public Class frmMain
 		If lvwMember.SelectedItems.Count = 1 Then
 			Dim lvi As ListViewItem = lvwMember.SelectedItems(0)
 			Dim Section As String = lvi.SubItems(1).Text.Trim
-			Dim sm = New frmSubMember
+			Dim sm = New frmElementViewers
 			sm.lblCurrentSection.Text = Section
 			sm.LoadElement(Section)
 			sm.ShowDialog()
@@ -270,6 +270,19 @@ Public Class frmMain
 			If Not lvwSection.Items Is Nothing Then
 				lvwSection.Items(prevSectionIndex).Selected = True
 			End If
+		End If
+	End Sub
+
+	Private Sub lvwSection_MouseDown(sender As Object, e As MouseEventArgs) Handles lvwSection.MouseDown
+		If Not e.Button = Button.MouseButtons.Middle Then Return
+
+		If lvwSection.SelectedItems.Count = 1 Then
+			Dim lvi As ListViewItem = lvwSection.SelectedItems(0)
+			Dim Section As String = lvi.Text.Trim
+			Dim ev = New frmElementViewers
+			ev.lblCurrentSection.Text = Section
+			ev.LoadElement(Section)
+			ev.Show()
 		End If
 	End Sub
 End Class

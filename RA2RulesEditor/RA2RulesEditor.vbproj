@@ -96,10 +96,10 @@
       <DependentUpon>frmMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSubMember.Designer.vb">
-      <DependentUpon>frmSubMember.vb</DependentUpon>
+    <Compile Include="frmElementViewers.Designer.vb">
+      <DependentUpon>frmElementViewers.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmSubMember.vb">
+    <Compile Include="frmElementViewers.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="mdlCommon.vb" />
@@ -130,8 +130,8 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSubMember.resx">
-      <DependentUpon>frmSubMember.vb</DependentUpon>
+    <EmbeddedResource Include="frmElementViewers.resx">
+      <DependentUpon>frmElementViewers.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
