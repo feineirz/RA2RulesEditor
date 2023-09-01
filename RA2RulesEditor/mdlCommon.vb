@@ -7,6 +7,11 @@ Module mdlCommon
 	Public INIPath As String = ""
 	Public lvwUnsort As New ListView
 
+	Structure SectionData
+		Dim Name As String
+		Dim LineNo As Integer
+	End Structure
+
 	Structure LineData
 		Dim Name As String
 		Dim Value As String
@@ -38,42 +43,42 @@ Module mdlCommon
 
 	End Sub
 
-	Function GetSection(INIPath As String, Optional Filter As String = "") As String()
+	Function GetSection(INIPath As String, Optional Filter As String = "") As List(Of SectionData)
 
-		Dim ret() As String = Nothing
+		Dim Sections As New List(Of SectionData)
+		Dim SectionData As SectionData
+
+		Dim LineNumber As Integer = 0
+
 		If File.Exists(INIPath) Then
-
-			Dim i As Integer = 0
-
 			For Each Line In File.ReadAllLines(INIPath)
+				LineNumber += 1
 				Line = Line.Trim()
 				If Not Line = "" Then 'Ignore blank line
-					If InStr(Line, "[") = 1 Then
+					If Line.StartsWith("[") Then
 						If Filter = "" Then
 							Dim spl() As String = Split(Line, ";", 2)
-							If spl(0).Trim <> "" Then
-								ReDim Preserve ret(i)
-								ret(i) = spl(0)
-								i += 1
+							If Not spl(0).Trim = "" Then
+								SectionData.Name = spl(0).Trim
+								SectionData.LineNo = LineNumber
+								Sections.Add(SectionData)
 							End If
-
 						Else
 							Dim spl() As String = Split(Line, ";", 2)
 							If spl(0).ToLower Like "*" & Filter.ToLower & "*" Then
 								If spl(0).Trim <> "" Then
-									ReDim Preserve ret(i)
-									ret(i) = spl(0)
-									i += 1
+									SectionData.Name = spl(0)
+									SectionData.LineNo = LineNumber
+									Sections.Add(SectionData)
 								End If
 							End If
-
 						End If
 					End If
 				End If
 			Next
 		End If
 
-		Return ret
+		Return Sections
 
 	End Function
 

@@ -41,33 +41,37 @@ Public Class frmMain
 
 		lblMessage.Text = "Loading..." : Me.Refresh()
 
-		For Each Line In GetSection(INIPath, Filter)
-			lvi = lvwSection.Items.Add(Line.ReplaceMore("[]", ""))
-			lviC = lvwUnsort.Items.Add(Line.ReplaceMore("[]", ""))
+		For Each Section In GetSection(INIPath, Filter)
+			lvi = lvwSection.Items.Add(Section.Name.ReplaceMore("[]", ""))
+			lvi.SubItems.Add(Section.LineNo)
+
+			lviC = lvwUnsort.Items.Add(Section.Name.ReplaceMore("[]", ""))
+			lviC.SubItems.Add(Section.LineNo)
 		Next
 
 		pnlInit.Visible = False : Me.Refresh()
 
-		Return 0
+		Return lvwSection.Items.Count
 
 	End Function
 
 	Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
 
-		Dim dlgOpenFile As New OpenFileDialog
-		dlgOpenFile.Filter = "Ini files|*.ini"
+		Using dlgOpenFile As New OpenFileDialog
+			dlgOpenFile.Filter = "Ini files|*.ini"
 
-		If dlgOpenFile.ShowDialog = DialogResult.OK Then
+			If dlgOpenFile.ShowDialog = DialogResult.OK Then
 
-			lblPath.Text = dlgOpenFile.FileName
+				lblPath.Text = dlgOpenFile.FileName
 
-			tbxFilter.Text = ""
-			INIPath = dlgOpenFile.FileName
-			pnlInit.Visible = True : Me.Refresh()
-			InitRulesFile(INIPath)
-			LoadContent(INIPath)
+				tbxFilter.Text = ""
+				INIPath = dlgOpenFile.FileName
+				pnlInit.Visible = True : Me.Refresh()
+				InitRulesFile(INIPath)
+				Dim SectionCount = LoadContent(INIPath)
 
-		End If
+			End If
+		End Using
 
 	End Sub
 
@@ -203,7 +207,9 @@ Public Class frmMain
 	Private Sub RemoveContentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles tsmi_RemoveElement.Click
 
 		If lvwElements.SelectedItems.Count = 1 Then
-			If RemoveContent(lvwElements.SelectedItems(0).SubItems(3).Text) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
+			If MsgBox("Are you sure to PERMANENTLY delete this element?", MsgBoxStyle.OkCancel + MessageBoxIcon.Warning, "Element Delete") = MsgBoxResult.Ok Then
+				If RemoveContent(lvwElements.SelectedItems(0).SubItems(3).Text) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
+			End If
 		End If
 
 	End Sub

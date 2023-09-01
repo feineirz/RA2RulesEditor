@@ -54,6 +54,7 @@ Partial Class frmMain
 		Me.pnlSection = New System.Windows.Forms.Panel()
 		Me.Panel1 = New System.Windows.Forms.Panel()
 		Me.btnOpenInEditor = New System.Windows.Forms.Button()
+		Me.col_Section_LineNo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.pnlHeader.SuspendLayout()
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.pnlFooter.SuspendLayout()
@@ -173,7 +174,7 @@ Partial Class frmMain
 		Me.lvwSection.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Left) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-		Me.lvwSection.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Section_Name})
+		Me.lvwSection.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Section_Name, Me.col_Section_LineNo})
 		Me.lvwSection.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lvwSection.FullRowSelect = True
 		Me.lvwSection.GridLines = True
@@ -190,7 +191,7 @@ Partial Class frmMain
 		'col_Section_Name
 		'
 		Me.col_Section_Name.Text = "Section List"
-		Me.col_Section_Name.Width = 230
+		Me.col_Section_Name.Width = 170
 		'
 		'lvwElements
 		'
@@ -386,6 +387,11 @@ Partial Class frmMain
 		Me.btnOpenInEditor.Text = "Open in Editor"
 		Me.btnOpenInEditor.UseVisualStyleBackColor = True
 		'
+		'col_Section_LineNo
+		'
+		Me.col_Section_LineNo.Text = "Line No."
+		Me.col_Section_LineNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+		'
 		'frmMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -447,4 +453,5 @@ Partial Class frmMain
 	Friend WithEvents Panel1 As Panel
 	Friend WithEvents btnOpenInEditor As Button
 	Friend WithEvents lblCurrentSectionIndex As Label
+	Friend WithEvents col_Section_LineNo As ColumnHeader
 End Class

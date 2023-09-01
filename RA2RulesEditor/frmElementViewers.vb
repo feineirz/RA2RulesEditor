@@ -108,7 +108,9 @@ Public Class frmElementViewers
 	Private Sub tsmi_RemoveElement_Click(sender As Object, e As EventArgs) Handles tsmi_RemoveElement.Click
 
 		If lvwElements.SelectedItems.Count = 1 Then
-			If RemoveContent(lvwElements.SelectedItems(0).SubItems(3).Text) Then LoadElement(lblCurrentSection.Text)
+			If MsgBox("Are you sure to PERMANENTLY delete this element?", MsgBoxStyle.OkCancel + MessageBoxIcon.Warning, "Element Delete") = MsgBoxResult.Ok Then
+				If RemoveContent(lvwElements.SelectedItems(0).SubItems(3).Text) Then LoadElement(lblCurrentSection.Text)
+			End If
 		End If
 
 	End Sub
