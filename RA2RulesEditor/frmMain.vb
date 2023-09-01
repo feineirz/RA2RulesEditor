@@ -89,6 +89,7 @@ Public Class frmMain
 			lblCurSection.Text = Section
 			lvwElements.Items.Clear()
 
+			tsmi_CloneSectionAs.Enabled = True
 			tsmi_AppendElement.Enabled = False
 			tsmi_RemoveElement.Enabled = False
 
@@ -100,6 +101,9 @@ Public Class frmMain
 					lvi.SubItems.Add(LD.LineNo)
 				Next
 			End If
+
+		Else
+			tsmi_CloneSectionAs.Enabled = False
 		End If
 
 	End Sub
@@ -290,5 +294,27 @@ Public Class frmMain
 			ev.LoadElement(Section)
 			ev.Show()
 		End If
+	End Sub
+
+	Private Sub tsmi_DuplicateSection_Click(sender As Object, e As EventArgs) Handles tsmi_CloneSectionAs.Click
+
+		Dim SectionName As String = lvwSection.SelectedItems(0).Text.Trim
+		frmCloneSectionAs.tbxName.Text = SectionName
+		If frmCloneSectionAs.ShowDialog = DialogResult.OK Then
+			Dim startLineNo As Integer = lvwSection.SelectedItems(0).SubItems(1).Text
+			Dim endLineNo As Integer
+
+			SectionName = frmCloneSectionAs.tbxName.Text.Trim
+			If lvwSection.SelectedItems(0).Index < lvwSection.Items.Count - 1 Then
+				endLineNo = lvwSection.Items(lvwSection.SelectedIndices(0) + 1).SubItems(1).Text
+				endLineNo = endLineNo - 1
+			Else
+				endLineNo = -1
+			End If
+			CloneSectionAs(SectionName, startLineNo, endLineNo)
+
+			btnReload_Click(Nothing, Nothing)
+		End If
+
 	End Sub
 End Class

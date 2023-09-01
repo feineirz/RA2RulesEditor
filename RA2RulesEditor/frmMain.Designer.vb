@@ -35,12 +35,13 @@ Partial Class frmMain
 		Me.lblStatus = New System.Windows.Forms.Label()
 		Me.lvwSection = New System.Windows.Forms.ListView()
 		Me.col_Section_Name = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+		Me.col_Section_LineNo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.lvwElements = New System.Windows.Forms.ListView()
 		Me.col_Member_Name = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Member_Value = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Member_Comment = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Member_LineNo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-		Me.cmsMember = New System.Windows.Forms.ContextMenuStrip(Me.components)
+		Me.cmsElements = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.tsmi_AppendElement = New System.Windows.Forms.ToolStripMenuItem()
 		Me.tsmi_RemoveElement = New System.Windows.Forms.ToolStripMenuItem()
 		Me.Label1 = New System.Windows.Forms.Label()
@@ -54,14 +55,16 @@ Partial Class frmMain
 		Me.pnlSection = New System.Windows.Forms.Panel()
 		Me.Panel1 = New System.Windows.Forms.Panel()
 		Me.btnOpenInEditor = New System.Windows.Forms.Button()
-		Me.col_Section_LineNo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+		Me.cmsSection = New System.Windows.Forms.ContextMenuStrip(Me.components)
+		Me.tsmi_CloneSectionAs = New System.Windows.Forms.ToolStripMenuItem()
 		Me.pnlHeader.SuspendLayout()
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.pnlFooter.SuspendLayout()
-		Me.cmsMember.SuspendLayout()
+		Me.cmsElements.SuspendLayout()
 		Me.pnlInit.SuspendLayout()
 		Me.pnlSection.SuspendLayout()
 		Me.Panel1.SuspendLayout()
+		Me.cmsSection.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'pnlHeader
@@ -175,6 +178,7 @@ Partial Class frmMain
 			Or System.Windows.Forms.AnchorStyles.Left) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lvwSection.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Section_Name, Me.col_Section_LineNo})
+		Me.lvwSection.ContextMenuStrip = Me.cmsSection
 		Me.lvwSection.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lvwSection.FullRowSelect = True
 		Me.lvwSection.GridLines = True
@@ -193,13 +197,18 @@ Partial Class frmMain
 		Me.col_Section_Name.Text = "Section List"
 		Me.col_Section_Name.Width = 170
 		'
+		'col_Section_LineNo
+		'
+		Me.col_Section_LineNo.Text = "Line No."
+		Me.col_Section_LineNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+		'
 		'lvwElements
 		'
 		Me.lvwElements.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Left) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lvwElements.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.col_Member_Name, Me.col_Member_Value, Me.col_Member_Comment, Me.col_Member_LineNo})
-		Me.lvwElements.ContextMenuStrip = Me.cmsMember
+		Me.lvwElements.ContextMenuStrip = Me.cmsElements
 		Me.lvwElements.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lvwElements.FullRowSelect = True
 		Me.lvwElements.GridLines = True
@@ -234,12 +243,12 @@ Partial Class frmMain
 		Me.col_Member_LineNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
 		Me.col_Member_LineNo.Width = 70
 		'
-		'cmsMember
+		'cmsElements
 		'
-		Me.cmsMember.Font = New System.Drawing.Font("Bahnschrift SemiLight SemiConde", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.cmsMember.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmi_AppendElement, Me.tsmi_RemoveElement})
-		Me.cmsMember.Name = "cmsMember"
-		Me.cmsMember.Size = New System.Drawing.Size(160, 48)
+		Me.cmsElements.Font = New System.Drawing.Font("Bahnschrift SemiLight SemiConde", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.cmsElements.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmi_AppendElement, Me.tsmi_RemoveElement})
+		Me.cmsElements.Name = "cmsMember"
+		Me.cmsElements.Size = New System.Drawing.Size(160, 48)
 		'
 		'tsmi_AppendElement
 		'
@@ -387,10 +396,19 @@ Partial Class frmMain
 		Me.btnOpenInEditor.Text = "Open in Editor"
 		Me.btnOpenInEditor.UseVisualStyleBackColor = True
 		'
-		'col_Section_LineNo
+		'cmsSection
 		'
-		Me.col_Section_LineNo.Text = "Line No."
-		Me.col_Section_LineNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+		Me.cmsSection.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmi_CloneSectionAs})
+		Me.cmsSection.Name = "cmsSection"
+		Me.cmsSection.Size = New System.Drawing.Size(181, 48)
+		'
+		'tsmi_CloneSectionAs
+		'
+		Me.tsmi_CloneSectionAs.Enabled = False
+		Me.tsmi_CloneSectionAs.Image = CType(resources.GetObject("tsmi_CloneSectionAs.Image"), System.Drawing.Image)
+		Me.tsmi_CloneSectionAs.Name = "tsmi_CloneSectionAs"
+		Me.tsmi_CloneSectionAs.Size = New System.Drawing.Size(180, 22)
+		Me.tsmi_CloneSectionAs.Text = "Clone Section As"
 		'
 		'frmMain
 		'
@@ -413,12 +431,13 @@ Partial Class frmMain
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.pnlFooter.ResumeLayout(False)
 		Me.pnlFooter.PerformLayout()
-		Me.cmsMember.ResumeLayout(False)
+		Me.cmsElements.ResumeLayout(False)
 		Me.pnlInit.ResumeLayout(False)
 		Me.pnlSection.ResumeLayout(False)
 		Me.pnlSection.PerformLayout()
 		Me.Panel1.ResumeLayout(False)
 		Me.Panel1.PerformLayout()
+		Me.cmsSection.ResumeLayout(False)
 		Me.ResumeLayout(False)
 
 	End Sub
@@ -445,7 +464,7 @@ Partial Class frmMain
 	Friend WithEvents lblMessage As Label
 	Friend WithEvents btnSort As Button
 	Friend WithEvents lblPath As Label
-	Friend WithEvents cmsMember As ContextMenuStrip
+	Friend WithEvents cmsElements As ContextMenuStrip
 	Friend WithEvents tsmi_AppendElement As ToolStripMenuItem
 	Friend WithEvents tsmi_RemoveElement As ToolStripMenuItem
 	Friend WithEvents btnReload As Button
@@ -454,4 +473,6 @@ Partial Class frmMain
 	Friend WithEvents btnOpenInEditor As Button
 	Friend WithEvents lblCurrentSectionIndex As Label
 	Friend WithEvents col_Section_LineNo As ColumnHeader
+	Friend WithEvents cmsSection As ContextMenuStrip
+	Friend WithEvents tsmi_CloneSectionAs As ToolStripMenuItem
 End Class

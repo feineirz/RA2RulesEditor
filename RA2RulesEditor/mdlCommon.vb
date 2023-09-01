@@ -82,6 +82,36 @@ Module mdlCommon
 
 	End Function
 
+	Function CloneSectionAs(SectionName As String, StartLineNo As Integer, Optional EndLineNo As Integer = -1) As Boolean
+		SectionName = "[" & SectionName.Trim & "]"
+		Dim INIContent As New List(Of String)
+		Dim InsertContent As New List(Of String)
+		If File.Exists(INIPath) Then
+			INIContent.AddRange(File.ReadAllLines(INIPath))
+
+			InsertContent.Add("")
+			InsertContent.Add(SectionName)
+
+			If EndLineNo > 0 And EndLineNo < INIContent.Count Then ' Not last section
+				For i = StartLineNo To EndLineNo - 1
+					InsertContent.Add(INIContent(i))
+				Next
+				INIContent.InsertRange(EndLineNo, InsertContent)
+
+			Else ' last section
+				For i = StartLineNo To INIContent.Count - 1
+					InsertContent.Add(INIContent(i))
+				Next
+				INIContent.AddRange(InsertContent)
+			End If
+
+			File.WriteAllLines(INIPath, INIContent)
+			Return True
+		Else
+			Return False
+		End If
+	End Function
+
 	Function GetMember(INIPath As String, Section As String) As LineData()
 
 		' prepare section format
@@ -159,8 +189,8 @@ Module mdlCommon
 						Contents(Contents.Length - 1) = Content
 						File.WriteAllLines(INIPath, Contents)
 						Return True
-
 					End If
+
 				Else
 					If Contents.Length >= LineNo Then
 						InsertArrayElement(Of String)(Contents, LineNo, Content)
@@ -174,6 +204,8 @@ Module mdlCommon
 						Return True
 					End If
 				End If
+			Else
+				Return False
 			End If
 		Else
 			Return False
