@@ -17,15 +17,31 @@
 
 	End Sub
 
-	Sub validateInput() Handles tbxName.TextChanged, tbxValue.TextChanged
+	Function validateInput() As Boolean
+
 		Dim contentName As String = tbxName.Text.Trim()
 		Dim contentValue As String = tbxValue.Text.Trim()
 
-		If contentName <> "" And contentValue <> "" Then
-			btnSave.Enabled = True
-		Else
-			btnSave.Enabled = False
+		Return Not (contentName <> "" And contentValue <> "")
+
+	End Function
+
+	Private Sub preValidateInput(sender As Object, e As KeyEventArgs) Handles tbxName.TextAlignChanged, tbxValue.TextAlignChanged
+
+		btnSave.Enabled = validateInput()
+
+	End Sub
+
+	Private Sub submitForm(sender As Object, e As KeyEventArgs) Handles tbxName.KeyDown, tbxValue.KeyDown
+
+		If e.KeyValue = Keys.Enter Then
+			e.SuppressKeyPress = True
+			e.Handled = True
+			If validateInput() Then
+				btnSave_Click(sender, e)
+			End If
 		End If
+
 	End Sub
 
 End Class

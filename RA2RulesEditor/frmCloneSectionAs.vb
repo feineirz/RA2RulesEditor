@@ -6,4 +6,16 @@
 			btnClone.Enabled = False
 		End If
 	End Sub
+
+	Private Sub tbxName_KeyDown(sender As Object, e As KeyEventArgs) Handles tbxName.KeyDown
+
+		If e.KeyCode = Keys.Enter Then
+			e.SuppressKeyPress = True
+			e.Handled = True
+			If Not tbxName.Text.Trim = "" Then
+				DialogResult = DialogResult.OK
+			End If
+		End If
+
+	End Sub
 End Class

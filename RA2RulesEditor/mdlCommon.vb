@@ -24,22 +24,33 @@ Module mdlCommon
 
 	Sub InitRulesFile(INIPath As String)
 
-		Dim i As Integer = 0
-		Dim s As String() = Nothing
-		Dim splLine As String() = Nothing
+		Dim INIContent As New List(Of String)
+		Dim splLine As String()
+		Dim foundBlankLine As Boolean = False
 
 		For Each Line In File.ReadAllLines(INIPath)
-			ReDim Preserve s(i)
 			Line = Line.Trim
+
+			' Filter out double blank line
+			If Line = "" Then
+				If foundBlankLine Then
+					Continue For
+				Else
+					foundBlankLine = True
+				End If
+			Else
+				foundBlankLine = False
+			End If
+
 			splLine = Split(Line, "=", 2)
 			If splLine.Length = 2 Then Line = splLine(0).Trim & " = " & splLine(1).Trim
 			If Not Line = "{remove this line}" Then
-				s(i) = Line.Replace("//", ";")
-				i += 1
+				Line = Line.Replace("//", ";")
+				INIContent.Add(Line)
 			End If
 		Next
 
-		File.WriteAllLines(INIPath, s)
+		File.WriteAllLines(INIPath, INIContent)
 
 	End Sub
 
@@ -82,34 +93,67 @@ Module mdlCommon
 
 	End Function
 
-	Function CloneSectionAs(SectionName As String, StartLineNo As Integer, Optional EndLineNo As Integer = -1) As Boolean
-		SectionName = "[" & SectionName.Trim & "]"
+	Function CloneSectionAs(SectionName As String, CloneSectionName As String) As Boolean
+
+		' Prepare parameters
+		SectionName = SectionName.Trim
+		If Not SectionName.StartsWith("[") Then SectionName = "[" & SectionName
+		If Not SectionName.EndsWith("]") Then SectionName = SectionName & "]"
+		CloneSectionName = CloneSectionName.Trim
+		If Not CloneSectionName.StartsWith("[") Then CloneSectionName = "[" & CloneSectionName
+		If Not CloneSectionName.EndsWith("]") Then CloneSectionName = CloneSectionName & "]"
+
 		Dim INIContent As New List(Of String)
-		Dim InsertContent As New List(Of String)
-		If File.Exists(INIPath) Then
-			INIContent.AddRange(File.ReadAllLines(INIPath))
+		Dim CloneContent As New List(Of String)
+		Dim State As String = "finding"
 
-			InsertContent.Add("")
-			InsertContent.Add(SectionName)
+		' Clone if INI file is exist
+		If Not File.Exists(INIPath) Then Return False
 
-			If EndLineNo > 0 And EndLineNo < INIContent.Count Then ' Not last section
-				For i = StartLineNo To EndLineNo - 1
-					InsertContent.Add(INIContent(i))
-				Next
-				INIContent.InsertRange(EndLineNo, InsertContent)
+		' Collect INI data
+		For Each Line In File.ReadAllLines(INIPath)
+				Line = Line.Trim
 
-			Else ' last section
-				For i = StartLineNo To INIContent.Count - 1
-					InsertContent.Add(INIContent(i))
-				Next
-				INIContent.AddRange(InsertContent)
+			' Check if Line is a target section
+			If Line.StartsWith("[") Then
+				If Line = SectionName Then
+					' Found target section
+					' Start cloning
+					If State = "finding" Then
+						State = "cloning"
+						CloneContent.Add(CloneSectionName)
+					End If
+
+				Else
+					' Found next section, pack clone content to ini content
+					If State = "cloning" Then
+						INIContent.AddRange(CloneContent)
+						State = "cloned"
+					End If
+				End If
+
+			Else
+				If State = "cloning" Then
+					' Add element to clone content
+					CloneContent.Add(Line)
+				End If
 			End If
 
-			File.WriteAllLines(INIPath, INIContent)
-			Return True
-		Else
-			Return False
+				INIContent.Add(Line)
+			Next
+
+		If State = "cloning" Then
+			' Pack if target section is a last section
+			INIContent.Add("")
+			INIContent.AddRange(CloneContent)
+			State = "cloned"
 		End If
+
+		' Write back to INI file
+		File.WriteAllLines(INIPath, INIContent)
+
+		Return True
+
 	End Function
 
 	Function GetMember(INIPath As String, Section As String) As LineData()

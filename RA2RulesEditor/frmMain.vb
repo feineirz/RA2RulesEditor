@@ -301,17 +301,8 @@ Public Class frmMain
 		Dim SectionName As String = lvwSection.SelectedItems(0).Text.Trim
 		frmCloneSectionAs.tbxName.Text = SectionName
 		If frmCloneSectionAs.ShowDialog = DialogResult.OK Then
-			Dim startLineNo As Integer = lvwSection.SelectedItems(0).SubItems(1).Text
-			Dim endLineNo As Integer
-
-			SectionName = frmCloneSectionAs.tbxName.Text.Trim
-			If lvwSection.SelectedItems(0).Index < lvwSection.Items.Count - 1 Then
-				endLineNo = lvwSection.Items(lvwSection.SelectedIndices(0) + 1).SubItems(1).Text
-				endLineNo = endLineNo - 1
-			Else
-				endLineNo = -1
-			End If
-			CloneSectionAs(SectionName, startLineNo, endLineNo)
+			Dim CloneSectionName As String = frmCloneSectionAs.tbxName.Text.Trim
+			CloneSectionAs(SectionName, CloneSectionName)
 
 			btnReload_Click(Nothing, Nothing)
 		End If
