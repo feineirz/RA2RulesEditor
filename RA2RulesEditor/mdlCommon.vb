@@ -156,9 +156,10 @@ Module mdlCommon
 
 	End Function
 
-	Function GetMember(INIPath As String, Section As String, Optional StartLine As Integer = 0) As List(Of LineData)
+	Function GetMember(INIPath As String, Section As String, Optional StartLine As Integer = 1) As List(Of LineData)
 
 		' prepare section format
+		Section = Section.Trim
 		If Not Section.StartsWith("[") Then Section = "[" & Section
 		If Not Section.EndsWith("]") Then Section = Section & "]"
 
@@ -175,14 +176,14 @@ Module mdlCommon
 			Dim State As String = "finding"
 			INIContent.AddRange(File.ReadAllLines(INIPath))
 
-			For i = StartLine To INIContent.Count - 1
+			For i = StartLine - 1 To INIContent.Count - 1
 				Line = INIContent(i)
 				Line = Line.Trim
 
 				If Line.StartsWith("[") Then
 					' Found some section header
 					If State = "finding" Then
-						If Line = Section Then
+						If Line.Split(";")(0).Trim = Section Then
 							State = "collecting"
 						End If
 					ElseIf State = "collecting" Then
