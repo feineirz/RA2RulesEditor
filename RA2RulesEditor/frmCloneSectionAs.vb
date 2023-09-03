@@ -18,4 +18,10 @@
 		End If
 
 	End Sub
+
+	Private Sub frmCloneSectionAs_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+		tbxName.Focus()
+
+	End Sub
 End Class

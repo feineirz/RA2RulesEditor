@@ -62,7 +62,7 @@ Partial Class frmCloneSectionAs
 		Me.tbxName.Location = New System.Drawing.Point(153, 69)
 		Me.tbxName.Name = "tbxName"
 		Me.tbxName.Size = New System.Drawing.Size(288, 23)
-		Me.tbxName.TabIndex = 22
+		Me.tbxName.TabIndex = 0
 		'
 		'lblMemberName
 		'
@@ -85,7 +85,7 @@ Partial Class frmCloneSectionAs
 		Me.btnClone.Location = New System.Drawing.Point(285, 99)
 		Me.btnClone.Name = "btnClone"
 		Me.btnClone.Size = New System.Drawing.Size(75, 28)
-		Me.btnClone.TabIndex = 25
+		Me.btnClone.TabIndex = 1
 		Me.btnClone.Text = "Clone"
 		Me.btnClone.UseVisualStyleBackColor = True
 		'
@@ -98,7 +98,7 @@ Partial Class frmCloneSectionAs
 		Me.btnCancel.Location = New System.Drawing.Point(366, 99)
 		Me.btnCancel.Name = "btnCancel"
 		Me.btnCancel.Size = New System.Drawing.Size(75, 28)
-		Me.btnCancel.TabIndex = 26
+		Me.btnCancel.TabIndex = 2
 		Me.btnCancel.Text = "Cancel"
 		Me.btnCancel.UseVisualStyleBackColor = True
 		'

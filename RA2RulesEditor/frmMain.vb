@@ -82,7 +82,7 @@ Public Class frmMain
 			lblCurrentSectionIndex.Text = lvwSection.SelectedIndices(0)
 
 			Dim Section As String = lvwSection.SelectedItems(0).Text
-			Dim src As LineData() = GetMember(INIPath, Section)
+			Dim src As List(Of LineData) = GetMember(INIPath, Section)
 
 			Dim lvi As ListViewItem
 

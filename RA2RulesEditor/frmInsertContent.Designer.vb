@@ -160,7 +160,7 @@ Partial Class frmInsertContent
 		Me.tbxValue.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.tbxValue.Font = New System.Drawing.Font("Bahnschrift SemiLight SemiConde", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.tbxValue.Location = New System.Drawing.Point(99, 98)
+		Me.tbxValue.Location = New System.Drawing.Point(99, 94)
 		Me.tbxValue.Name = "tbxValue"
 		Me.tbxValue.Size = New System.Drawing.Size(342, 23)
 		Me.tbxValue.TabIndex = 1

@@ -47,7 +47,7 @@ Partial Class frmEditValue
 		Me.btnCancel.Location = New System.Drawing.Point(383, 277)
 		Me.btnCancel.Name = "btnCancel"
 		Me.btnCancel.Size = New System.Drawing.Size(75, 28)
-		Me.btnCancel.TabIndex = 2
+		Me.btnCancel.TabIndex = 3
 		Me.btnCancel.Text = "Cancel"
 		Me.btnCancel.UseVisualStyleBackColor = True
 		'
@@ -59,7 +59,7 @@ Partial Class frmEditValue
 		Me.btnSave.Location = New System.Drawing.Point(302, 277)
 		Me.btnSave.Name = "btnSave"
 		Me.btnSave.Size = New System.Drawing.Size(75, 28)
-		Me.btnSave.TabIndex = 1
+		Me.btnSave.TabIndex = 2
 		Me.btnSave.Text = "Save"
 		Me.btnSave.UseVisualStyleBackColor = True
 		'
@@ -130,7 +130,7 @@ Partial Class frmEditValue
 		Me.tbxComment.Multiline = True
 		Me.tbxComment.Name = "tbxComment"
 		Me.tbxComment.Size = New System.Drawing.Size(364, 146)
-		Me.tbxComment.TabIndex = 9
+		Me.tbxComment.TabIndex = 1
 		'
 		'Label1
 		'

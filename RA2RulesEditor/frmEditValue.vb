@@ -74,6 +74,7 @@
 
 		Me.Width = 500
 		Me.Height = 320
+		tbxValue.Focus()
 
 	End Sub
 

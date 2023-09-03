@@ -26,6 +26,12 @@
 
 	End Function
 
+	Private Sub frmInsertContent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+		tbxName.Focus()
+
+	End Sub
+
 	Private Sub preValidateInput(sender As Object, e As KeyEventArgs) Handles tbxName.TextAlignChanged, tbxValue.TextAlignChanged
 
 		btnSave.Enabled = validateInput()

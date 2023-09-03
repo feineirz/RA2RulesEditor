@@ -156,64 +156,69 @@ Module mdlCommon
 
 	End Function
 
-	Function GetMember(INIPath As String, Section As String) As LineData()
+	Function GetMember(INIPath As String, Section As String, Optional StartLine As Integer = 0) As List(Of LineData)
 
 		' prepare section format
 		If Not Section.StartsWith("[") Then Section = "[" & Section
 		If Not Section.EndsWith("]") Then Section = Section & "]"
 
-		Dim ret As LineData() = Nothing
+		Dim INIContent As New List(Of String)
+		Dim SectionContent As New List(Of LineData)
+
+		Dim Line As String
+
+		Dim LD As LineData = Nothing
 		Dim splA(), splB() As String
 
 		If File.Exists(INIPath) Then
-			Dim i As Integer = 0
-			Dim ln As Integer = 0
-			Dim flag As Byte = 0
 
-			For Each Line In File.ReadAllLines(INIPath)
-				ln += 1
+			Dim State As String = "finding"
+			INIContent.AddRange(File.ReadAllLines(INIPath))
 
-				If Not Line.Trim = "" Then
-					If flag = 0 Then
-						If InStr(Line, Section) = 1 Then
-							flag = 1
+			For i = StartLine To INIContent.Count - 1
+				Line = INIContent(i)
+				Line = Line.Trim
+
+				If Line.StartsWith("[") Then
+					' Found some section header
+					If State = "finding" Then
+						If Line = Section Then
+							State = "collecting"
 						End If
+					ElseIf State = "collecting" Then
+						State = "finished"
+						Exit For
+					End If
 
-					ElseIf flag = 1 Then
-						If InStr(Line, "[") = 1 Then 'End section
-							flag = 2
-							Exit For
-
-						Else 'Collect data
-							If Not InStr(Line.Trim, ";") = 1 Then
-								splA = Split(Line, ";", 2)
-								splB = Split(splA(0), "=", 2)
-
-								ReDim Preserve ret(i)
-
-								ret(i).Name = splB(0)
-								If splB.Length > 1 Then
-									ret(i).Value = splB(1)
+				Else
+					' Collect elements
+					If State = "collecting" Then
+						' Ignore comments
+						If Not Line.StartsWith(";") And Line.Contains("=") Then
+							splA = Split(Line, "=", 2)
+							LD.Name = splA(0).Trim
+							If splA.Length > 1 Then
+								If splA(1).Contains(";") Then
+									splB = Split(splA(1), ";", 2)
+									LD.Value = splB(0).Trim
+									LD.Comment = splB(1).Trim
 								Else
-									ret(i).Value = ""
+									LD.Value = splA(1).Trim
+									LD.Comment = ""
 								End If
-
-								ret(i).LineNo = ln
-								If splA.Length > 1 Then
-									ret(i).Comment = splA(1)
-								Else
-									ret(i).Comment = ""
-								End If
-
-								i += 1
 							End If
+
+							LD.LineNo = i + 1
+
+							' Pack element
+							SectionContent.Add(LD)
 						End If
 					End If
 				End If
 			Next
 		End If
 
-		Return ret
+		Return SectionContent
 
 	End Function
 

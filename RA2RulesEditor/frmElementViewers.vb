@@ -30,7 +30,7 @@ Public Class frmElementViewers
 
 	Public Sub LoadElement(Section As String)
 		Dim lvi As ListViewItem
-		Dim src As LineData() = GetMember(INIPath, Section)
+		Dim src As List(Of LineData) = GetMember(INIPath, Section)
 		If Not src Is Nothing Then
 			lblTitle.Text = Section
 			lvwElements.Items.Clear()
