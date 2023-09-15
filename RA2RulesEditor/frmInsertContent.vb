@@ -32,11 +32,17 @@
 
 	End Sub
 
-	Private Sub preValidateInput(sender As Object, e As KeyEventArgs) Handles tbxName.TextAlignChanged, tbxValue.TextAlignChanged
+	Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
 
-		btnSave.Enabled = validateInput()
+		Me.Dispose()
 
 	End Sub
+
+	'Private Sub preValidateInput(sender As Object, e As KeyEventArgs) Handles tbxName.TextChanged, tbxValue.TextChanged
+
+	'	btnSave.Enabled = validateInput()
+
+	'End Sub
 
 	Private Sub submitForm(sender As Object, e As KeyEventArgs) Handles tbxName.KeyDown, tbxValue.KeyDown
 

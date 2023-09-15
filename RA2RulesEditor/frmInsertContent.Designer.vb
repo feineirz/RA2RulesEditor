@@ -86,7 +86,6 @@ Partial Class frmInsertContent
 		'
 		Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK
-		Me.btnSave.Enabled = False
 		Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnSave.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.btnSave.Location = New System.Drawing.Point(285, 264)
