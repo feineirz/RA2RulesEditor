@@ -36,6 +36,8 @@ Partial Class frmMain
 		Me.lvwSection = New System.Windows.Forms.ListView()
 		Me.col_Section_Name = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Section_LineNo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+		Me.cmsSection = New System.Windows.Forms.ContextMenuStrip(Me.components)
+		Me.tsmi_CloneSectionAs = New System.Windows.Forms.ToolStripMenuItem()
 		Me.lvwElements = New System.Windows.Forms.ListView()
 		Me.col_Member_Name = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.col_Member_Value = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -55,21 +57,21 @@ Partial Class frmMain
 		Me.pnlSection = New System.Windows.Forms.Panel()
 		Me.Panel1 = New System.Windows.Forms.Panel()
 		Me.btnOpenInEditor = New System.Windows.Forms.Button()
-		Me.cmsSection = New System.Windows.Forms.ContextMenuStrip(Me.components)
-		Me.tsmi_CloneSectionAs = New System.Windows.Forms.ToolStripMenuItem()
+		Me.lblAppVersion = New System.Windows.Forms.Label()
 		Me.pnlHeader.SuspendLayout()
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.pnlFooter.SuspendLayout()
+		Me.cmsSection.SuspendLayout()
 		Me.cmsElements.SuspendLayout()
 		Me.pnlInit.SuspendLayout()
 		Me.pnlSection.SuspendLayout()
 		Me.Panel1.SuspendLayout()
-		Me.cmsSection.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'pnlHeader
 		'
 		Me.pnlHeader.BackColor = System.Drawing.Color.DimGray
+		Me.pnlHeader.Controls.Add(Me.lblAppVersion)
 		Me.pnlHeader.Controls.Add(Me.picIcon)
 		Me.pnlHeader.Controls.Add(Me.lblTitle)
 		Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
@@ -201,6 +203,20 @@ Partial Class frmMain
 		'
 		Me.col_Section_LineNo.Text = "Line No."
 		Me.col_Section_LineNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+		'
+		'cmsSection
+		'
+		Me.cmsSection.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmi_CloneSectionAs})
+		Me.cmsSection.Name = "cmsSection"
+		Me.cmsSection.Size = New System.Drawing.Size(164, 26)
+		'
+		'tsmi_CloneSectionAs
+		'
+		Me.tsmi_CloneSectionAs.Enabled = False
+		Me.tsmi_CloneSectionAs.Image = CType(resources.GetObject("tsmi_CloneSectionAs.Image"), System.Drawing.Image)
+		Me.tsmi_CloneSectionAs.Name = "tsmi_CloneSectionAs"
+		Me.tsmi_CloneSectionAs.Size = New System.Drawing.Size(163, 22)
+		Me.tsmi_CloneSectionAs.Text = "Clone Section As"
 		'
 		'lvwElements
 		'
@@ -396,19 +412,16 @@ Partial Class frmMain
 		Me.btnOpenInEditor.Text = "Open in Editor"
 		Me.btnOpenInEditor.UseVisualStyleBackColor = True
 		'
-		'cmsSection
+		'lblAppVersion
 		'
-		Me.cmsSection.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmi_CloneSectionAs})
-		Me.cmsSection.Name = "cmsSection"
-		Me.cmsSection.Size = New System.Drawing.Size(181, 48)
-		'
-		'tsmi_CloneSectionAs
-		'
-		Me.tsmi_CloneSectionAs.Enabled = False
-		Me.tsmi_CloneSectionAs.Image = CType(resources.GetObject("tsmi_CloneSectionAs.Image"), System.Drawing.Image)
-		Me.tsmi_CloneSectionAs.Name = "tsmi_CloneSectionAs"
-		Me.tsmi_CloneSectionAs.Size = New System.Drawing.Size(180, 22)
-		Me.tsmi_CloneSectionAs.Text = "Clone Section As"
+		Me.lblAppVersion.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblAppVersion.ForeColor = System.Drawing.Color.White
+		Me.lblAppVersion.Location = New System.Drawing.Point(1244, 9)
+		Me.lblAppVersion.Name = "lblAppVersion"
+		Me.lblAppVersion.Size = New System.Drawing.Size(271, 16)
+		Me.lblAppVersion.TabIndex = 6
+		Me.lblAppVersion.Text = "App Version"
+		Me.lblAppVersion.TextAlign = System.Drawing.ContentAlignment.TopRight
 		'
 		'frmMain
 		'
@@ -431,13 +444,13 @@ Partial Class frmMain
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.pnlFooter.ResumeLayout(False)
 		Me.pnlFooter.PerformLayout()
+		Me.cmsSection.ResumeLayout(False)
 		Me.cmsElements.ResumeLayout(False)
 		Me.pnlInit.ResumeLayout(False)
 		Me.pnlSection.ResumeLayout(False)
 		Me.pnlSection.PerformLayout()
 		Me.Panel1.ResumeLayout(False)
 		Me.Panel1.PerformLayout()
-		Me.cmsSection.ResumeLayout(False)
 		Me.ResumeLayout(False)
 
 	End Sub
@@ -475,4 +488,5 @@ Partial Class frmMain
 	Friend WithEvents col_Section_LineNo As ColumnHeader
 	Friend WithEvents cmsSection As ContextMenuStrip
 	Friend WithEvents tsmi_CloneSectionAs As ToolStripMenuItem
+	Friend WithEvents lblAppVersion As Label
 End Class

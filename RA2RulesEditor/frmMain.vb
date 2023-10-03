@@ -273,6 +273,8 @@ Public Class frmMain
 
 		Control.CheckForIllegalCrossThreadCalls = False
 
+		lblAppVersion.Text = "Version " & Application.ProductVersion
+
 	End Sub
 
 	Private Sub lblCurrentSectionIndex_Click(sender As Object, e As EventArgs) Handles lblCurrentSectionIndex.Click
