@@ -228,9 +228,9 @@ Module mdlCommon
 		If File.Exists(INIPath) Then
 			Dim Contents As String() = File.ReadAllLines(INIPath)
 			If Contents.Length > 0 Then
-				If Not InsertMode Then
+				If InsertMode Then
 					If Contents.Length >= LineNo Then
-						Contents(LineNo - 1) = Content
+						InsertArrayElement(Of String)(Contents, LineNo, Content)
 						File.WriteAllLines(INIPath, Contents)
 						Return True
 
@@ -243,7 +243,7 @@ Module mdlCommon
 
 				Else
 					If Contents.Length >= LineNo Then
-						InsertArrayElement(Of String)(Contents, LineNo, Content)
+						Contents(LineNo - 1) = Content
 						File.WriteAllLines(INIPath, Contents)
 						Return True
 

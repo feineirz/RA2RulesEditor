@@ -311,4 +311,17 @@ Public Class frmMain
 		End If
 
 	End Sub
+
+	Private Sub tsmi_CommentElement_Click(sender As Object, e As EventArgs) Handles tsmi_CommentElement.Click
+
+		If lvwElements.SelectedItems.Count = 1 Then
+			Dim refLineNo As Integer = lvwElements.SelectedItems(0).SubItems(3).Text
+			Dim elementName As String = lvwElements.SelectedItems(0).Text
+			Dim elementValue As String = lvwElements.SelectedItems(0).SubItems(1).Text
+			Dim elementComment As String = lvwElements.SelectedItems(0).SubItems(2).Text
+			Dim Content As String = "; " & elementName & " = " & elementValue & " ;" & elementComment
+			If UpdateLineData(refLineNo, Content, True) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
+		End If
+
+	End Sub
 End Class
