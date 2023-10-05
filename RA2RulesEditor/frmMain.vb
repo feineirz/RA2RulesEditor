@@ -379,6 +379,13 @@ Public Class frmMain
 
 		If Not dropNearItem Is Nothing Then
 			lblNearDropIndex.Text = dropNearItem.Index
+			If (Not LastDragOverItem Is Nothing) And (Not LastDragOverItem Is dropNearItem) Then
+				LastDragOverItem.ForeColor = Color.Black
+				LastDragOverItem.BackColor = Color.White
+			End If
+			LastDragOverItem = dropNearItem
+			LastDragOverItem.ForeColor = Color.White
+			LastDragOverItem.BackColor = Color.LightSteelBlue
 		Else
 			lblNearDropIndex.Text = "-1"
 		End If

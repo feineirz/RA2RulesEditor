@@ -20,6 +20,7 @@ Module mdlCommon
 	End Structure
 
 	Public DragDropLVIs As ListViewItem()
+	Public LastDragOverItem As ListViewItem
 
 	Sub InitRulesFile(INIPath As String)
 
