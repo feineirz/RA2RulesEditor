@@ -79,7 +79,7 @@ Public Class frmElementViewers
 
 	End Sub
 
-	Private Sub lvwMember_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvwElements.SelectedIndexChanged
+	Private Sub lvwElements_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvwElements.SelectedIndexChanged
 
 		If lvwElements.SelectedItems.Count = 1 Then
 			tsmi_AppendElement.Enabled = True
@@ -97,9 +97,12 @@ Public Class frmElementViewers
 			If frmInsertContent.ShowDialog() = DialogResult.OK Then
 				Dim refIndex As Integer = lvwElements.SelectedItems(0).Index
 				Dim refLineNo As Integer = lvwElements.SelectedItems(0).SubItems(3).Text
+				Dim Contents As New List(Of String)
 				Dim Content As String = frmInsertContent.contentName + "=" + frmInsertContent.contentValue
 				If frmInsertContent.contentComment <> "" Then Content += "; " + frmInsertContent.contentComment
-				If UpdateLineData(refLineNo, Content, True) Then LoadElement(lblCurrentSection.Text)
+
+				Contents.Add(Content)
+				If UpdateLinesData(refLineNo, Contents, True) Then LoadElement(lblCurrentSection.Text)
 			End If
 		End If
 
@@ -129,16 +132,20 @@ Public Class frmElementViewers
 
 	Private Sub lvwElements_ItemDrag(sender As Object, e As ItemDragEventArgs) Handles lvwElements.ItemDrag
 
-		If lvwElements.SelectedItems.Count = 1 Then
-			DragDropLVI = lvwElements.SelectedItems(0).Clone
-			sender.DoDragDrop(New DataObject("System.Windows.Forms.ListViewItem", DragDropLVI), DragDropEffects.Copy)
+		If lvwElements.SelectedItems.Count > 0 Then
+			Dim countElements As Integer = lvwElements.SelectedItems.Count
+			ReDim DragDropLVIs(countElements - 1)
+			For i = 0 To countElements - 1
+				DragDropLVIs(i) = lvwElements.SelectedItems(i).Clone
+			Next
+			sender.DoDragDrop(New DataObject("System.Windows.Forms.ListViewItem()", DragDropLVIs), DragDropEffects.Copy)
 		End If
 
 	End Sub
 
 	Private Sub lvwElements_DragEnter(sender As Object, e As DragEventArgs) Handles lvwElements.DragEnter
 
-		If e.Data.GetDataPresent("System.Windows.Forms.ListViewItem") Then
+		If e.Data.GetDataPresent("System.Windows.Forms.ListViewItem()") Then
 			e.Effect = DragDropEffects.Copy
 		Else
 			e.Effect = DragDropEffects.None
@@ -165,15 +172,24 @@ Public Class frmElementViewers
 
 		Dim nearDropIndex As Integer = lblNearDropIndex.Text
 		Dim refLineNo As Integer
+		Dim elementName, elementValue, elementComment, lineContent As String
+		Dim Contents As New List(Of String)
+
 		If nearDropIndex > 0 Then
 			refLineNo = lvwElements.Items(nearDropIndex).SubItems(3).Text
 		Else
 			refLineNo = lvwElements.Items(lvwElements.Items.Count - 1).SubItems(3).Text
 		End If
-		Dim Content As String = DragDropLVI.Text + " = " + DragDropLVI.SubItems(1).Text
-		If Not DragDropLVI.SubItems(2).Text.Trim = "" Then Content += "; " + DragDropLVI.SubItems(2).Text.Trim
+		For Each LVI As ListViewItem In DragDropLVIs
+			elementName = LVI.Text
+			elementValue = LVI.SubItems(1).Text
+			elementComment = LVI.SubItems(2).Text
+			lineContent = elementName & " = " & elementValue
+			If Not elementComment.Trim() = "" Then lineContent &= " ; " & elementComment
+			Contents.Add(lineContent)
+		Next
 
-		If UpdateLineData(refLineNo, Content, True) Then LoadElement(lblCurrentSection.Text)
+		If UpdateLinesData(refLineNo, Contents, True) Then LoadElement(lblCurrentSection.Text)
 
 	End Sub
 

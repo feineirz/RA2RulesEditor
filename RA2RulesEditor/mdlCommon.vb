@@ -19,8 +19,7 @@ Module mdlCommon
 		Dim Comment As String
 	End Structure
 
-	Public DragDropLVI As ListViewItem
-
+	Public DragDropLVIs As ListViewItem()
 
 	Sub InitRulesFile(INIPath As String)
 
@@ -223,16 +222,19 @@ Module mdlCommon
 
 	End Function
 
-	Public Function UpdateLineData(LineNo As Integer, Content As String, Optional InsertMode As Boolean = False) As Boolean
+	Public Function UpdateLinesData(LineNo As Integer, Contents As List(Of String), Optional InsertMode As Boolean = False) As Boolean
 
 		If File.Exists(INIPath) Then
-			Dim Contents As String() = File.ReadAllLines(INIPath)
-			If Contents.Length > 0 Then
-				If InsertMode Then
-					If LineNo > 0 And LineNo < Contents.Length Then
+			Dim FileContents As String() = File.ReadAllLines(INIPath)
+			If FileContents.Length > 0 Then
+				If InsertMode Then ' Insert Mode
+					If LineNo > 0 And LineNo < FileContents.Length Then
 						' Insert after specified line no.
-						InsertArrayElement(Of String)(Contents, LineNo, Content)
-						File.WriteAllLines(INIPath, Contents)
+						For Each content In Contents
+							InsertArrayElement(Of String)(FileContents, LineNo, content)
+							LineNo += 1
+						Next
+						File.WriteAllLines(INIPath, FileContents)
 						Return True
 
 					ElseIf LineNo < 0 Then
@@ -240,25 +242,29 @@ Module mdlCommon
 
 					Else
 						' Insert at the end of file
-						Contents.Resize(Contents, Contents.Length + 1)
-						Contents(Contents.Length - 1) = Content
-						File.WriteAllLines(INIPath, Contents)
+						For Each content In Contents
+							FileContents.Resize(FileContents, FileContents.Length + 1)
+							FileContents(FileContents.Length - 1) = content
+						Next
+						File.WriteAllLines(INIPath, FileContents)
 						Return True
 					End If
 
-				Else
-					If LineNo > 0 And LineNo < Contents.Length Then
-						' Update at specified line no
-						Contents(LineNo - 1) = Content
-						File.WriteAllLines(INIPath, Contents)
-						Return True
+				Else ' Update Mode
+					If Contents.Count = 1 Then
+						If LineNo > 0 And LineNo < FileContents.Length Then
+							' Update at specified line no
+							FileContents(LineNo - 1) = Contents(0)
+							File.WriteAllLines(INIPath, FileContents)
+							Return True
 
-					Else
-						' Insert at the end of file
-						Contents.Resize(Contents, Contents.Length + 1)
-						Contents(Contents.Length - 1) = Content
-						File.WriteAllLines(INIPath, Contents)
-						Return True
+						Else
+							' Insert at the end of file
+							FileContents.Resize(FileContents, FileContents.Length + 1)
+							FileContents(FileContents.Length - 1) = Contents(0)
+							File.WriteAllLines(INIPath, FileContents)
+							Return True
+						End If
 					End If
 				End If
 			Else

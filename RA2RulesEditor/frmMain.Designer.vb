@@ -258,7 +258,6 @@ Partial Class frmMain
 		Me.lvwElements.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
 		Me.lvwElements.HideSelection = False
 		Me.lvwElements.Location = New System.Drawing.Point(9, 37)
-		Me.lvwElements.MultiSelect = False
 		Me.lvwElements.Name = "lvwElements"
 		Me.lvwElements.Size = New System.Drawing.Size(1213, 747)
 		Me.lvwElements.TabIndex = 5

@@ -52,9 +52,11 @@
 			commentField.Text = tbxComment.Text.Trim.Replace(vbCr, "").Replace(vbLf, "")
 		End If
 
+		Dim Contents As New List(Of String)
 		Dim Content As String = keyField.Text.Trim & "=" & valueField.Text.Trim
 		If Not commentField.Text.Trim = "" Then Content = Content.Trim & " ;" & commentField.Text.Trim
-		UpdateLineData(lblRefLineNo.Text, Content)
+		Contents.Add(Content)
+		UpdateLinesData(lblRefLineNo.Text, Contents)
 
 		Me.Dispose()
 
