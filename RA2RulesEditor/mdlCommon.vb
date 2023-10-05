@@ -277,12 +277,14 @@ Module mdlCommon
 
 	End Function
 
-	Public Function RemoveContent(LineNo As Integer) As Boolean
+	Public Function RemoveContent(LineNumbers As List(Of Integer)) As Boolean
 
 		If File.Exists(INIPath) Then
 			Dim Contents As String() = File.ReadAllLines(INIPath)
 
-			Contents(LineNo - 1) = "{remove this line}"
+			For Each LineNo As Integer In LineNumbers
+				Contents(LineNo - 1) = "{remove this line}"
+			Next
 			File.WriteAllLines(INIPath, Contents)
 			InitRulesFile(INIPath)
 			Return True

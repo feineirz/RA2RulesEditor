@@ -59,7 +59,7 @@ Public Class frmMain
 		Dim lvi As ListViewItem
 		Dim src As List(Of LineData) = GetMember(INIPath, Section)
 		If Not src Is Nothing Then
-			lblTitle.Text = Section
+			lblCurrentSection.Text = Section
 			lvwElements.Items.Clear()
 			For Each LD As LineData In src
 				lvi = lvwElements.Items.Add(LD.Name)
@@ -68,7 +68,7 @@ Public Class frmMain
 				lvi.SubItems.Add(LD.LineNo)
 			Next
 		Else
-			lblTitle.Text = "Section Not Match!"
+			lblCurrentSection.Text = "Section Not Match!"
 			lvwElements.Enabled = False
 		End If
 	End Sub
@@ -230,11 +230,15 @@ Public Class frmMain
 
 	End Sub
 
-	Private Sub RemoveContentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles tsmi_RemoveElement.Click
+	Private Sub tsmi_RemoveElement_Click(sender As Object, e As EventArgs) Handles tsmi_RemoveElement.Click
 
-		If lvwElements.SelectedItems.Count = 1 Then
-			If MsgBox("Are you sure to PERMANENTLY delete this element?", MsgBoxStyle.OkCancel + MessageBoxIcon.Warning, "Element Delete") = MsgBoxResult.Ok Then
-				If RemoveContent(lvwElements.SelectedItems(0).SubItems(3).Text) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
+		If lvwElements.SelectedItems.Count > 0 Then
+			If MsgBox("Are you sure to PERMANENTLY delete selected element(s)?", MsgBoxStyle.OkCancel + MessageBoxIcon.Warning, "Elements Delete") = MsgBoxResult.Ok Then
+				Dim LineNumbers As New List(Of Integer)
+				For Each lvi As ListViewItem In lvwElements.SelectedItems
+					LineNumbers.Add(lvi.SubItems(3).Text)
+				Next
+				If RemoveContent(LineNumbers) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
 			End If
 		End If
 
@@ -246,10 +250,12 @@ Public Class frmMain
 
 	End Sub
 
-	Private Sub lvwMember_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvwElements.SelectedIndexChanged
+	Private Sub lvwElements_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvwElements.SelectedIndexChanged
 
 		If lvwElements.SelectedItems.Count = 1 Then
 			tsmi_AppendElement.Enabled = True
+		ElseIf lvwElements.SelectedItems.Count > 1 Then
+			tsmi_AppendElement.Enabled = False
 			tsmi_CommentElement.Enabled = True
 			tsmi_RemoveElement.Enabled = True
 		Else

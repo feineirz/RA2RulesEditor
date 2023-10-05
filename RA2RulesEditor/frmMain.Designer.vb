@@ -27,7 +27,7 @@ Partial Class frmMain
 		Me.pnlHeader = New System.Windows.Forms.Panel()
 		Me.lblAppVersion = New System.Windows.Forms.Label()
 		Me.picIcon = New System.Windows.Forms.PictureBox()
-		Me.lblTitle = New System.Windows.Forms.Label()
+		Me.lblAppTitle = New System.Windows.Forms.Label()
 		Me.btnLoad = New System.Windows.Forms.Button()
 		Me.btnExit = New System.Windows.Forms.Button()
 		Me.pnlFooter = New System.Windows.Forms.Panel()
@@ -73,50 +73,56 @@ Partial Class frmMain
 		'pnlHeader
 		'
 		Me.pnlHeader.BackColor = System.Drawing.Color.DimGray
+		Me.pnlHeader.BackgroundImage = CType(resources.GetObject("pnlHeader.BackgroundImage"), System.Drawing.Image)
+		Me.pnlHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
 		Me.pnlHeader.Controls.Add(Me.lblAppVersion)
 		Me.pnlHeader.Controls.Add(Me.picIcon)
-		Me.pnlHeader.Controls.Add(Me.lblTitle)
+		Me.pnlHeader.Controls.Add(Me.lblAppTitle)
 		Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
 		Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
 		Me.pnlHeader.Name = "pnlHeader"
-		Me.pnlHeader.Size = New System.Drawing.Size(1527, 50)
+		Me.pnlHeader.Size = New System.Drawing.Size(1527, 93)
 		Me.pnlHeader.TabIndex = 0
 		'
 		'lblAppVersion
 		'
+		Me.lblAppVersion.BackColor = System.Drawing.Color.Transparent
 		Me.lblAppVersion.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblAppVersion.ForeColor = System.Drawing.Color.White
-		Me.lblAppVersion.Location = New System.Drawing.Point(1244, 9)
+		Me.lblAppVersion.Location = New System.Drawing.Point(75, 55)
 		Me.lblAppVersion.Name = "lblAppVersion"
-		Me.lblAppVersion.Size = New System.Drawing.Size(271, 16)
+		Me.lblAppVersion.Size = New System.Drawing.Size(230, 16)
 		Me.lblAppVersion.TabIndex = 6
 		Me.lblAppVersion.Text = "App Version"
 		Me.lblAppVersion.TextAlign = System.Drawing.ContentAlignment.TopRight
 		'
 		'picIcon
 		'
+		Me.picIcon.BackColor = System.Drawing.Color.Transparent
 		Me.picIcon.Image = CType(resources.GetObject("picIcon.Image"), System.Drawing.Image)
-		Me.picIcon.Location = New System.Drawing.Point(4, 4)
+		Me.picIcon.Location = New System.Drawing.Point(12, 16)
 		Me.picIcon.Name = "picIcon"
-		Me.picIcon.Size = New System.Drawing.Size(40, 40)
+		Me.picIcon.Size = New System.Drawing.Size(60, 60)
 		Me.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
 		Me.picIcon.TabIndex = 4
 		Me.picIcon.TabStop = False
 		'
-		'lblTitle
+		'lblAppTitle
 		'
-		Me.lblTitle.AutoSize = True
-		Me.lblTitle.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lblTitle.ForeColor = System.Drawing.Color.WhiteSmoke
-		Me.lblTitle.Location = New System.Drawing.Point(42, 5)
-		Me.lblTitle.Name = "lblTitle"
-		Me.lblTitle.Size = New System.Drawing.Size(226, 39)
-		Me.lblTitle.TabIndex = 0
-		Me.lblTitle.Text = "RA2 Rules Editor"
+		Me.lblAppTitle.AutoSize = True
+		Me.lblAppTitle.BackColor = System.Drawing.Color.Transparent
+		Me.lblAppTitle.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblAppTitle.ForeColor = System.Drawing.Color.White
+		Me.lblAppTitle.Location = New System.Drawing.Point(71, 16)
+		Me.lblAppTitle.Name = "lblAppTitle"
+		Me.lblAppTitle.Size = New System.Drawing.Size(242, 42)
+		Me.lblAppTitle.TabIndex = 0
+		Me.lblAppTitle.Text = "RA2 Rules Editor"
 		'
 		'btnLoad
 		'
 		Me.btnLoad.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.btnLoad.BackColor = System.Drawing.Color.White
 		Me.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnLoad.Font = New System.Drawing.Font("Bahnschrift", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.btnLoad.Location = New System.Drawing.Point(1365, 6)
@@ -124,11 +130,12 @@ Partial Class frmMain
 		Me.btnLoad.Size = New System.Drawing.Size(75, 28)
 		Me.btnLoad.TabIndex = 1
 		Me.btnLoad.Text = "Load"
-		Me.btnLoad.UseVisualStyleBackColor = True
+		Me.btnLoad.UseVisualStyleBackColor = False
 		'
 		'btnExit
 		'
 		Me.btnExit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.btnExit.BackColor = System.Drawing.Color.White
 		Me.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnExit.Font = New System.Drawing.Font("Bahnschrift", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.btnExit.Location = New System.Drawing.Point(1446, 6)
@@ -136,11 +143,12 @@ Partial Class frmMain
 		Me.btnExit.Size = New System.Drawing.Size(69, 28)
 		Me.btnExit.TabIndex = 2
 		Me.btnExit.Text = "Exit"
-		Me.btnExit.UseVisualStyleBackColor = True
+		Me.btnExit.UseVisualStyleBackColor = False
 		'
 		'pnlFooter
 		'
 		Me.pnlFooter.BackColor = System.Drawing.Color.LightGray
+		Me.pnlFooter.BackgroundImage = CType(resources.GetObject("pnlFooter.BackgroundImage"), System.Drawing.Image)
 		Me.pnlFooter.Controls.Add(Me.lblNearDropIndex)
 		Me.pnlFooter.Controls.Add(Me.lblCurrentSectionIndex)
 		Me.pnlFooter.Controls.Add(Me.btnSort)
@@ -156,6 +164,7 @@ Partial Class frmMain
 		'lblNearDropIndex
 		'
 		Me.lblNearDropIndex.AutoSize = True
+		Me.lblNearDropIndex.BackColor = System.Drawing.Color.White
 		Me.lblNearDropIndex.Font = New System.Drawing.Font("Bahnschrift Light SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblNearDropIndex.Location = New System.Drawing.Point(885, 12)
 		Me.lblNearDropIndex.Name = "lblNearDropIndex"
@@ -168,6 +177,7 @@ Partial Class frmMain
 		'
 		Me.lblCurrentSectionIndex.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.lblCurrentSectionIndex.AutoSize = True
+		Me.lblCurrentSectionIndex.BackColor = System.Drawing.Color.White
 		Me.lblCurrentSectionIndex.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblCurrentSectionIndex.Location = New System.Drawing.Point(801, 12)
 		Me.lblCurrentSectionIndex.Name = "lblCurrentSectionIndex"
@@ -179,6 +189,7 @@ Partial Class frmMain
 		'btnSort
 		'
 		Me.btnSort.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.btnSort.BackColor = System.Drawing.Color.White
 		Me.btnSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnSort.Font = New System.Drawing.Font("Bahnschrift", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.btnSort.Location = New System.Drawing.Point(1256, 6)
@@ -186,13 +197,15 @@ Partial Class frmMain
 		Me.btnSort.Size = New System.Drawing.Size(103, 28)
 		Me.btnSort.TabIndex = 5
 		Me.btnSort.Text = "Sort"
-		Me.btnSort.UseVisualStyleBackColor = True
+		Me.btnSort.UseVisualStyleBackColor = False
 		'
 		'lblStatus
 		'
 		Me.lblStatus.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
 		Me.lblStatus.AutoSize = True
+		Me.lblStatus.BackColor = System.Drawing.Color.Transparent
 		Me.lblStatus.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblStatus.ForeColor = System.Drawing.Color.White
 		Me.lblStatus.Location = New System.Drawing.Point(9, 12)
 		Me.lblStatus.Name = "lblStatus"
 		Me.lblStatus.Size = New System.Drawing.Size(38, 16)
@@ -214,7 +227,7 @@ Partial Class frmMain
 		Me.lvwSection.Location = New System.Drawing.Point(8, 37)
 		Me.lvwSection.MultiSelect = False
 		Me.lvwSection.Name = "lvwSection"
-		Me.lvwSection.Size = New System.Drawing.Size(255, 747)
+		Me.lvwSection.Size = New System.Drawing.Size(255, 710)
 		Me.lvwSection.TabIndex = 4
 		Me.lvwSection.UseCompatibleStateImageBehavior = False
 		Me.lvwSection.View = System.Windows.Forms.View.Details
@@ -259,7 +272,7 @@ Partial Class frmMain
 		Me.lvwElements.HideSelection = False
 		Me.lvwElements.Location = New System.Drawing.Point(9, 37)
 		Me.lvwElements.Name = "lvwElements"
-		Me.lvwElements.Size = New System.Drawing.Size(1213, 747)
+		Me.lvwElements.Size = New System.Drawing.Size(1213, 710)
 		Me.lvwElements.TabIndex = 5
 		Me.lvwElements.UseCompatibleStateImageBehavior = False
 		Me.lvwElements.View = System.Windows.Forms.View.Details
@@ -331,6 +344,7 @@ Partial Class frmMain
 		'
 		Me.tbxFilter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.tbxFilter.BackColor = System.Drawing.Color.White
 		Me.tbxFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
 		Me.tbxFilter.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
 		Me.tbxFilter.Location = New System.Drawing.Point(39, 8)
@@ -341,6 +355,7 @@ Partial Class frmMain
 		'btnFilter
 		'
 		Me.btnFilter.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.btnFilter.BackColor = System.Drawing.Color.White
 		Me.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnFilter.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.btnFilter.Location = New System.Drawing.Point(194, 7)
@@ -348,7 +363,7 @@ Partial Class frmMain
 		Me.btnFilter.Size = New System.Drawing.Size(69, 24)
 		Me.btnFilter.TabIndex = 7
 		Me.btnFilter.Text = "OK"
-		Me.btnFilter.UseVisualStyleBackColor = True
+		Me.btnFilter.UseVisualStyleBackColor = False
 		'
 		'lblCurrentSection
 		'
@@ -362,7 +377,8 @@ Partial Class frmMain
 		'
 		'pnlInit
 		'
-		Me.pnlInit.BackColor = System.Drawing.Color.Gray
+		Me.pnlInit.BackColor = System.Drawing.Color.Transparent
+		Me.pnlInit.BackgroundImage = CType(resources.GetObject("pnlInit.BackgroundImage"), System.Drawing.Image)
 		Me.pnlInit.Controls.Add(Me.lblMessage)
 		Me.pnlInit.Location = New System.Drawing.Point(478, 272)
 		Me.pnlInit.Name = "pnlInit"
@@ -396,6 +412,7 @@ Partial Class frmMain
 		'btnReload
 		'
 		Me.btnReload.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.btnReload.BackColor = System.Drawing.Color.White
 		Me.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnReload.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.btnReload.Location = New System.Drawing.Point(1153, 7)
@@ -403,7 +420,7 @@ Partial Class frmMain
 		Me.btnReload.Size = New System.Drawing.Size(69, 24)
 		Me.btnReload.TabIndex = 12
 		Me.btnReload.Text = "Reload"
-		Me.btnReload.UseVisualStyleBackColor = True
+		Me.btnReload.UseVisualStyleBackColor = False
 		'
 		'pnlSection
 		'
@@ -414,9 +431,9 @@ Partial Class frmMain
 		Me.pnlSection.Controls.Add(Me.lvwSection)
 		Me.pnlSection.Controls.Add(Me.btnFilter)
 		Me.pnlSection.Controls.Add(Me.Label1)
-		Me.pnlSection.Location = New System.Drawing.Point(1244, 62)
+		Me.pnlSection.Location = New System.Drawing.Point(1244, 99)
 		Me.pnlSection.Name = "pnlSection"
-		Me.pnlSection.Size = New System.Drawing.Size(271, 792)
+		Me.pnlSection.Size = New System.Drawing.Size(271, 755)
 		Me.pnlSection.TabIndex = 13
 		'
 		'Panel1
@@ -430,14 +447,15 @@ Partial Class frmMain
 		Me.Panel1.Controls.Add(Me.lvwElements)
 		Me.Panel1.Controls.Add(Me.lblPath)
 		Me.Panel1.Controls.Add(Me.btnReload)
-		Me.Panel1.Location = New System.Drawing.Point(12, 62)
+		Me.Panel1.Location = New System.Drawing.Point(12, 99)
 		Me.Panel1.Name = "Panel1"
-		Me.Panel1.Size = New System.Drawing.Size(1230, 792)
+		Me.Panel1.Size = New System.Drawing.Size(1230, 755)
 		Me.Panel1.TabIndex = 14
 		'
 		'btnOpenInEditor
 		'
 		Me.btnOpenInEditor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.btnOpenInEditor.BackColor = System.Drawing.Color.White
 		Me.btnOpenInEditor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnOpenInEditor.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.btnOpenInEditor.Location = New System.Drawing.Point(1050, 7)
@@ -445,13 +463,13 @@ Partial Class frmMain
 		Me.btnOpenInEditor.Size = New System.Drawing.Size(97, 24)
 		Me.btnOpenInEditor.TabIndex = 13
 		Me.btnOpenInEditor.Text = "Open in Editor"
-		Me.btnOpenInEditor.UseVisualStyleBackColor = True
+		Me.btnOpenInEditor.UseVisualStyleBackColor = False
 		'
 		'frmMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.BackColor = System.Drawing.Color.WhiteSmoke
+		Me.BackColor = System.Drawing.Color.White
 		Me.ClientSize = New System.Drawing.Size(1527, 900)
 		Me.ControlBox = False
 		Me.Controls.Add(Me.Panel1)
@@ -480,7 +498,7 @@ Partial Class frmMain
 	End Sub
 
 	Friend WithEvents pnlHeader As Panel
-	Friend WithEvents lblTitle As Label
+	Friend WithEvents lblAppTitle As Label
 	Friend WithEvents btnLoad As Button
 	Friend WithEvents btnExit As Button
 	Friend WithEvents pnlFooter As Panel

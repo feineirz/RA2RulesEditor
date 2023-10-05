@@ -112,7 +112,11 @@ Public Class frmElementViewers
 
 		If lvwElements.SelectedItems.Count = 1 Then
 			If MsgBox("Are you sure to PERMANENTLY delete this element?", MsgBoxStyle.OkCancel + MessageBoxIcon.Warning, "Element Delete") = MsgBoxResult.Ok Then
-				If RemoveContent(lvwElements.SelectedItems(0).SubItems(3).Text) Then LoadElement(lblCurrentSection.Text)
+				Dim LineNumbers As New List(Of Integer)
+				For Each lvi As ListViewItem In lvwElements.SelectedItems
+					LineNumbers.Add(lvi.SubItems(3).Text)
+				Next
+				If RemoveContent(LineNumbers) Then LoadElement(lblCurrentSection.Text)
 			End If
 		End If
 
