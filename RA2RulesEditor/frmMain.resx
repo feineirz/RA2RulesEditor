@@ -402,7 +402,7 @@
   <data name="tsmi_CloneSectionAs.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        rgAAAK4B+ff3XQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGvSURBVEhLxZa/
+        rAAAAKwBhgk01AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGvSURBVEhLxZa/
         SsNQFMY7OSnocwiiVEiuES1aZ0F9AR/B1cnFwcWkryA4OQji7mT/pKB2qCAIGURRkDZpmyZpLcdz643x
         psHbJKAf/KZ77vednJtwk/GVu4LJpes+kUtuPi5SuZedrcMEsxqVVPY25ZJnIpACA33mmGUg2jkupjX3
         0ZltIHw8OaIwKYPlU5hh1l+SS04uXJjXXdi+EbNScbl9FKK5DaI6FUlj4woHrOIm020CfDSE3JkWZz5E
@@ -428,14 +428,14 @@
   </data>
   <data name="tsmi_CommentElement.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAAHUAAAB1AePCB2UAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
-        AAABTklEQVQ4T62TzytEURzFzyQ7C4WNnewtrCgWGP8AluMf0KwtKCsWdrwZkQUbC00JpUSZH7Kw8COb
-        WYwUyYqVFNPwjvPevZOZN29EnPrU/d7vOaduvYd/FQ/RzizmxRUzeBQFprHGI3RbS33JOKLAi2AIrkrn
-        SESsvVoKD8lUCoTCmLaRLzGFBi2uA8Zwsigyhw4bNdL7BkPN9UhjxkaNdDHpLy76ycsBa4yQhQnypMXM
-        p51kPmbOWezaqJHX6C/uF8mHFWM6biJf71TaZ+b8OPl8bs77uHEdpD4crNJBG3QZ8xc/xN0CFS4z5RW0
-        irdK03e46xUFCcyaZ3gfT4i5hr2KcFVBBvEac5ADBZbrF+yIW7EpnvxAmTSK/ruXAmHxnsCoKdA/4B8k
-        nqFRwR4xJqLcRjOT6C05iHoouOGFS0kM28jvpYI4F9Blx78I+AQ8ucAQHjmobgAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        cwAAAHMBY8FD/gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFOSURBVDhPrZPP
+        K0RRHMXPJDsLhY2d7C2sKBYY/wCW4x/QrC0oKxZ2vBmRBRsLTQmlRJkfsrDwI5tZjBTJipUU0/CO8969
+        k5k3b0Sc+tT93u85p269h38VD9HOLObFFTN4FAWmscYjdFtLfck4osCLYAiuSudIRKy9WgoPyVQKhMKY
+        tpEvMYUGLa4DxnCyKDKHDhs10vsGQ831SGPGRo10MekvLvrJywFrjJCFCfKkxcynnWQ+Zs5Z7Nqokdfo
+        L+4XyYcVYzpuIl/vVNpn5vw4+Xxuzvu4cR2kPhys0kEbdBnzFz/E3QIVLjPlFbSKt0rTd7jrFQUJzJpn
+        eB9PiLmGvYpwVUEG8RpzkAMFlusX7IhbsSme/ECZNIr+u5cCYfGewKgp0D/gHySeoVHBHjEmotxGM5Po
+        LTmIeii44YVLSQzbyO+lgjgX0GXHvwj4BDy5wBAeOahuAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="tsmi_RemoveElement.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

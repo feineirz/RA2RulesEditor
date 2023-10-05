@@ -129,11 +129,8 @@ Public Class frmElementViewers
 
 	Private Sub lvwElements_ItemDrag(sender As Object, e As ItemDragEventArgs) Handles lvwElements.ItemDrag
 
-		Console.WriteLine(sender)
-
 		If lvwElements.SelectedItems.Count = 1 Then
 			DragDropLVI = lvwElements.SelectedItems(0).Clone
-			'sender.DoDragDrop(New DataObject("System.Windows.Forms.ListViewItem", lvi), DragDropEffects.Copy)
 			sender.DoDragDrop(New DataObject("System.Windows.Forms.ListViewItem", DragDropLVI), DragDropEffects.Copy)
 		End If
 
@@ -149,20 +146,7 @@ Public Class frmElementViewers
 
 	End Sub
 
-	Private Sub lvwElements_DragDrop(sender As Object, e As DragEventArgs) Handles lvwElements.DragDrop
-
-		Dim nearDropIndex As Integer = lblNearDropIndex.Text
-		Dim refLineNo As Integer = lvwElements.Items(nearDropIndex).SubItems(3).Text
-		Dim Content As String = DragDropLVI.Text + "=" + DragDropLVI.SubItems(1).Text
-		If Not DragDropLVI.SubItems(2).Text.Trim = "" Then Content += "; " + DragDropLVI.SubItems(2).Text.Trim
-
-		If UpdateLineData(refLineNo, Content, True) Then LoadElement(lblCurrentSection.Text)
-
-	End Sub
-
 	Private Sub lvwElements_DragOver(sender As Object, e As DragEventArgs) Handles lvwElements.DragOver
-
-		Console.WriteLine(sender)
 
 		Dim pt As New Point(e.X, e.Y)
 		Dim dropPoint As Point = lvwElements.PointToClient(pt)
@@ -176,4 +160,21 @@ Public Class frmElementViewers
 		End If
 
 	End Sub
+
+	Private Sub lvwElements_DragDrop(sender As Object, e As DragEventArgs) Handles lvwElements.DragDrop
+
+		Dim nearDropIndex As Integer = lblNearDropIndex.Text
+		Dim refLineNo As Integer
+		If nearDropIndex > 0 Then
+			refLineNo = lvwElements.Items(nearDropIndex).SubItems(3).Text
+		Else
+			refLineNo = lvwElements.Items(lvwElements.Items.Count - 1).SubItems(3).Text
+		End If
+		Dim Content As String = DragDropLVI.Text + " = " + DragDropLVI.SubItems(1).Text
+		If Not DragDropLVI.SubItems(2).Text.Trim = "" Then Content += "; " + DragDropLVI.SubItems(2).Text.Trim
+
+		If UpdateLineData(refLineNo, Content, True) Then LoadElement(lblCurrentSection.Text)
+
+	End Sub
+
 End Class

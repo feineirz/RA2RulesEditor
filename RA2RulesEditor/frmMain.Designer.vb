@@ -31,6 +31,7 @@ Partial Class frmMain
 		Me.btnLoad = New System.Windows.Forms.Button()
 		Me.btnExit = New System.Windows.Forms.Button()
 		Me.pnlFooter = New System.Windows.Forms.Panel()
+		Me.lblNearDropIndex = New System.Windows.Forms.Label()
 		Me.lblCurrentSectionIndex = New System.Windows.Forms.Label()
 		Me.btnSort = New System.Windows.Forms.Button()
 		Me.lblStatus = New System.Windows.Forms.Label()
@@ -46,11 +47,12 @@ Partial Class frmMain
 		Me.col_Member_LineNo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.cmsElements = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.tsmi_AppendElement = New System.Windows.Forms.ToolStripMenuItem()
+		Me.tsmi_CommentElement = New System.Windows.Forms.ToolStripMenuItem()
 		Me.tsmi_RemoveElement = New System.Windows.Forms.ToolStripMenuItem()
 		Me.Label1 = New System.Windows.Forms.Label()
 		Me.tbxFilter = New System.Windows.Forms.TextBox()
 		Me.btnFilter = New System.Windows.Forms.Button()
-		Me.lblCurSection = New System.Windows.Forms.Label()
+		Me.lblCurrentSection = New System.Windows.Forms.Label()
 		Me.pnlInit = New System.Windows.Forms.Panel()
 		Me.lblMessage = New System.Windows.Forms.Label()
 		Me.lblPath = New System.Windows.Forms.Label()
@@ -58,7 +60,6 @@ Partial Class frmMain
 		Me.pnlSection = New System.Windows.Forms.Panel()
 		Me.Panel1 = New System.Windows.Forms.Panel()
 		Me.btnOpenInEditor = New System.Windows.Forms.Button()
-		Me.tsmi_CommentElement = New System.Windows.Forms.ToolStripMenuItem()
 		Me.pnlHeader.SuspendLayout()
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.pnlFooter.SuspendLayout()
@@ -140,6 +141,7 @@ Partial Class frmMain
 		'pnlFooter
 		'
 		Me.pnlFooter.BackColor = System.Drawing.Color.LightGray
+		Me.pnlFooter.Controls.Add(Me.lblNearDropIndex)
 		Me.pnlFooter.Controls.Add(Me.lblCurrentSectionIndex)
 		Me.pnlFooter.Controls.Add(Me.btnSort)
 		Me.pnlFooter.Controls.Add(Me.lblStatus)
@@ -150,6 +152,17 @@ Partial Class frmMain
 		Me.pnlFooter.Name = "pnlFooter"
 		Me.pnlFooter.Size = New System.Drawing.Size(1527, 40)
 		Me.pnlFooter.TabIndex = 3
+		'
+		'lblNearDropIndex
+		'
+		Me.lblNearDropIndex.AutoSize = True
+		Me.lblNearDropIndex.Font = New System.Drawing.Font("Bahnschrift Light SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblNearDropIndex.Location = New System.Drawing.Point(885, 12)
+		Me.lblNearDropIndex.Name = "lblNearDropIndex"
+		Me.lblNearDropIndex.Size = New System.Drawing.Size(82, 16)
+		Me.lblNearDropIndex.TabIndex = 9
+		Me.lblNearDropIndex.Text = "NearDropIndex"
+		Me.lblNearDropIndex.Visible = False
 		'
 		'lblCurrentSectionIndex
 		'
@@ -221,18 +234,19 @@ Partial Class frmMain
 		Me.cmsSection.ImageScalingSize = New System.Drawing.Size(20, 20)
 		Me.cmsSection.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmi_CloneSectionAs})
 		Me.cmsSection.Name = "cmsSection"
-		Me.cmsSection.Size = New System.Drawing.Size(178, 30)
+		Me.cmsSection.Size = New System.Drawing.Size(168, 30)
 		'
 		'tsmi_CloneSectionAs
 		'
 		Me.tsmi_CloneSectionAs.Enabled = False
 		Me.tsmi_CloneSectionAs.Image = CType(resources.GetObject("tsmi_CloneSectionAs.Image"), System.Drawing.Image)
 		Me.tsmi_CloneSectionAs.Name = "tsmi_CloneSectionAs"
-		Me.tsmi_CloneSectionAs.Size = New System.Drawing.Size(177, 26)
+		Me.tsmi_CloneSectionAs.Size = New System.Drawing.Size(167, 26)
 		Me.tsmi_CloneSectionAs.Text = "Clone Section As"
 		'
 		'lvwElements
 		'
+		Me.lvwElements.AllowDrop = True
 		Me.lvwElements.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Left) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -278,22 +292,30 @@ Partial Class frmMain
 		Me.cmsElements.ImageScalingSize = New System.Drawing.Size(20, 20)
 		Me.cmsElements.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmi_AppendElement, Me.tsmi_CommentElement, Me.tsmi_RemoveElement})
 		Me.cmsElements.Name = "cmsMember"
-		Me.cmsElements.Size = New System.Drawing.Size(185, 104)
+		Me.cmsElements.Size = New System.Drawing.Size(172, 82)
 		'
 		'tsmi_AppendElement
 		'
 		Me.tsmi_AppendElement.Enabled = False
 		Me.tsmi_AppendElement.Image = CType(resources.GetObject("tsmi_AppendElement.Image"), System.Drawing.Image)
 		Me.tsmi_AppendElement.Name = "tsmi_AppendElement"
-		Me.tsmi_AppendElement.Size = New System.Drawing.Size(184, 26)
+		Me.tsmi_AppendElement.Size = New System.Drawing.Size(171, 26)
 		Me.tsmi_AppendElement.Text = "Append element"
+		'
+		'tsmi_CommentElement
+		'
+		Me.tsmi_CommentElement.Enabled = False
+		Me.tsmi_CommentElement.Image = CType(resources.GetObject("tsmi_CommentElement.Image"), System.Drawing.Image)
+		Me.tsmi_CommentElement.Name = "tsmi_CommentElement"
+		Me.tsmi_CommentElement.Size = New System.Drawing.Size(171, 26)
+		Me.tsmi_CommentElement.Text = "Comment element"
 		'
 		'tsmi_RemoveElement
 		'
 		Me.tsmi_RemoveElement.Enabled = False
 		Me.tsmi_RemoveElement.Image = CType(resources.GetObject("tsmi_RemoveElement.Image"), System.Drawing.Image)
 		Me.tsmi_RemoveElement.Name = "tsmi_RemoveElement"
-		Me.tsmi_RemoveElement.Size = New System.Drawing.Size(184, 26)
+		Me.tsmi_RemoveElement.Size = New System.Drawing.Size(171, 26)
 		Me.tsmi_RemoveElement.Text = "Remove element"
 		'
 		'Label1
@@ -329,15 +351,15 @@ Partial Class frmMain
 		Me.btnFilter.Text = "OK"
 		Me.btnFilter.UseVisualStyleBackColor = True
 		'
-		'lblCurSection
+		'lblCurrentSection
 		'
-		Me.lblCurSection.AutoSize = True
-		Me.lblCurSection.Font = New System.Drawing.Font("Bahnschrift Condensed", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lblCurSection.Location = New System.Drawing.Point(4, 9)
-		Me.lblCurSection.Name = "lblCurSection"
-		Me.lblCurSection.Size = New System.Drawing.Size(64, 25)
-		Me.lblCurSection.TabIndex = 9
-		Me.lblCurSection.Text = "Section"
+		Me.lblCurrentSection.AutoSize = True
+		Me.lblCurrentSection.Font = New System.Drawing.Font("Bahnschrift Condensed", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblCurrentSection.Location = New System.Drawing.Point(4, 9)
+		Me.lblCurrentSection.Name = "lblCurrentSection"
+		Me.lblCurrentSection.Size = New System.Drawing.Size(64, 25)
+		Me.lblCurrentSection.TabIndex = 9
+		Me.lblCurrentSection.Text = "Section"
 		'
 		'pnlInit
 		'
@@ -405,7 +427,7 @@ Partial Class frmMain
 		Me.Panel1.BackColor = System.Drawing.Color.WhiteSmoke
 		Me.Panel1.Controls.Add(Me.btnOpenInEditor)
 		Me.Panel1.Controls.Add(Me.pnlInit)
-		Me.Panel1.Controls.Add(Me.lblCurSection)
+		Me.Panel1.Controls.Add(Me.lblCurrentSection)
 		Me.Panel1.Controls.Add(Me.lvwElements)
 		Me.Panel1.Controls.Add(Me.lblPath)
 		Me.Panel1.Controls.Add(Me.btnReload)
@@ -425,14 +447,6 @@ Partial Class frmMain
 		Me.btnOpenInEditor.TabIndex = 13
 		Me.btnOpenInEditor.Text = "Open in Editor"
 		Me.btnOpenInEditor.UseVisualStyleBackColor = True
-		'
-		'tsmi_CommentElement
-		'
-		Me.tsmi_CommentElement.Enabled = False
-		Me.tsmi_CommentElement.Image = CType(resources.GetObject("tsmi_CommentElement.Image"), System.Drawing.Image)
-		Me.tsmi_CommentElement.Name = "tsmi_CommentElement"
-		Me.tsmi_CommentElement.Size = New System.Drawing.Size(184, 26)
-		Me.tsmi_CommentElement.Text = "Comment element"
 		'
 		'frmMain
 		'
@@ -483,7 +497,7 @@ Partial Class frmMain
 	Friend WithEvents btnFilter As Button
 	Friend WithEvents tbxFilter As TextBox
 	Friend WithEvents Label1 As Label
-	Friend WithEvents lblCurSection As Label
+	Friend WithEvents lblCurrentSection As Label
 	Friend WithEvents pnlInit As Panel
 	Friend WithEvents lblMessage As Label
 	Friend WithEvents btnSort As Button
@@ -501,4 +515,5 @@ Partial Class frmMain
 	Friend WithEvents tsmi_CloneSectionAs As ToolStripMenuItem
 	Friend WithEvents lblAppVersion As Label
 	Friend WithEvents tsmi_CommentElement As ToolStripMenuItem
+	Friend WithEvents lblNearDropIndex As Label
 End Class

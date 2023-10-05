@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("RA2RulesEditor")>
-<Assembly: AssemblyDescription("RA2 Rules Editor")>
+<Assembly: AssemblyDescription("RA2 Rules Editor (INI Editor)")>
 <Assembly: AssemblyCompany("feinz.net")>
 <Assembly: AssemblyProduct("RA2RulesEditor")>
 <Assembly: AssemblyCopyright("Copyright ©  2018")>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.2.0.6")>
-<Assembly: AssemblyFileVersion("1.2.0.6")>
+<Assembly: AssemblyVersion("1.2.0.8")>
+<Assembly: AssemblyFileVersion("1.2.0.8")>

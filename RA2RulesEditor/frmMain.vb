@@ -55,6 +55,24 @@ Public Class frmMain
 
 	End Function
 
+	Private Sub LoadElement(Section As String)
+		Dim lvi As ListViewItem
+		Dim src As List(Of LineData) = GetMember(INIPath, Section)
+		If Not src Is Nothing Then
+			lblTitle.Text = Section
+			lvwElements.Items.Clear()
+			For Each LD As LineData In src
+				lvi = lvwElements.Items.Add(LD.Name)
+				lvi.SubItems.Add(LD.Value)
+				lvi.SubItems.Add(LD.Comment)
+				lvi.SubItems.Add(LD.LineNo)
+			Next
+		Else
+			lblTitle.Text = "Section Not Match!"
+			lvwElements.Enabled = False
+		End If
+	End Sub
+
 	Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
 
 		Using dlgOpenFile As New OpenFileDialog
@@ -87,7 +105,7 @@ Public Class frmMain
 
 			Dim lvi As ListViewItem
 
-			lblCurSection.Text = Section
+			lblCurrentSection.Text = Section
 			lvwElements.Items.Clear()
 
 			tsmi_CloneSectionAs.Enabled = True
@@ -229,9 +247,11 @@ Public Class frmMain
 
 		If lvwElements.SelectedItems.Count = 1 Then
 			tsmi_AppendElement.Enabled = True
+			tsmi_CommentElement.Enabled = True
 			tsmi_RemoveElement.Enabled = True
 		Else
 			tsmi_AppendElement.Enabled = False
+			tsmi_CommentElement.Enabled = False
 			tsmi_RemoveElement.Enabled = False
 		End If
 
@@ -319,9 +339,60 @@ Public Class frmMain
 			Dim elementName As String = lvwElements.SelectedItems(0).Text
 			Dim elementValue As String = lvwElements.SelectedItems(0).SubItems(1).Text
 			Dim elementComment As String = lvwElements.SelectedItems(0).SubItems(2).Text
-			Dim Content As String = "; " & elementName & " = " & elementValue & " ;" & elementComment
-			If UpdateLineData(refLineNo, Content, True) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
+			If Not elementComment = "" Then elementComment = "; " & elementComment
+			Dim Content As String = "; " & elementName & " = " & elementValue & elementComment
+			If UpdateLineData(refLineNo, Content) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
 		End If
+
+	End Sub
+
+	Private Sub lvwElements_ItemDrag(sender As Object, e As ItemDragEventArgs) Handles lvwElements.ItemDrag
+
+		If lvwElements.SelectedItems.Count = 1 Then
+			DragDropLVI = lvwElements.SelectedItems(0).Clone
+			sender.DoDragDrop(New DataObject("System.Windows.Forms.ListViewItem", DragDropLVI), DragDropEffects.Copy)
+		End If
+
+	End Sub
+
+	Private Sub lvwElements_DragEnter(sender As Object, e As DragEventArgs) Handles lvwElements.DragEnter
+
+		If e.Data.GetDataPresent("System.Windows.Forms.ListViewItem") Then
+			e.Effect = DragDropEffects.Copy
+		Else
+			e.Effect = DragDropEffects.None
+		End If
+
+	End Sub
+
+	Private Sub lvwElements_DragOver(sender As Object, e As DragEventArgs) Handles lvwElements.DragOver
+
+		Dim pt As New Point(e.X, e.Y)
+		Dim dropPoint As Point = lvwElements.PointToClient(pt)
+		Dim dropNearItem = lvwElements.GetItemAt(dropPoint.X, dropPoint.Y)
+
+		If Not dropNearItem Is Nothing Then
+			lblNearDropIndex.Text = dropNearItem.Index
+			lvwElements.Items(dropNearItem.Index).Selected = True
+		Else
+			lblNearDropIndex.Text = "-1"
+		End If
+
+	End Sub
+
+	Private Sub lvwElements_DragDrop(sender As Object, e As DragEventArgs) Handles lvwElements.DragDrop
+
+		Dim nearDropIndex As Integer = lblNearDropIndex.Text
+		Dim refLineNo As Integer
+		If nearDropIndex > 0 Then
+			refLineNo = lvwElements.Items(nearDropIndex).SubItems(3).Text
+		Else
+			refLineNo = lvwElements.Items(lvwElements.Items.Count - 1).SubItems(3).Text
+		End If
+		Dim Content As String = DragDropLVI.Text + " = " + DragDropLVI.SubItems(1).Text
+		If Not DragDropLVI.SubItems(2).Text.Trim = "" Then Content += "; " + DragDropLVI.SubItems(2).Text.Trim
+
+		If UpdateLineData(refLineNo, Content, True) Then LoadElement(lblCurrentSection.Text)
 
 	End Sub
 End Class

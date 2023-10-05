@@ -229,12 +229,17 @@ Module mdlCommon
 			Dim Contents As String() = File.ReadAllLines(INIPath)
 			If Contents.Length > 0 Then
 				If InsertMode Then
-					If Contents.Length >= LineNo Then
+					If LineNo > 0 And LineNo < Contents.Length Then
+						' Insert after specified line no.
 						InsertArrayElement(Of String)(Contents, LineNo, Content)
 						File.WriteAllLines(INIPath, Contents)
 						Return True
 
+					ElseIf LineNo < 0 Then
+						' Insert after last element of current section
+
 					Else
+						' Insert at the end of file
 						Contents.Resize(Contents, Contents.Length + 1)
 						Contents(Contents.Length - 1) = Content
 						File.WriteAllLines(INIPath, Contents)
@@ -242,12 +247,14 @@ Module mdlCommon
 					End If
 
 				Else
-					If Contents.Length >= LineNo Then
+					If LineNo > 0 And LineNo < Contents.Length Then
+						' Update at specified line no
 						Contents(LineNo - 1) = Content
 						File.WriteAllLines(INIPath, Contents)
 						Return True
 
 					Else
+						' Insert at the end of file
 						Contents.Resize(Contents, Contents.Length + 1)
 						Contents(Contents.Length - 1) = Content
 						File.WriteAllLines(INIPath, Contents)
