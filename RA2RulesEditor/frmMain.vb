@@ -233,7 +233,7 @@ Public Class frmMain
 	Private Sub tsmi_RemoveElement_Click(sender As Object, e As EventArgs) Handles tsmi_RemoveElement.Click
 
 		If lvwElements.SelectedItems.Count > 0 Then
-			If MsgBox("Are you sure to PERMANENTLY delete selected element(s)?", MsgBoxStyle.OkCancel + MessageBoxIcon.Warning, "Elements Delete") = MsgBoxResult.Ok Then
+			If MsgBox("Are you sure to PERMANENTLY delete selected element(s)?", MsgBoxStyle.OkCancel + MessageBoxIcon.Warning, "Remove Element(s)") = MsgBoxResult.Ok Then
 				Dim LineNumbers As New List(Of Integer)
 				For Each lvi As ListViewItem In lvwElements.SelectedItems
 					LineNumbers.Add(lvi.SubItems(3).Text)
@@ -338,18 +338,28 @@ Public Class frmMain
 
 	Private Sub tsmi_CommentElement_Click(sender As Object, e As EventArgs) Handles tsmi_CommentElement.Click
 
-		If lvwElements.SelectedItems.Count = 1 Then
-			Dim refLineNo As Integer = lvwElements.SelectedItems(0).SubItems(3).Text
-			Dim elementName As String = lvwElements.SelectedItems(0).Text
-			Dim elementValue As String = lvwElements.SelectedItems(0).SubItems(1).Text
-			Dim elementComment As String = lvwElements.SelectedItems(0).SubItems(2).Text
-			Dim Contents As New List(Of String)
+		If lvwElements.SelectedItems.Count > 0 Then
+			Dim msg As String = "Are you sure to comment out selected elements?" & vbCrLf & "All selected elements will not be appear in an application but still on original file as a comment and not be process."
+			If MsgBox(msg, MsgBoxStyle.OkCancel + MessageBoxIcon.Warning, "Comment Elements") = MsgBoxResult.Ok Then
+				Dim elementName, elementValue, elementComment As String
+				Dim refLineNo As Integer
+				Dim GD As GroupData
+				Dim GroupDatas As New List(Of GroupData)
+				Dim Content As String
 
-			Dim Content As String = "; " & elementName & " = " & elementValue
-			If Not elementComment = "" Then Content += "; " & elementComment
-			Contents.Add(Content)
-
-			If UpdateLinesData(refLineNo, Contents) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
+				For Each lvi As ListViewItem In lvwElements.SelectedItems
+					elementName = lvi.Text
+					elementValue = lvi.SubItems(1).Text
+					elementComment = lvi.SubItems(2).Text
+					refLineNo = lvi.SubItems(3).Text
+					Content = "; " & elementName & " = " & elementValue
+					If Not elementComment = "" Then Content += "; " & elementComment
+					GD.LineNo = refLineNo
+					GD.Content = Content
+					GroupDatas.Add(GD)
+				Next
+				If UpdateGroupData(GroupDatas) Then lvwSection_SelectedIndexChanged(Nothing, Nothing)
+			End If
 		End If
 
 	End Sub

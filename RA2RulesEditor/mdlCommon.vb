@@ -19,6 +19,11 @@ Module mdlCommon
 		Dim Comment As String
 	End Structure
 
+	Structure GroupData
+		Dim LineNo As Integer
+		Dim Content As String
+	End Structure
+
 	Public DragDropLVIs As ListViewItem()
 	Public LastDragOverItem As ListViewItem
 
@@ -260,7 +265,7 @@ Module mdlCommon
 							Return True
 
 						Else
-							' Insert at the end of file
+							' Update at the end of file
 							FileContents.Resize(FileContents, FileContents.Length + 1)
 							FileContents(FileContents.Length - 1) = Contents(0)
 							File.WriteAllLines(INIPath, FileContents)
@@ -268,6 +273,37 @@ Module mdlCommon
 						End If
 					End If
 				End If
+			Else
+				Return False
+			End If
+		Else
+			Return False
+		End If
+
+	End Function
+
+
+	Public Function UpdateGroupData(GroupDatas As List(Of GroupData)) As Boolean
+
+		If File.Exists(INIPath) Then
+			Dim FileContents As String() = File.ReadAllLines(INIPath)
+			If FileContents.Length > 0 Then
+				' Update Mode
+				If GroupDatas.Count > 0 Then
+					For Each gd As GroupData In GroupDatas
+						If gd.LineNo > 0 And gd.LineNo < FileContents.Length Then
+							' Update at specified line no
+							FileContents(gd.LineNo - 1) = gd.Content
+
+						Else
+							' Update at the end of file
+							FileContents.Resize(FileContents, FileContents.Length + 1)
+							FileContents(FileContents.Length - 1) = gd.Content
+						End If
+					Next
+				End If
+				File.WriteAllLines(INIPath, FileContents)
+				Return True
 			Else
 				Return False
 			End If
