@@ -291,7 +291,7 @@ Module mdlCommon
 				' Update Mode
 				If GroupDatas.Count > 0 Then
 					For Each gd As GroupData In GroupDatas
-						If gd.LineNo > 0 And gd.LineNo < FileContents.Length Then
+						If gd.LineNo > 0 And gd.LineNo <= FileContents.Length Then
 							' Update at specified line no
 							FileContents(gd.LineNo - 1) = gd.Content
 

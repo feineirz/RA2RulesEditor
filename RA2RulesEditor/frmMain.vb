@@ -254,6 +254,8 @@ Public Class frmMain
 
 		If lvwElements.SelectedItems.Count = 1 Then
 			tsmi_AppendElement.Enabled = True
+			tsmi_CommentElement.Enabled = True
+			tsmi_RemoveElement.Enabled = True
 		ElseIf lvwElements.SelectedItems.Count > 1 Then
 			tsmi_AppendElement.Enabled = False
 			tsmi_CommentElement.Enabled = True
@@ -395,15 +397,18 @@ Public Class frmMain
 
 		If Not dropNearItem Is Nothing Then
 			lblNearDropIndex.Text = dropNearItem.Index
+
+			' Drag target effect
 			If (Not LastDragOverItem Is Nothing) And (Not LastDragOverItem Is dropNearItem) Then
 				LastDragOverItem.ForeColor = Color.Black
 				LastDragOverItem.BackColor = Color.White
 			End If
+
 			LastDragOverItem = dropNearItem
 			LastDragOverItem.ForeColor = Color.White
-			LastDragOverItem.BackColor = Color.LightSteelBlue
+			dropNearItem.BackColor = Color.SteelBlue
 		Else
-			lblNearDropIndex.Text = "-1"
+				lblNearDropIndex.Text = "-1"
 		End If
 
 	End Sub

@@ -168,9 +168,9 @@ Partial Class frmMain
 		Me.lblNearDropIndex.Font = New System.Drawing.Font("Bahnschrift Light SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblNearDropIndex.Location = New System.Drawing.Point(885, 12)
 		Me.lblNearDropIndex.Name = "lblNearDropIndex"
-		Me.lblNearDropIndex.Size = New System.Drawing.Size(82, 16)
+		Me.lblNearDropIndex.Size = New System.Drawing.Size(16, 16)
 		Me.lblNearDropIndex.TabIndex = 9
-		Me.lblNearDropIndex.Text = "NearDropIndex"
+		Me.lblNearDropIndex.Text = "-1"
 		Me.lblNearDropIndex.Visible = False
 		'
 		'lblCurrentSectionIndex

@@ -164,7 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="content_creator.ico" />
-    <Content Include="editor.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
