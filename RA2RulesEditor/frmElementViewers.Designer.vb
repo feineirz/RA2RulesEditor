@@ -46,6 +46,7 @@ Partial Class frmElementViewers
 		'pnlHeader
 		'
 		Me.pnlHeader.BackColor = System.Drawing.Color.DarkGray
+		Me.pnlHeader.BackgroundImage = CType(resources.GetObject("pnlHeader.BackgroundImage"), System.Drawing.Image)
 		Me.pnlHeader.Controls.Add(Me.lblTitle)
 		Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
 		Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
@@ -56,8 +57,9 @@ Partial Class frmElementViewers
 		'lblTitle
 		'
 		Me.lblTitle.AutoSize = True
+		Me.lblTitle.BackColor = System.Drawing.Color.Transparent
 		Me.lblTitle.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lblTitle.ForeColor = System.Drawing.Color.Black
+		Me.lblTitle.ForeColor = System.Drawing.Color.White
 		Me.lblTitle.Location = New System.Drawing.Point(3, 4)
 		Me.lblTitle.Name = "lblTitle"
 		Me.lblTitle.Size = New System.Drawing.Size(99, 35)
@@ -67,6 +69,7 @@ Partial Class frmElementViewers
 		'pnlFooter
 		'
 		Me.pnlFooter.BackColor = System.Drawing.Color.Gainsboro
+		Me.pnlFooter.BackgroundImage = CType(resources.GetObject("pnlFooter.BackgroundImage"), System.Drawing.Image)
 		Me.pnlFooter.Controls.Add(Me.lblNearDropIndex)
 		Me.pnlFooter.Controls.Add(Me.lblCurrentSection)
 		Me.pnlFooter.Controls.Add(Me.btnClose)
@@ -101,6 +104,7 @@ Partial Class frmElementViewers
 		'btnClose
 		'
 		Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.btnClose.BackColor = System.Drawing.Color.White
 		Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnClose.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.btnClose.Location = New System.Drawing.Point(1113, 7)
@@ -108,7 +112,7 @@ Partial Class frmElementViewers
 		Me.btnClose.Size = New System.Drawing.Size(69, 27)
 		Me.btnClose.TabIndex = 3
 		Me.btnClose.Text = "Close"
-		Me.btnClose.UseVisualStyleBackColor = True
+		Me.btnClose.UseVisualStyleBackColor = False
 		'
 		'lvwElements
 		'
@@ -178,7 +182,7 @@ Partial Class frmElementViewers
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.BackColor = System.Drawing.Color.WhiteSmoke
+		Me.BackColor = System.Drawing.Color.Beige
 		Me.ClientSize = New System.Drawing.Size(1194, 759)
 		Me.ControlBox = False
 		Me.Controls.Add(Me.lvwElements)

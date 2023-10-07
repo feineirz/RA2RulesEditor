@@ -77,7 +77,7 @@ Partial Class frmEditValue
 		'
 		Me.pnlHeader.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-		Me.pnlHeader.BackColor = System.Drawing.Color.Silver
+		Me.pnlHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
 		Me.pnlHeader.Controls.Add(Me.lblTitle)
 		Me.pnlHeader.ForeColor = System.Drawing.SystemColors.ControlText
 		Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
@@ -89,7 +89,7 @@ Partial Class frmEditValue
 		'
 		Me.lblTitle.AutoSize = True
 		Me.lblTitle.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.lblTitle.ForeColor = System.Drawing.Color.Black
+		Me.lblTitle.ForeColor = System.Drawing.Color.White
 		Me.lblTitle.Location = New System.Drawing.Point(2, 1)
 		Me.lblTitle.Name = "lblTitle"
 		Me.lblTitle.Size = New System.Drawing.Size(119, 33)
@@ -189,6 +189,7 @@ Partial Class frmEditValue
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+		Me.BackColor = System.Drawing.Color.Beige
 		Me.ClientSize = New System.Drawing.Size(500, 337)
 		Me.ControlBox = False
 		Me.Controls.Add(Me.btnUnlockKeyInput)
