@@ -60,6 +60,7 @@ Partial Class frmMain
 		Me.pnlSection = New System.Windows.Forms.Panel()
 		Me.Panel1 = New System.Windows.Forms.Panel()
 		Me.btnOpenInEditor = New System.Windows.Forms.Button()
+		Me.btnMapTools = New System.Windows.Forms.Button()
 		Me.pnlHeader.SuspendLayout()
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.pnlFooter.SuspendLayout()
@@ -149,6 +150,7 @@ Partial Class frmMain
 		'
 		Me.pnlFooter.BackColor = System.Drawing.Color.LightGray
 		Me.pnlFooter.BackgroundImage = CType(resources.GetObject("pnlFooter.BackgroundImage"), System.Drawing.Image)
+		Me.pnlFooter.Controls.Add(Me.btnMapTools)
 		Me.pnlFooter.Controls.Add(Me.lblNearDropIndex)
 		Me.pnlFooter.Controls.Add(Me.lblCurrentSectionIndex)
 		Me.pnlFooter.Controls.Add(Me.btnSort)
@@ -426,7 +428,7 @@ Partial Class frmMain
 		'
 		Me.pnlSection.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-		Me.pnlSection.BackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer))
+		Me.pnlSection.BackColor = System.Drawing.Color.White
 		Me.pnlSection.Controls.Add(Me.tbxFilter)
 		Me.pnlSection.Controls.Add(Me.lvwSection)
 		Me.pnlSection.Controls.Add(Me.btnFilter)
@@ -440,7 +442,7 @@ Partial Class frmMain
 		'
 		Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-		Me.Panel1.BackColor = System.Drawing.Color.WhiteSmoke
+		Me.Panel1.BackColor = System.Drawing.Color.White
 		Me.Panel1.Controls.Add(Me.btnOpenInEditor)
 		Me.Panel1.Controls.Add(Me.pnlInit)
 		Me.Panel1.Controls.Add(Me.lblCurrentSection)
@@ -465,11 +467,24 @@ Partial Class frmMain
 		Me.btnOpenInEditor.Text = "Open in Editor"
 		Me.btnOpenInEditor.UseVisualStyleBackColor = False
 		'
+		'btnMapTools
+		'
+		Me.btnMapTools.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.btnMapTools.BackColor = System.Drawing.Color.White
+		Me.btnMapTools.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnMapTools.Font = New System.Drawing.Font("Bahnschrift", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.btnMapTools.Location = New System.Drawing.Point(1062, 6)
+		Me.btnMapTools.Name = "btnMapTools"
+		Me.btnMapTools.Size = New System.Drawing.Size(172, 28)
+		Me.btnMapTools.TabIndex = 10
+		Me.btnMapTools.Text = "Map Tools"
+		Me.btnMapTools.UseVisualStyleBackColor = False
+		'
 		'frmMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.BackColor = System.Drawing.Color.White
+		Me.BackColor = System.Drawing.Color.Beige
 		Me.ClientSize = New System.Drawing.Size(1527, 900)
 		Me.ControlBox = False
 		Me.Controls.Add(Me.Panel1)
@@ -533,4 +548,5 @@ Partial Class frmMain
 	Friend WithEvents lblAppVersion As Label
 	Friend WithEvents tsmi_CommentElement As ToolStripMenuItem
 	Friend WithEvents lblNearDropIndex As Label
+	Friend WithEvents btnMapTools As Button
 End Class

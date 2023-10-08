@@ -41,7 +41,7 @@ Public Class frmMain
 
 		lblMessage.Text = "Loading..." : Me.Refresh()
 
-		For Each Section In GetSection(INIPath, Filter)
+		For Each Section In GetSections(INIPath, Filter)
 			lvi = lvwSection.Items.Add(Section.Name.ReplaceMore("[]", ""))
 			lvi.SubItems.Add(Section.LineNo)
 
@@ -57,11 +57,11 @@ Public Class frmMain
 
 	Private Sub LoadElement(Section As String)
 		Dim lvi As ListViewItem
-		Dim src As List(Of LineData) = GetMember(INIPath, Section)
+		Dim src As List(Of ElementData) = GetElements(INIPath, Section)
 		If Not src Is Nothing Then
 			lblCurrentSection.Text = Section
 			lvwElements.Items.Clear()
-			For Each LD As LineData In src
+			For Each LD As ElementData In src
 				lvi = lvwElements.Items.Add(LD.Name)
 				lvi.SubItems.Add(LD.Value)
 				lvi.SubItems.Add(LD.Comment)
@@ -101,7 +101,7 @@ Public Class frmMain
 
 			Dim Section As String = lvwSection.SelectedItems(0).Text
 			Dim LineNo As Integer = lvwSection.SelectedItems(0).SubItems(1).Text
-			Dim src As List(Of LineData) = GetMember(INIPath, Section, LineNo)
+			Dim src As List(Of ElementData) = GetElements(INIPath, Section, LineNo)
 
 			Dim lvi As ListViewItem
 
@@ -113,7 +113,7 @@ Public Class frmMain
 			tsmi_RemoveElement.Enabled = False
 
 			If Not src Is Nothing Then
-				For Each LD As LineData In src
+				For Each LD As ElementData In src
 					lvi = lvwElements.Items.Add(LD.Name)
 					lvi.SubItems.Add(LD.Value)
 					lvi.SubItems.Add(LD.Comment)
@@ -436,5 +436,10 @@ Public Class frmMain
 
 		If UpdateLinesData(refLineNo, Contents, True) Then LoadElement(lblCurrentSection.Text)
 
+	End Sub
+
+	Private Sub btnMapTools_Click(sender As Object, e As EventArgs) Handles btnMapTools.Click
+		Me.Hide()
+		frmMapTools.Show()
 	End Sub
 End Class

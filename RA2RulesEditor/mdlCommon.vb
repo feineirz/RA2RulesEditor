@@ -12,7 +12,7 @@ Module mdlCommon
 		Dim LineNo As Integer
 	End Structure
 
-	Structure LineData
+	Structure ElementData
 		Dim Name As String
 		Dim Value As String
 		Dim LineNo As Integer
@@ -26,6 +26,38 @@ Module mdlCommon
 
 	Public DragDropLVIs As ListViewItem()
 	Public LastDragOverItem As ListViewItem
+
+	Public Class ComboBoxItems
+
+		Private _DisplayMember As String
+		Private _ValueMember As String
+
+		Public Overrides Function ToString() As String
+			Return _ValueMember
+		End Function
+
+		Public Function ToCodeName() As String
+			Return _DisplayMember
+		End Function
+
+		Public Sub New(ByVal DisplayMember As String, ByVal ValueMember As String)
+			_DisplayMember = DisplayMember
+			_ValueMember = ValueMember
+		End Sub
+
+		Public ReadOnly Property DisplayMember() As String
+			Get
+				Return _DisplayMember
+			End Get
+		End Property
+
+		Public ReadOnly Property ValueMember() As String
+			Get
+				Return _ValueMember
+			End Get
+		End Property
+
+	End Class
 
 	Sub InitRulesFile(INIPath As String)
 
@@ -59,7 +91,7 @@ Module mdlCommon
 
 	End Sub
 
-	Function GetSection(INIPath As String, Optional Filter As String = "") As List(Of SectionData)
+	Function GetSections(INIPath As String, Optional Filter As String = "") As List(Of SectionData)
 
 		Dim Sections As New List(Of SectionData)
 		Dim SectionData As SectionData
@@ -117,7 +149,7 @@ Module mdlCommon
 
 		' Collect INI data
 		For Each Line In File.ReadAllLines(INIPath)
-				Line = Line.Trim
+			Line = Line.Trim
 
 			' Check if Line is a target section
 			If Line.StartsWith("[") Then
@@ -144,8 +176,8 @@ Module mdlCommon
 				End If
 			End If
 
-				INIContent.Add(Line)
-			Next
+			INIContent.Add(Line)
+		Next
 
 		If State = "cloning" Then
 			' Pack if target section is a last section
@@ -161,7 +193,7 @@ Module mdlCommon
 
 	End Function
 
-	Function GetMember(INIPath As String, Section As String, Optional StartLine As Integer = 1) As List(Of LineData)
+	Function GetElements(INIPath As String, Section As String, Optional StartLine As Integer = 1) As List(Of ElementData)
 
 		' prepare section format
 		Section = Section.Trim
@@ -169,11 +201,11 @@ Module mdlCommon
 		If Not Section.EndsWith("]") Then Section = Section & "]"
 
 		Dim INIContent As New List(Of String)
-		Dim SectionContent As New List(Of LineData)
+		Dim SectionContent As New List(Of ElementData)
 
 		Dim Line As String
 
-		Dim LD As LineData = Nothing
+		Dim LD As ElementData = Nothing
 		Dim splA(), splB() As String
 
 		If File.Exists(INIPath) Then

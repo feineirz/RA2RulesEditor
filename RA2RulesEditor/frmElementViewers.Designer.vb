@@ -82,6 +82,7 @@ Partial Class frmElementViewers
 		'lblNearDropIndex
 		'
 		Me.lblNearDropIndex.AutoSize = True
+		Me.lblNearDropIndex.BackColor = System.Drawing.Color.Transparent
 		Me.lblNearDropIndex.Font = New System.Drawing.Font("Bahnschrift Light SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblNearDropIndex.Location = New System.Drawing.Point(708, 14)
 		Me.lblNearDropIndex.Name = "lblNearDropIndex"
@@ -93,6 +94,7 @@ Partial Class frmElementViewers
 		'lblCurrentSection
 		'
 		Me.lblCurrentSection.AutoSize = True
+		Me.lblCurrentSection.BackColor = System.Drawing.Color.Transparent
 		Me.lblCurrentSection.Font = New System.Drawing.Font("Bahnschrift Light SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblCurrentSection.Location = New System.Drawing.Point(894, 14)
 		Me.lblCurrentSection.Name = "lblCurrentSection"
