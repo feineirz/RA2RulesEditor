@@ -70,7 +70,7 @@ Public Class frmMapTools
 				lvi.SubItems.Add(fi.Name)
 				lvi.SubItems.Add(fi.FullName)
 			Catch ex As Exception
-				lblStatus.Text = "Error: " & ex.Message
+				lvwConversionLog.Items.Add(ex.Message)
 				Continue For
 			End Try
 		Next
@@ -88,7 +88,7 @@ Public Class frmMapTools
 
 	Public Function ReformatFilename(content As String) As String
 		content = Regex.Replace(content, " {2,}", " ")
-		content = content.ReplaceMore("�\/:*?<>|=~", "").Replace(Chr(34), "") ' char(34) = "
+		content = content.ReplaceMore("�\/:*?<>|=~#!@$%^&", "").Replace(Chr(34), "") ' char(34) = "
 		content = CapWord(content)
 		Return content
 	End Function
@@ -155,15 +155,15 @@ Public Class frmMapTools
 	Private Sub frmMapTools_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
 		Dim cmbItems = New List(Of ComboBoxItems)
-		cmbItems.Add(New ComboBoxItems(".map (Raw format)", ".map"))
-		cmbItems.Add(New ComboBoxItems(".mpr (RA2 format)", ".mpr"))
-		cmbItems.Add(New ComboBoxItems(".yrm (Yuri format)", ".yrm"))
+		cmbItems.Add(New ComboBoxItems(".map to .mpr (Raw format to RA2 format)", "map2mpr"))
+		cmbItems.Add(New ComboBoxItems(".map to .ymr (Raw format to Yuri format)", "map2yrm"))
+		cmbItems.Add(New ComboBoxItems(".mpr to .yrm (RA2 format to Yuri format)", "mpr2yrm"))
 
-		cmbConvertToType.ValueMember = "ValueMember"
-		cmbConvertToType.DisplayMember = "DisplayMember"
-		cmbConvertToType.DataSource = cmbItems
+		cmbConvertionProfile.ValueMember = "ValueMember"
+		cmbConvertionProfile.DisplayMember = "DisplayMember"
+		cmbConvertionProfile.DataSource = cmbItems
 
-		cmbConvertToType.SelectedItem = cmbConvertToType.Items(0)
+		cmbConvertionProfile.SelectedItem = cmbConvertionProfile.Items(0)
 
 	End Sub
 
@@ -178,21 +178,32 @@ Public Class frmMapTools
 			End If
 
 			If dlgTargetDir.ShowDialog = DialogResult.OK Then
+				Dim conversionProfile As String = cmbConvertionProfile.SelectedValue
+				Dim mapType As String
 				Dim srcFullpath As String
 				Dim targetPath As String = dlgTargetDir.SelectedPath
 				Dim targetName As String
-				Dim targetExt As String = cmbConvertToType.SelectedValue
+				Dim targetExt As String = ".map"
+
+				Select Case conversionProfile
+					Case "map2mpr" : targetExt = ".mpr"
+					Case "map2yrm" : targetExt = ".yrm"
+					Case "mpr2yrm" : targetExt = ".yrm"
+				End Select
 
 				pnlProgress.Show()
 				pnlProgress.Refresh()
 				For Each lvi As ListViewItem In lvwMapList.Items
+					mapType = lvi.SubItems(1).Text
 					srcFullpath = lvi.SubItems(3).Text
 					targetName = lvi.Text
 
 					Try
+						If conversionProfile = "map2mpr" Or conversionProfile = "map2yrm" Then If mapType <> ".map" Then Continue For
+						If conversionProfile = "mpr2yrm" Then If mapType <> ".mpr" Then Continue For
 						System.IO.File.Copy(srcFullpath, targetPath & "\" & targetName & targetExt, True)
 					Catch ex As Exception
-						lblStatus.Text = "Error: " & ex.Message
+						lvwConversionLog.Items.Add(ex.Message)
 						Continue For
 					End Try
 				Next
@@ -203,4 +214,19 @@ Public Class frmMapTools
 
 	End Sub
 
+	Private Sub lvwConversionLog_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvwConversionLog.SelectedIndexChanged
+
+		If lvwConversionLog.SelectedItems.Count = 1 Then
+			lblStatus.Text = lvwConversionLog.SelectedItems(0).Text
+		Else
+			lblStatus.Text = "Ready"
+		End If
+
+	End Sub
+
+	Private Sub btnClearLog_Click(sender As Object, e As EventArgs) Handles btnClearLog.Click
+
+		lvwConversionLog.Items.Clear()
+
+	End Sub
 End Class

@@ -46,15 +46,20 @@ Partial Class frmMapTools
 		Me.colElementName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.colElementValue = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.Label3 = New System.Windows.Forms.Label()
-		Me.cmbConvertToType = New System.Windows.Forms.ComboBox()
+		Me.cmbConvertionProfile = New System.Windows.Forms.ComboBox()
 		Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
 		Me.btnConvertMap = New System.Windows.Forms.Button()
+		Me.pnlConvert = New System.Windows.Forms.Panel()
+		Me.lvwConversionLog = New System.Windows.Forms.ListView()
+		Me.colMessageLog = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+		Me.btnClearLog = New System.Windows.Forms.Button()
 		Me.pnlFooter.SuspendLayout()
 		Me.pnlHeader.SuspendLayout()
 		Me.pnlSource.SuspendLayout()
 		Me.pnlProgress.SuspendLayout()
 		Me.pnlMapInfo.SuspendLayout()
 		CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+		Me.pnlConvert.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'pnlFooter
@@ -137,10 +142,11 @@ Partial Class frmMapTools
 		'
 		Me.pnlProgress.BackColor = System.Drawing.Color.Transparent
 		Me.pnlProgress.BackgroundImage = CType(resources.GetObject("pnlProgress.BackgroundImage"), System.Drawing.Image)
+		Me.pnlProgress.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
 		Me.pnlProgress.Controls.Add(Me.lblMessage)
 		Me.pnlProgress.Location = New System.Drawing.Point(269, 341)
 		Me.pnlProgress.Name = "pnlProgress"
-		Me.pnlProgress.Size = New System.Drawing.Size(300, 100)
+		Me.pnlProgress.Size = New System.Drawing.Size(300, 168)
 		Me.pnlProgress.TabIndex = 11
 		Me.pnlProgress.Visible = False
 		'
@@ -148,9 +154,9 @@ Partial Class frmMapTools
 		'
 		Me.lblMessage.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblMessage.ForeColor = System.Drawing.Color.WhiteSmoke
-		Me.lblMessage.Location = New System.Drawing.Point(3, 29)
+		Me.lblMessage.Location = New System.Drawing.Point(3, 109)
 		Me.lblMessage.Name = "lblMessage"
-		Me.lblMessage.Size = New System.Drawing.Size(294, 38)
+		Me.lblMessage.Size = New System.Drawing.Size(294, 50)
 		Me.lblMessage.TabIndex = 1
 		Me.lblMessage.Text = "Processing..."
 		Me.lblMessage.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -238,7 +244,7 @@ Partial Class frmMapTools
 		Me.pnlMapInfo.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.pnlMapInfo.Location = New System.Drawing.Point(868, 66)
 		Me.pnlMapInfo.Name = "pnlMapInfo"
-		Me.pnlMapInfo.Size = New System.Drawing.Size(520, 866)
+		Me.pnlMapInfo.Size = New System.Drawing.Size(520, 471)
 		Me.pnlMapInfo.TabIndex = 5
 		'
 		'Label2
@@ -264,7 +270,7 @@ Partial Class frmMapTools
 		Me.lvwMapInfo.Location = New System.Drawing.Point(3, 29)
 		Me.lvwMapInfo.MultiSelect = False
 		Me.lvwMapInfo.Name = "lvwMapInfo"
-		Me.lvwMapInfo.Size = New System.Drawing.Size(514, 834)
+		Me.lvwMapInfo.Size = New System.Drawing.Size(514, 439)
 		Me.lvwMapInfo.TabIndex = 0
 		Me.lvwMapInfo.UseCompatibleStateImageBehavior = False
 		Me.lvwMapInfo.View = System.Windows.Forms.View.Details
@@ -283,20 +289,20 @@ Partial Class frmMapTools
 		'
 		Me.Label3.AutoSize = True
 		Me.Label3.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.Label3.Location = New System.Drawing.Point(1078, 935)
+		Me.Label3.Location = New System.Drawing.Point(3, 11)
 		Me.Label3.Name = "Label3"
 		Me.Label3.Size = New System.Drawing.Size(100, 16)
 		Me.Label3.TabIndex = 25
-		Me.Label3.Text = "Convert all map to"
+		Me.Label3.Text = "Conversion profile"
 		'
-		'cmbConvertToType
+		'cmbConvertionProfile
 		'
-		Me.cmbConvertToType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-		Me.cmbConvertToType.FormattingEnabled = True
-		Me.cmbConvertToType.Location = New System.Drawing.Point(1184, 933)
-		Me.cmbConvertToType.Name = "cmbConvertToType"
-		Me.cmbConvertToType.Size = New System.Drawing.Size(121, 21)
-		Me.cmbConvertToType.TabIndex = 24
+		Me.cmbConvertionProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cmbConvertionProfile.FormattingEnabled = True
+		Me.cmbConvertionProfile.Location = New System.Drawing.Point(107, 8)
+		Me.cmbConvertionProfile.Name = "cmbConvertionProfile"
+		Me.cmbConvertionProfile.Size = New System.Drawing.Size(327, 21)
+		Me.cmbConvertionProfile.TabIndex = 24
 		'
 		'MyApplicationBindingSource
 		'
@@ -309,23 +315,68 @@ Partial Class frmMapTools
 		Me.btnConvertMap.Enabled = False
 		Me.btnConvertMap.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnConvertMap.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.btnConvertMap.Location = New System.Drawing.Point(1311, 933)
+		Me.btnConvertMap.Location = New System.Drawing.Point(440, 8)
 		Me.btnConvertMap.Name = "btnConvertMap"
 		Me.btnConvertMap.Size = New System.Drawing.Size(77, 22)
 		Me.btnConvertMap.TabIndex = 23
 		Me.btnConvertMap.Text = "Convert"
 		Me.btnConvertMap.UseVisualStyleBackColor = False
 		'
+		'pnlConvert
+		'
+		Me.pnlConvert.BackColor = System.Drawing.Color.White
+		Me.pnlConvert.Controls.Add(Me.btnClearLog)
+		Me.pnlConvert.Controls.Add(Me.lvwConversionLog)
+		Me.pnlConvert.Controls.Add(Me.btnConvertMap)
+		Me.pnlConvert.Controls.Add(Me.Label3)
+		Me.pnlConvert.Controls.Add(Me.cmbConvertionProfile)
+		Me.pnlConvert.Location = New System.Drawing.Point(868, 543)
+		Me.pnlConvert.Name = "pnlConvert"
+		Me.pnlConvert.Size = New System.Drawing.Size(520, 412)
+		Me.pnlConvert.TabIndex = 26
+		'
+		'lvwConversionLog
+		'
+		Me.lvwConversionLog.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colMessageLog})
+		Me.lvwConversionLog.FullRowSelect = True
+		Me.lvwConversionLog.GridLines = True
+		Me.lvwConversionLog.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
+		Me.lvwConversionLog.HideSelection = False
+		Me.lvwConversionLog.Location = New System.Drawing.Point(6, 35)
+		Me.lvwConversionLog.Name = "lvwConversionLog"
+		Me.lvwConversionLog.Size = New System.Drawing.Size(511, 374)
+		Me.lvwConversionLog.TabIndex = 26
+		Me.lvwConversionLog.UseCompatibleStateImageBehavior = False
+		Me.lvwConversionLog.View = System.Windows.Forms.View.Details
+		'
+		'colMessageLog
+		'
+		Me.colMessageLog.Text = "Message Log"
+		Me.colMessageLog.Width = 485
+		'
+		'btnClearLog
+		'
+		Me.btnClearLog.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.btnClearLog.BackColor = System.Drawing.Color.WhiteSmoke
+		Me.btnClearLog.FlatAppearance.BorderColor = System.Drawing.Color.Gold
+		Me.btnClearLog.FlatAppearance.BorderSize = 0
+		Me.btnClearLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnClearLog.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.btnClearLog.Location = New System.Drawing.Point(439, 36)
+		Me.btnClearLog.Name = "btnClearLog"
+		Me.btnClearLog.Size = New System.Drawing.Size(77, 22)
+		Me.btnClearLog.TabIndex = 27
+		Me.btnClearLog.Text = "Clear"
+		Me.btnClearLog.UseVisualStyleBackColor = False
+		'
 		'frmMapTools
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.BackColor = System.Drawing.Color.Beige
+		Me.BackColor = System.Drawing.Color.WhiteSmoke
 		Me.ClientSize = New System.Drawing.Size(1400, 1000)
 		Me.ControlBox = False
-		Me.Controls.Add(Me.Label3)
-		Me.Controls.Add(Me.cmbConvertToType)
-		Me.Controls.Add(Me.btnConvertMap)
+		Me.Controls.Add(Me.pnlConvert)
 		Me.Controls.Add(Me.pnlMapInfo)
 		Me.Controls.Add(Me.pnlSource)
 		Me.Controls.Add(Me.pnlFooter)
@@ -344,8 +395,9 @@ Partial Class frmMapTools
 		Me.pnlMapInfo.ResumeLayout(False)
 		Me.pnlMapInfo.PerformLayout()
 		CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+		Me.pnlConvert.ResumeLayout(False)
+		Me.pnlConvert.PerformLayout()
 		Me.ResumeLayout(False)
-		Me.PerformLayout()
 
 	End Sub
 
@@ -371,7 +423,11 @@ Partial Class frmMapTools
 	Friend WithEvents colElementValue As ColumnHeader
 	Friend WithEvents lblStatus As Label
 	Friend WithEvents Label3 As Label
-	Friend WithEvents cmbConvertToType As ComboBox
+	Friend WithEvents cmbConvertionProfile As ComboBox
 	Friend WithEvents btnConvertMap As Button
 	Friend WithEvents MyApplicationBindingSource As BindingSource
+	Friend WithEvents pnlConvert As Panel
+	Friend WithEvents lvwConversionLog As ListView
+	Friend WithEvents colMessageLog As ColumnHeader
+	Friend WithEvents btnClearLog As Button
 End Class

@@ -31,6 +31,7 @@ Partial Class frmMain
 		Me.btnLoad = New System.Windows.Forms.Button()
 		Me.btnExit = New System.Windows.Forms.Button()
 		Me.pnlFooter = New System.Windows.Forms.Panel()
+		Me.btnMapTools = New System.Windows.Forms.Button()
 		Me.lblNearDropIndex = New System.Windows.Forms.Label()
 		Me.lblCurrentSectionIndex = New System.Windows.Forms.Label()
 		Me.btnSort = New System.Windows.Forms.Button()
@@ -60,7 +61,6 @@ Partial Class frmMain
 		Me.pnlSection = New System.Windows.Forms.Panel()
 		Me.Panel1 = New System.Windows.Forms.Panel()
 		Me.btnOpenInEditor = New System.Windows.Forms.Button()
-		Me.btnMapTools = New System.Windows.Forms.Button()
 		Me.pnlHeader.SuspendLayout()
 		CType(Me.picIcon, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.pnlFooter.SuspendLayout()
@@ -162,6 +162,19 @@ Partial Class frmMain
 		Me.pnlFooter.Name = "pnlFooter"
 		Me.pnlFooter.Size = New System.Drawing.Size(1527, 40)
 		Me.pnlFooter.TabIndex = 3
+		'
+		'btnMapTools
+		'
+		Me.btnMapTools.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.btnMapTools.BackColor = System.Drawing.Color.White
+		Me.btnMapTools.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnMapTools.Font = New System.Drawing.Font("Bahnschrift", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.btnMapTools.Location = New System.Drawing.Point(1062, 6)
+		Me.btnMapTools.Name = "btnMapTools"
+		Me.btnMapTools.Size = New System.Drawing.Size(172, 28)
+		Me.btnMapTools.TabIndex = 10
+		Me.btnMapTools.Text = "Map Tools"
+		Me.btnMapTools.UseVisualStyleBackColor = False
 		'
 		'lblNearDropIndex
 		'
@@ -381,10 +394,11 @@ Partial Class frmMain
 		'
 		Me.pnlInit.BackColor = System.Drawing.Color.Transparent
 		Me.pnlInit.BackgroundImage = CType(resources.GetObject("pnlInit.BackgroundImage"), System.Drawing.Image)
+		Me.pnlInit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
 		Me.pnlInit.Controls.Add(Me.lblMessage)
-		Me.pnlInit.Location = New System.Drawing.Point(478, 272)
+		Me.pnlInit.Location = New System.Drawing.Point(478, 198)
 		Me.pnlInit.Name = "pnlInit"
-		Me.pnlInit.Size = New System.Drawing.Size(300, 100)
+		Me.pnlInit.Size = New System.Drawing.Size(300, 169)
 		Me.pnlInit.TabIndex = 10
 		Me.pnlInit.Visible = False
 		'
@@ -392,7 +406,7 @@ Partial Class frmMain
 		'
 		Me.lblMessage.Font = New System.Drawing.Font("Bahnschrift SemiCondensed", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblMessage.ForeColor = System.Drawing.Color.WhiteSmoke
-		Me.lblMessage.Location = New System.Drawing.Point(3, 29)
+		Me.lblMessage.Location = New System.Drawing.Point(3, 122)
 		Me.lblMessage.Name = "lblMessage"
 		Me.lblMessage.Size = New System.Drawing.Size(294, 38)
 		Me.lblMessage.TabIndex = 1
@@ -466,19 +480,6 @@ Partial Class frmMain
 		Me.btnOpenInEditor.TabIndex = 13
 		Me.btnOpenInEditor.Text = "Open in Editor"
 		Me.btnOpenInEditor.UseVisualStyleBackColor = False
-		'
-		'btnMapTools
-		'
-		Me.btnMapTools.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-		Me.btnMapTools.BackColor = System.Drawing.Color.White
-		Me.btnMapTools.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-		Me.btnMapTools.Font = New System.Drawing.Font("Bahnschrift", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.btnMapTools.Location = New System.Drawing.Point(1062, 6)
-		Me.btnMapTools.Name = "btnMapTools"
-		Me.btnMapTools.Size = New System.Drawing.Size(172, 28)
-		Me.btnMapTools.TabIndex = 10
-		Me.btnMapTools.Text = "Map Tools"
-		Me.btnMapTools.UseVisualStyleBackColor = False
 		'
 		'frmMain
 		'
