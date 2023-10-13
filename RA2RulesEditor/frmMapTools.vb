@@ -189,7 +189,7 @@ Public Class frmMapTools
 				Dim targetExt As String = ".map"
 
 				Select Case conversionProfile
-					Case "map2mpr", "map2mrp+" : targetExt = ".mpr"
+					Case "map2mpr", "map2mpr+" : targetExt = ".mpr"
 					Case "map2yrm", "map2yrm+" : targetExt = ".yrm"
 					Case "mpr2yrm", "mpr2yrm+" : targetExt = ".yrm"
 				End Select
