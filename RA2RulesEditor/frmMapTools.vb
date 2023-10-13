@@ -158,6 +158,9 @@ Public Class frmMapTools
 		cmbItems.Add(New ComboBoxItems(".map to .mpr (Raw format to RA2 format)", "map2mpr"))
 		cmbItems.Add(New ComboBoxItems(".map to .ymr (Raw format to Yuri format)", "map2yrm"))
 		cmbItems.Add(New ComboBoxItems(".mpr to .yrm (RA2 format to Yuri format)", "mpr2yrm"))
+		cmbItems.Add(New ComboBoxItems(".map to .mpr (Raw format to RA2 format) + mpr copy", "map2mpr+"))
+		cmbItems.Add(New ComboBoxItems(".map to .ymr (Raw format to Yuri format) + yrm copy", "map2yrm+"))
+		cmbItems.Add(New ComboBoxItems(".mpr to .yrm (RA2 format to Yuri format) + yrm copy", "mpr2yrm+"))
 
 		cmbConvertionProfile.ValueMember = "ValueMember"
 		cmbConvertionProfile.DisplayMember = "DisplayMember"
@@ -186,9 +189,9 @@ Public Class frmMapTools
 				Dim targetExt As String = ".map"
 
 				Select Case conversionProfile
-					Case "map2mpr" : targetExt = ".mpr"
-					Case "map2yrm" : targetExt = ".yrm"
-					Case "mpr2yrm" : targetExt = ".yrm"
+					Case "map2mpr", "map2mrp+" : targetExt = ".mpr"
+					Case "map2yrm", "map2yrm+" : targetExt = ".yrm"
+					Case "mpr2yrm", "mpr2yrm+" : targetExt = ".yrm"
 				End Select
 
 				pnlProgress.Show()
@@ -199,9 +202,19 @@ Public Class frmMapTools
 					targetName = lvi.Text
 
 					Try
-						If conversionProfile = "map2mpr" Or conversionProfile = "map2yrm" Then If mapType <> ".map" Then Continue For
-						If conversionProfile = "mpr2yrm" Then If mapType <> ".mpr" Then Continue For
+						Select Case conversionProfile
+							Case "map2mpr", "map2mpr+"
+								If conversionProfile = "map2mpr" And mapType <> ".map" Then Continue For
+								If conversionProfile = "map2mpr+" And (mapType <> ".map" And mapType <> ".mpr") Then Continue For
+							Case "map2yrm", "map2yrm+"
+								If conversionProfile = "map2yrm" And mapType <> ".map" Then Continue For
+								If conversionProfile = "map2yrm+" And (mapType <> ".map" And mapType <> ".yrm") Then Continue For
+							Case "mpr2yrm", "mpr2yrm+"
+								If conversionProfile = "mpr2yrm" And mapType <> ".mpr" Then Continue For
+								If conversionProfile = "mpr2yrm+" And (mapType <> ".mpr" And mapType <> ".yrm") Then Continue For
+						End Select
 						System.IO.File.Copy(srcFullpath, targetPath & "\" & targetName & targetExt, True)
+
 					Catch ex As Exception
 						lvwConversionLog.Items.Add(ex.Message)
 						Continue For
